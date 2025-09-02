@@ -89,13 +89,13 @@ const Index = () => {
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardContent className="p-6 lg:p-8">
               <div className="space-y-4">
-                <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋 I'm Inna Dedova</h2>
+                <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋</h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p className="text-base lg:text-lg">
-                    I'm curious, I like tinkering, and I hate routine manual tasks. So what does a tinkerer do? Automate them to focus on strategic product work and being present for my team during delivery.
+                    I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine manual tasks. So I automate them to focus on strategic work and being present for my team during delivery.
                   </p>
                   <p className="text-base lg:text-lg">
-                    <strong className="text-foreground">The results speak for themselves:</strong> My dev team calls me "unblocker" and thinks I have supernatural memory powers. Stakeholders wonder how I get data so fast.
+                    <strong className="text-foreground">The result:</strong> My dev team calls me "unblocker" and thinks I have supernatural memory powers.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">
@@ -172,15 +172,15 @@ const Index = () => {
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-3">
-                <div className="text-center p-4 bg-background/50 rounded-lg">
+                <div className="text-center p-4 bg-background/50 rounded-xl">
                   <h4 className="font-semibold text-foreground mb-2">UAT Automation</h4>
                   <p className="text-sm text-muted-foreground">Comet Browser magic</p>
                 </div>
-                <div className="text-center p-4 bg-background/50 rounded-lg">
+                <div className="text-center p-4 bg-background/50 rounded-xl">
                   <h4 className="font-semibold text-foreground mb-2">Competitor Intel</h4>
                   <p className="text-sm text-muted-foreground">Automated flow analysis</p>
                 </div>
-                <div className="text-center p-4 bg-background/50 rounded-lg">
+                <div className="text-center p-4 bg-background/50 rounded-xl">
                   <h4 className="font-semibold text-foreground mb-2">UI Prototyping</h4>
                   <p className="text-sm text-muted-foreground">Magic Patterns integration</p>
                 </div>

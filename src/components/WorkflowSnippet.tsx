@@ -47,13 +47,13 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
           ))}
         </ul>
         
-        <div className="p-4 bg-highlight/10 border border-highlight/30 rounded-lg">
+        <div className="p-4 bg-highlight/10 border border-highlight/30 rounded-xl">
           <p className="text-sm lg:text-base font-semibold text-highlight">
             {metric}
           </p>
         </div>
         
-        <div className="p-4 bg-muted/30 rounded-lg border border-dashed border-muted-foreground/30">
+        <div className="p-4 bg-muted/30 rounded-xl border border-dashed border-muted-foreground/30">
           <p className="text-xs text-muted-foreground text-center italic">
             Workflow diagram
           </p>
