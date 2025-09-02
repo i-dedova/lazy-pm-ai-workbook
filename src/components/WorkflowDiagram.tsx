@@ -36,51 +36,27 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {isPreview ? (
-        /* Collapsed View - Stacked Cards */
-        <g>
-          {/* Generated Docs - Bottom of stack */}
-          <rect x="60" y="85" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="120" y="105" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Generated Docs</text>
-          <text x="120" y="120" textAnchor="middle" fontSize="10" fill="#64748b">PRDs, Stories</text>
-          
-          {/* Claude Code - Middle of stack */}
-          <rect x="50" y="75" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Claude Code</text>
-          <text x="110" y="110" textAnchor="middle" fontSize="10" fill="#64748b">Context Engine</text>
-          
-          {/* Obsidian Vault - Top of stack (most visible) */}
-          <rect x="40" y="65" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="100" y="85" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Obsidian Vault</text>
-          <text x="100" y="100" textAnchor="middle" fontSize="10" fill="#64748b">Knowledge Base</text>
-          
-          {/* Flow arrows left to right */}
-          <path d="M 160 90 L 190 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d="M 220 90 L 250 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      ) : (
-        /* Expanded View - Horizontal Layout */
-        <g>
-          {/* Obsidian Vault */}
-          <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Obsidian Vault</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Knowledge Base</text>
-          
-          {/* Claude */}
-          <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude Code</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Context Engine</text>
-          
-          {/* Generated Docs */}
-          <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Generated Docs</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">PRDs, Stories</text>
-          
-          {/* Arrows */}
-          <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d={`M ${width/2 + 60} 85 L ${width - 170} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      )}
+      {/* Main Flow */}
+      <g>
+        {/* Obsidian Vault - Left position in collapsed view */}
+        <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian Vault</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Knowledge Base</text>
+        
+        {/* Claude - Middle position */}
+        <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude Code</text>
+        <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Context Engine</text>
+        
+        {/* Generated Docs - Right position in collapsed view */}
+        <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Generated Docs</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRDs, Stories</text>
+        
+        {/* Arrows */}
+        <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+      </g>
 
       {/* Expanded Details - Show immediately when not preview */}
       {!isPreview && (
@@ -125,51 +101,27 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {isPreview ? (
-        /* Collapsed View - Stacked Cards */
-        <g>
-          {/* Daily TODOs - Bottom of stack */}
-          <rect x="60" y="85" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="120" y="105" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Daily TODOs</text>
-          <text x="120" y="120" textAnchor="middle" fontSize="10" fill="#64748b">Action Items</text>
-          
-          {/* Claude - Middle of stack */}
-          <rect x="50" y="75" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Claude</text>
-          <text x="110" y="110" textAnchor="middle" fontSize="10" fill="#64748b">Process & Sort</text>
-          
-          {/* Granola - Top of stack (most visible) */}
-          <rect x="40" y="65" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="100" y="85" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Granola</text>
-          <text x="100" y="100" textAnchor="middle" fontSize="10" fill="#64748b">Auto-record</text>
-          
-          {/* Flow arrows left to right */}
-          <path d="M 160 90 L 190 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d="M 220 90 L 250 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      ) : (
-        /* Expanded View - Horizontal Layout */
-        <g>
-          {/* Granola */}
-          <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Granola</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Auto-record</text>
-          
-          {/* Claude */}
-          <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Process & Sort</text>
-          
-          {/* Daily TODOs */}
-          <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Daily TODOs</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Action Items</text>
-          
-          {/* Arrows */}
-          <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d={`M ${width/2 + 60} 85 L ${width - 170} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      )}
+      {/* Main Flow */}
+      <g>
+        {/* Granola - Left position in collapsed view */}
+        <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Granola</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-record</text>
+        
+        {/* Claude - Middle position */}
+        <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
+        <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Process & Sort</text>
+        
+        {/* Daily TODOs - Right position in collapsed view */}
+        <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Daily TODOs</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Action Items</text>
+        
+        {/* Arrows */}
+        <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+      </g>
 
       {!isPreview && (
         <g>
@@ -213,51 +165,27 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {isPreview ? (
-        /* Collapsed View - Stacked Cards */
-        <g>
-          {/* Tech Q&A - Bottom of stack */}
-          <rect x="60" y="85" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="120" y="105" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Tech Q&A</text>
-          <text x="120" y="120" textAnchor="middle" fontSize="10" fill="#64748b">Real-time answers</text>
-          
-          {/* Repository Map - Middle of stack */}
-          <rect x="50" y="75" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Repository Map</text>
-          <text x="110" y="110" textAnchor="middle" fontSize="10" fill="#64748b">Code Navigation</text>
-          
-          {/* GitHub Copilot - Top of stack (most visible) */}
-          <rect x="40" y="65" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="100" y="85" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">GitHub Copilot</text>
-          <text x="100" y="100" textAnchor="middle" fontSize="10" fill="#64748b">Code Assistant</text>
-          
-          {/* Flow arrows left to right */}
-          <path d="M 160 90 L 190 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d="M 220 90 L 250 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      ) : (
-        /* Expanded View - Horizontal Layout */
-        <g>
-          {/* GitHub Copilot */}
-          <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">GitHub Copilot</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Code Assistant</text>
-          
-          {/* Repository Map */}
-          <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Repository Map</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Code Navigation</text>
-          
-          {/* Tech Q&A */}
-          <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Tech Q&A</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Real-time answers</text>
-          
-          {/* Arrows */}
-          <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d={`M ${width/2 + 60} 85 L ${width - 170} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      )}
+      {/* Main Flow */}
+      <g>
+        {/* GitHub Copilot - Left position in collapsed view */}
+        <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">GitHub Copilot</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Assistant</text>
+        
+        {/* Repository Map - Middle position */}
+        <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Repository Map</text>
+        <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Navigation</text>
+        
+        {/* Tech Q&A - Right position in collapsed view */}
+        <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Tech Q&A</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Real-time answers</text>
+        
+        {/* Arrows */}
+        <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+      </g>
 
       {!isPreview && (
         <g>
@@ -301,51 +229,27 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {isPreview ? (
-        /* Collapsed View - Stacked Cards */
-        <g>
-          {/* Auto-Analysis - Bottom of stack */}
-          <rect x="60" y="85" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="120" y="105" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Auto-Analysis</text>
-          <text x="120" y="120" textAnchor="middle" fontSize="10" fill="#64748b">Insights</text>
-          
-          {/* Perplexity Pro - Middle of stack */}
-          <rect x="50" y="75" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Perplexity Pro</text>
-          <text x="110" y="110" textAnchor="middle" fontSize="10" fill="#64748b">Context Search</text>
-          
-          {/* Comet Browser - Top of stack (most visible) */}
-          <rect x="40" y="65" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="100" y="85" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Comet Browser</text>
-          <text x="100" y="100" textAnchor="middle" fontSize="10" fill="#64748b">Auto-scraping</text>
-          
-          {/* Flow arrows left to right */}
-          <path d="M 160 90 L 190 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d="M 220 90 L 250 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      ) : (
-        /* Expanded View - Horizontal Layout */
-        <g>
-          {/* Comet Browser */}
-          <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Comet Browser</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Auto-scraping</text>
-          
-          {/* Perplexity Pro */}
-          <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Perplexity Pro</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Context Search</text>
-          
-          {/* Auto-Analysis */}
-          <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Auto-Analysis</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Insights</text>
-          
-          {/* Arrows */}
-          <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d={`M ${width/2 + 60} 85 L ${width - 170} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      )}
+      {/* Main Flow */}
+      <g>
+        {/* Comet Browser - Left position in collapsed view */}
+        <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Comet Browser</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-scraping</text>
+        
+        {/* Perplexity Pro - Middle position */}
+        <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Perplexity Pro</text>
+        <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Context Search</text>
+        
+        {/* Auto-Analysis - Right position in collapsed view */}
+        <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Auto-Analysis</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Insights</text>
+        
+        {/* Arrows */}
+        <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+      </g>
 
       {!isPreview && (
         <g>
@@ -389,51 +293,27 @@ const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {isPreview ? (
-        /* Collapsed View - Stacked Cards */
-        <g>
-          {/* Obsidian - Bottom of stack */}
-          <rect x="60" y="85" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="120" y="105" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Obsidian</text>
-          <text x="120" y="120" textAnchor="middle" fontSize="10" fill="#64748b">PRD Ready</text>
-          
-          {/* Claude - Middle of stack */}
-          <rect x="50" y="75" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Claude</text>
-          <text x="110" y="110" textAnchor="middle" fontSize="10" fill="#64748b">Structure</text>
-          
-          {/* Wispr Flow - Top of stack (most visible) */}
-          <rect x="40" y="65" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="100" y="85" textAnchor="middle" fontSize="12" fill="#1e293b" fontWeight="600">Wispr Flow</text>
-          <text x="100" y="100" textAnchor="middle" fontSize="10" fill="#64748b">Voice Capture</text>
-          
-          {/* Flow arrows left to right */}
-          <path d="M 160 90 L 190 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d="M 220 90 L 250 90" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      ) : (
-        /* Expanded View - Horizontal Layout */
-        <g>
-          {/* Wispr Flow */}
-          <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Wispr Flow</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Voice Capture</text>
-          
-          {/* Claude */}
-          <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Structure</text>
-          
-          {/* Obsidian */}
-          <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Obsidian</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">PRD Ready</text>
-          
-          {/* Arrows */}
-          <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-          <path d={`M ${width/2 + 60} 85 L ${width - 170} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        </g>
-      )}
+      {/* Main Flow */}
+      <g>
+        {/* Wispr Flow - Left position in collapsed view */}
+        <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Wispr Flow</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Voice Capture</text>
+        
+        {/* Claude - Middle position */}
+        <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
+        <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Structure</text>
+        
+        {/* Obsidian - Right position in collapsed view */}
+        <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRD Ready</text>
+        
+        {/* Arrows */}
+        <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+      </g>
 
       {!isPreview && (
         <g>
