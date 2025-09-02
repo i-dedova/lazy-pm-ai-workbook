@@ -89,7 +89,7 @@ const Index = () => {
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardContent className="p-6 lg:p-8 text-center">
               <div className="space-y-4">
-                <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋</h2>
+                <h2 className="text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto">Hello 👋</h2>
                 <div className="space-y-4 text-muted-foreground max-w-3xl mx-auto">
                   <p className="text-base lg:text-lg">
                     I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
