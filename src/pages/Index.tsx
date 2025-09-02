@@ -92,11 +92,11 @@ const Index = () => {
                 <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋</h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p className="text-base lg:text-lg">
-                    I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine manual tasks.<br />
-                    So I automate them to focus on strategic work and being present for my team.
+                    I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
+                    So I automate them to focus on strategic work and support my team.
                   </p>
                   <p className="text-base lg:text-lg">
-                    <strong className="text-foreground">The result:</strong> My dev team calls me "unblocker" and thinks I have supernatural powers.<br />
+                    <strong className="text-foreground">The result:</strong> My dev team calls me "unblocker" with supernatural powers.<br />
                     Stakeholders wonder how I get data so fast.
                   </p>
                 </div>
