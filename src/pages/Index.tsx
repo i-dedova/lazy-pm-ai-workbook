@@ -42,7 +42,7 @@ const Index = () => {
 
       {/* Hero Section - Clean & Simple */}
       <section className="py-12 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-background to-background dark:from-primary/8 dark:via-background dark:to-background"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-background to-background dark:from-accent/12 dark:via-background dark:to-background"></div>
         <div className="relative z-10">
           <div className="container mx-auto px-4 max-w-5xl">
             <div className="text-center space-y-6 lg:space-y-8 animate-fade-in">
