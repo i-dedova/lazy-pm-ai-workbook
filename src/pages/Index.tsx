@@ -88,7 +88,7 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto">Hello 👋</CardTitle>
+              <CardTitle className="text-2xl lg:text-3xl font-semibold">Hello 👋</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center space-y-6">
@@ -120,7 +120,7 @@ const Index = () => {
       <section id="framework" className="py-12 lg:py-16 bg-muted/30">
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card border-primary/20 shadow-[var(--shadow-elegant)]">
-            <CardHeader className="text-center pb-4">
+            <CardHeader className="text-center">
               <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">
                 How I Pick My Battles
               </CardTitle>
