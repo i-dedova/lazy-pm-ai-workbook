@@ -186,7 +186,7 @@ const Index = () => {
           <Card className="bg-gradient-accent text-accent-foreground">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl lg:text-4xl font-semibold">Let's Connect!</CardTitle>
-              <CardDescription className="text-accent-foreground/80 text-lg lg:text-xl max-w-3xl mx-auto">
+              <CardDescription className="text-accent-foreground/80 text-lg lg:text-xl max-w-3xl mx-auto py-[10px]">
                 Love efficiency hacks? Let's chat about AI workflows and product strategy. 
                 <br />
                 Always happy to connect with fellow builders who automate busy work.
