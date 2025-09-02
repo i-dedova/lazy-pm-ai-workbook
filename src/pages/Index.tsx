@@ -87,24 +87,26 @@ const Index = () => {
       <section className="py-8 lg:py-12">
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/50 border-border/50 animate-slide-up">
-            <CardContent className="p-6 lg:p-8 text-center space-y-6">
-              <h2 className="text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto">Hello 👋</h2>
-              <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
-                I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
-                So I automate them to focus on strategic work and support my team.
-              </p>
-              <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
-                <strong className="text-foreground">The result:</strong> My dev team calls me "unblocker" with supernatural powers.<br />
-                Stakeholders wonder how I get data so fast.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-                <div className="flex items-center gap-2 text-sm text-primary font-medium">
-                  <Zap className="h-4 w-4" />
-                  95% faster context setup
-                </div>
-                <div className="flex items-center gap-2 text-sm text-accent font-medium">
-                  <Target className="h-4 w-4" />
-                  400% better follow-through
+            <CardContent className="p-6 lg:p-8">
+              <div className="text-center space-y-6">
+                <h2 className="text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto">Hello 👋</h2>
+                <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+                  I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
+                  So I automate them to focus on strategic work and support my team.
+                </p>
+                <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+                  <strong className="text-foreground">The result:</strong> My dev team calls me "unblocker" with supernatural powers.<br />
+                  Stakeholders wonder how I get data so fast.
+                </p>
+                <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+                  <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                    <Zap className="h-4 w-4" />
+                    95% faster context setup
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-accent font-medium">
+                    <Target className="h-4 w-4" />
+                    400% better follow-through
+                  </div>
                 </div>
               </div>
             </CardContent>
