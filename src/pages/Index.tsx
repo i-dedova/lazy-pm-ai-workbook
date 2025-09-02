@@ -83,13 +83,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quick Intro - Scannable */}
+      {/* Hello Section - Rebuilt to match Framework structure exactly */}
       <section className="py-8 lg:py-12">
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/50 border-border/50 animate-slide-up">
-            <CardContent className="p-6 lg:p-8">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto">Hello 👋</CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="text-center space-y-6">
-                <h2 className="text-2xl lg:text-3xl font-semibold max-w-3xl mx-auto">Hello 👋</h2>
                 <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
                   I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
                   So I automate them to focus on strategic work and support my team.
