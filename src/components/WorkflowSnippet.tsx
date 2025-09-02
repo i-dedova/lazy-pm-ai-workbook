@@ -30,7 +30,7 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
           </div>
           <div className="flex-1 min-w-0">
             <CardTitle className="text-lg lg:text-xl font-semibold text-foreground mb-3">{title}</CardTitle>
-            <Badge variant="secondary" className="text-xs font-medium px-3 py-1">
+            <Badge variant="secondary" className="text-xs font-medium rounded-md px-3 py-1">
               {tools}
             </Badge>
           </div>
