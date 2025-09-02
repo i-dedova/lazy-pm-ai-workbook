@@ -31,13 +31,13 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
 };
 
 const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [isExpanded, setIsExpanded] = useState(false);
   const width = isPreview ? 300 : 700;
-  const height = isPreview ? 150 : expandedSections.details ? 450 : 300;
+  const height = isPreview ? 150 : isExpanded ? 450 : 300;
   
-  const toggleSection = (section: string) => {
+  const toggleExpansion = () => {
     if (!isPreview) {
-      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+      setIsExpanded(prev => !prev);
     }
   };
   
@@ -70,45 +70,45 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
         <g>
           {/* Expand button */}
           <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
-                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+                style={{cursor: 'pointer'}} onClick={toggleExpansion}/>
           <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
-            {expandedSections.details ? '▼ Hide Details' : '▶ Show Workflow Details'}
+            {isExpanded ? '▼ Hide Details' : '▶ Show Workflow Details'}
           </text>
 
-          {/* Expanded Content */}
-          {expandedSections.details && (
+          {/* Expanded Content - Show all details immediately when expanded */}
+          {isExpanded && (
             <g>
-              {/* Smart Tagging Layer */}
-              <rect x="60" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-              <text x="110" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">#smart-tags</text>
-              <text x="110" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Auto-linking</text>
+              {/* Smart Tagging Layer - Better aligned */}
+              <rect x="70" y="80" width="110" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="125" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">#smart-tags</text>
+              <text x="125" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Auto-linking & Cross-graphs</text>
 
               {/* Templates */}
-              <rect x="180" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-              <text x="230" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
-              <text x="230" y="108" textAnchor="middle" fontSize="9" fill="#64748b">PRD, Stories, Reports</text>
+              <rect x="200" y="80" width="110" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="255" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
+              <text x="255" y="108" textAnchor="middle" fontSize="9" fill="#64748b">PRD, Stories, Reports</text>
 
               {/* Cross-referencing */}
-              <rect x="300" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-              <text x="350" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">[[Cross-refs]]</text>
-              <text x="350" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Auto-connections</text>
+              <rect x="330" y="80" width="110" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="385" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">[[Cross-refs]]</text>
+              <text x="385" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Auto-connections</text>
 
               {/* Document Types */}
-              <rect x="420" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-              <text x="470" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Doc Types</text>
-              <text x="470" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Strategy, Research, Features</text>
+              <rect x="460" y="80" width="110" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="515" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Doc Types</text>
+              <text x="515" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Strategy, Research</text>
 
               {/* Context Layer */}
-              <rect x="100" y="360" width="500" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+              <rect x="80" y="360" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
               <text x="350" y="380" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Interconnected Knowledge System</text>
-              <text x="350" y="395" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across all product areas</text>
+              <text x="350" y="395" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across product areas</text>
               <text x="350" y="408" textAnchor="middle" fontSize="10" fill="#65a30d">#psc #apsl #research #DE #IT #web #apps #user-story #prd #meeting-notes</text>
 
               {/* Connection lines to main flow */}
-              <path d="M 110 120 L 110 ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-              <path d="M 230 120 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-              <path d="M 350 120 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-              <path d="M 470 120 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 125 120 L 110 ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 255 120 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 385 120 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 515 120 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
             </g>
           )}
         </g>
@@ -124,13 +124,13 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [isExpanded, setIsExpanded] = useState(false);
   const width = isPreview ? 300 : 700;
-  const height = isPreview ? 150 : expandedSections.details ? 480 : 300;
+  const height = isPreview ? 150 : isExpanded ? 480 : 300;
   
-  const toggleSection = (section: string) => {
+  const toggleExpansion = () => {
     if (!isPreview) {
-      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+      setIsExpanded(prev => !prev);
     }
   };
   
@@ -157,12 +157,12 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
       {!isPreview && (
         <g>
           <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
-                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+                style={{cursor: 'pointer'}} onClick={toggleExpansion}/>
           <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
-            {expandedSections.details ? '▼ Hide Organization' : '▶ Show Auto-Organization'}
+            {isExpanded ? '▼ Hide Organization' : '▶ Show Auto-Organization'}
           </text>
 
-          {expandedSections.details && (
+          {isExpanded && (
             <g>
               {/* Folder Organization */}
               <rect x="60" y="80" width="110" height="80" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
@@ -217,13 +217,13 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [isExpanded, setIsExpanded] = useState(false);
   const width = isPreview ? 300 : 700;
-  const height = isPreview ? 150 : expandedSections.details ? 420 : 300;
+  const height = isPreview ? 150 : isExpanded ? 420 : 300;
   
-  const toggleSection = (section: string) => {
+  const toggleExpansion = () => {
     if (!isPreview) {
-      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+      setIsExpanded(prev => !prev);
     }
   };
   
@@ -250,12 +250,12 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
       {!isPreview && (
         <g>
           <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
-                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+                style={{cursor: 'pointer'}} onClick={toggleExpansion}/>
           <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
-            {expandedSections.details ? '▼ Hide Tech Bridge' : '▶ Show PM-Dev Bridge'}
+            {isExpanded ? '▼ Hide Tech Bridge' : '▶ Show PM-Dev Bridge'}
           </text>
 
-          {expandedSections.details && (
+          {isExpanded && (
             <g>
               {/* Technical Capabilities */}
               <rect x="60" y="80" width="100" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
@@ -308,13 +308,13 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [isExpanded, setIsExpanded] = useState(false);
   const width = isPreview ? 300 : 700;
-  const height = isPreview ? 150 : expandedSections.details ? 450 : 300;
+  const height = isPreview ? 150 : isExpanded ? 450 : 300;
   
-  const toggleSection = (section: string) => {
+  const toggleExpansion = () => {
     if (!isPreview) {
-      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+      setIsExpanded(prev => !prev);
     }
   };
   
@@ -341,12 +341,12 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
       {!isPreview && (
         <g>
           <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
-                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+                style={{cursor: 'pointer'}} onClick={toggleExpansion}/>
           <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
-            {expandedSections.details ? '▼ Hide Data Workflow' : '▶ Show WBR Integration'}
+            {isExpanded ? '▼ Hide Data Workflow' : '▶ Show WBR Integration'}
           </text>
 
-          {expandedSections.details && (
+          {isExpanded && (
             <g>
               {/* Data Sources */}
               <rect x="60" y="80" width="100" height="80" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
@@ -402,13 +402,13 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [isExpanded, setIsExpanded] = useState(false);
   const width = isPreview ? 300 : 700;
-  const height = isPreview ? 150 : expandedSections.details ? 480 : 300;
+  const height = isPreview ? 150 : isExpanded ? 480 : 300;
   
-  const toggleSection = (section: string) => {
+  const toggleExpansion = () => {
     if (!isPreview) {
-      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+      setIsExpanded(prev => !prev);
     }
   };
   
@@ -435,12 +435,12 @@ const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
       {!isPreview && (
         <g>
           <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
-                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+                style={{cursor: 'pointer'}} onClick={toggleExpansion}/>
           <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
-            {expandedSections.details ? '▼ Hide Voice Workflow' : '▶ Show Beach Walk Magic'}
+            {isExpanded ? '▼ Hide Voice Workflow' : '▶ Show Beach Walk Magic'}
           </text>
 
-          {expandedSections.details && (
+          {isExpanded && (
             <g>
               {/* Voice Processing */}
               <rect x="60" y="80" width="100" height="60" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
