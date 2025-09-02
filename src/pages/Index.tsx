@@ -3,7 +3,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { StickyCTA } from "@/components/StickyCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, Hand, Rocket } from "lucide-react";
+import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, Waves, Rocket } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 const Index = () => {
   const workflows = [{
@@ -69,7 +69,7 @@ const Index = () => {
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl lg:text-3xl font-semibold flex items-center justify-center gap-3">
-                Hello <Hand className="h-6 w-6 text-primary" />
+                Hello <Waves className="h-6 w-6 text-primary" />
               </CardTitle>
             </CardHeader>
             <CardContent>
