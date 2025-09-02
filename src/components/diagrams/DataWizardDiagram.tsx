@@ -12,12 +12,12 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
     {
       id: '1',
       type: 'default',
-      position: isPreview ? { x: 10, y: 30 } : { x: 100, y: 100 },
+      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
       data: { 
         label: (
           <div className="text-center">
-            <div className="font-medium text-blue-600">🌐 Comet</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Browser</div>}
+            <div className="font-medium text-blue-600">📊 WBR Data</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Weekly Reports</div>}
           </div>
         )
       },
@@ -33,12 +33,12 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
     {
       id: '2', 
       type: 'default',
-      position: isPreview ? { x: 95, y: 30 } : { x: 300, y: 100 },
+      position: isPreview ? { x: 95, y: 10 } : { x: 280, y: 50 },
       data: {
         label: (
           <div className="text-center">
-            <div className="font-medium text-purple-600">🔍 Perplexity</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Pro Search</div>}
+            <div className="font-medium text-purple-600">🌐 Comet</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Auto-scrape</div>}
           </div>
         )
       },
@@ -54,12 +54,12 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
     {
       id: '3',
       type: 'default', 
-      position: isPreview ? { x: 50, y: 85 } : { x: 200, y: 220 },
+      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
       data: {
         label: (
           <div className="text-center">
-            <div className="font-medium text-green-600">📊 Auto Filter</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Data Magic</div>}
+            <div className="font-medium text-green-600">🔍 Perplexity</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Context Search</div>}
           </div>
         )
       },
@@ -71,14 +71,35 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
         ...baseSize,
         boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
       }
+    },
+    {
+      id: '4',
+      type: 'default', 
+      position: isPreview ? { x: 95, y: 70 } : { x: 280, y: 180 },
+      data: {
+        label: (
+          <div className="text-center">
+            <div className="font-medium text-orange-600">📈 Insights</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Auto-analysis</div>}
+          </div>
+        )
+      },
+      style: {
+        background: '#ffffff',
+        border: '2px solid #f97316',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(249, 115, 22, 0.15)'
+      }
     }
   ];
 
   const edges: Edge[] = [
     {
-      id: 'e1-2',
+      id: 'e1-4',
       source: '1',
-      target: '2',
+      target: '4',
       type: 'smoothstep',
       style: { 
         stroke: '#3b82f6', 
@@ -87,12 +108,23 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
       }
     },
     {
-      id: 'e2-3',
+      id: 'e2-4',
       source: '2',
-      target: '3',
+      target: '4',
       type: 'smoothstep',
       style: { 
         stroke: '#8b5cf6', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
+    },
+    {
+      id: 'e3-4',
+      source: '3',
+      target: '4',
+      type: 'smoothstep',
+      style: { 
+        stroke: '#10b981', 
         strokeWidth: 2,
         strokeDasharray: isPreview ? '4,4' : 'none'
       }
