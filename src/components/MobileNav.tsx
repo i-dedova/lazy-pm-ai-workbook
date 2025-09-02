@@ -9,7 +9,7 @@ export const MobileNav = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerHeight = 120; // Account for sticky header height
+      const headerHeight = 80; // Account for sticky header height
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
@@ -24,23 +24,10 @@ export const MobileNav = () => {
       <header className="border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-lg lg:text-xl font-bold text-primary">My Lazy PM's AI Workbook</h1>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden"
-            >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden lg:block border-t border-border/30">
-          <div className="container mx-auto px-4 py-3">
-            <nav className="flex justify-center gap-8">
+          
+          {/* Desktop Navigation - Single Line */}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav className="flex gap-8">
               <button 
                 onClick={() => scrollToSection("arsenal")}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -60,6 +47,18 @@ export const MobileNav = () => {
                 Connect
               </button>
             </nav>
+            <ThemeToggle />
+          </div>
+
+          <div className="flex items-center gap-2 lg:hidden">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
           </div>
         </div>
       </header>
