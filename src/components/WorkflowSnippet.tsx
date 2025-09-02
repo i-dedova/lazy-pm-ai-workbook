@@ -28,9 +28,9 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
           <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
             <IconComponent className="h-6 w-6 lg:h-8 lg:w-8 text-primary" />
           </div>
-          <div className="flex-1">
-            <CardTitle className="text-lg lg:text-xl font-semibold text-foreground mb-2">{title}</CardTitle>
-            <Badge variant="secondary" className="text-xs font-medium">
+          <div className="flex-1 min-w-0">
+            <CardTitle className="text-lg lg:text-xl font-semibold text-foreground mb-3">{title}</CardTitle>
+            <Badge variant="secondary" className="text-xs font-medium rounded-xl px-3 py-1">
               {tools}
             </Badge>
           </div>

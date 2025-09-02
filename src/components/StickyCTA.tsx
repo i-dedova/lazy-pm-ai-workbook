@@ -20,25 +20,13 @@ export const StickyCTA = () => {
 
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 lg:hidden">
-      <div className="bg-gradient-accent rounded-full px-6 py-3 shadow-lg border border-accent/20">
-        <div className="flex items-center gap-3">
-          <Button 
-            size="sm" 
-            variant="secondary" 
-            className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 rounded-full"
-          >
-            <Linkedin className="w-4 h-4" />
-          </Button>
-          <span className="text-accent-foreground font-medium text-sm">Let's Connect</span>
-          <Button 
-            size="sm" 
-            variant="secondary" 
-            className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 rounded-full"
-          >
-            <FileText className="w-4 h-4" />
-          </Button>
-        </div>
-      </div>
+      <Button 
+        size="lg"
+        className="bg-gradient-accent text-accent-foreground hover:opacity-90 transition-opacity shadow-lg px-6 py-3 rounded-full font-semibold"
+      >
+        <Linkedin className="w-5 h-5 mr-2" />
+        Connect on LinkedIn
+      </Button>
     </div>
   );
 };

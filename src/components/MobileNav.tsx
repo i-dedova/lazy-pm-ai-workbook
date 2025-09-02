@@ -87,18 +87,10 @@ export const MobileNav = () => {
                 What's Cooking
               </button>
               <hr className="border-border" />
-              <div className="space-y-3">
+              <div className="pt-2">
                 <Button variant="outline" className="w-full justify-start">
                   <Linkedin className="w-4 h-4 mr-2" />
-                  LinkedIn
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <FileText className="w-4 h-4 mr-2" />
-                  Resume
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <Github className="w-4 h-4 mr-2" />
-                  GitHub
+                  Connect on LinkedIn
                 </Button>
               </div>
             </nav>

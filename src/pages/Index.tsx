@@ -89,13 +89,13 @@ const Index = () => {
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardContent className="p-6 lg:p-8">
               <div className="space-y-4">
-                <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋</h2>
-                <div className="space-y-3 text-muted-foreground">
+                <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋 I'm Inna Dedova</h2>
+                <div className="space-y-4 text-muted-foreground">
                   <p className="text-base lg:text-lg">
-                    I'm curious, I like tinkering, and I hate routine manual tasks.
+                    I'm curious, I like tinkering, and I hate routine manual tasks. So what does a tinkerer do? Automate them to focus on strategic product work and being present for my team during delivery.
                   </p>
                   <p className="text-base lg:text-lg">
-                    <strong className="text-foreground">The result?</strong> My dev team calls me "unblocker" and thinks I have supernatural memory powers.
+                    <strong className="text-foreground">The results speak for themselves:</strong> My dev team calls me "unblocker" and thinks I have supernatural memory powers. Stakeholders wonder how I get data so fast.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">
@@ -164,7 +164,7 @@ const Index = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3">
                 <Beaker className="h-6 w-6 lg:h-8 lg:w-8" />
-                What's Cooking 🧪
+                What's Cooking in the Lab
               </CardTitle>
               <CardDescription className="text-base lg:text-lg">
                 Because the automation addiction is real
@@ -201,30 +201,18 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-8">
-              <div className="grid gap-4 sm:grid-cols-3 max-w-md mx-auto">
+              <p className="text-accent-foreground/90 text-base lg:text-lg max-w-2xl mx-auto">
+                Always happy to connect with fellow product people who automate busy work to focus on what matters.
+              </p>
+              
+              <div className="flex justify-center">
                 <Button 
                   size="lg"
                   variant="secondary" 
-                  className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30"
+                  className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 px-8 py-4 text-lg font-semibold"
                 >
-                  <Linkedin className="w-5 h-5 mr-2" />
-                  LinkedIn
-                </Button>
-                <Button 
-                  size="lg"
-                  variant="secondary" 
-                  className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30"
-                >
-                  <FileText className="w-5 h-5 mr-2" />
-                  Resume
-                </Button>
-                <Button 
-                  size="lg"
-                  variant="secondary" 
-                  className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30"
-                >
-                  <Github className="w-5 h-5 mr-2" />
-                  GitHub
+                  <Linkedin className="w-6 h-6 mr-3" />
+                  Connect on LinkedIn
                 </Button>
               </div>
             </CardContent>
