@@ -26,7 +26,7 @@ export const ThemeToggle = () => {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="hover:bg-primary/10"
+      className="text-muted-foreground hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-all duration-200"
     >
       {theme === "light" ? (
         <Moon className="h-4 w-4" />
