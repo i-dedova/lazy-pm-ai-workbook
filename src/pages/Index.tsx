@@ -1,48 +1,42 @@
-import { WorkflowDiagram } from "@/components/WorkflowDiagram";
+import { WorkflowSnippet } from "@/components/WorkflowSnippet";
 import { MobileNav } from "@/components/MobileNav";
 import { StickyCTA } from "@/components/StickyCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, Hand, Rocket } from "lucide-react";
+import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, Hand, Rocket } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
-import { productBrainNodes, productBrainEdges } from "@/components/diagrams/ProductBrainDiagram";
-import { meetingMemoryNodes, meetingMemoryEdges } from "@/components/diagrams/MeetingMemoryDiagram";
-import { techBridgeNodes, techBridgeEdges } from "@/components/diagrams/TechBridgeDiagram";
-import { dataWizardNodes, dataWizardEdges } from "@/components/diagrams/DataWizardDiagram";
-import { voiceMagicNodes, voiceMagicEdges } from "@/components/diagrams/VoiceMagicDiagram";
 const Index = () => {
-  const workflows = [
-    {
-      title: "Product Brain",
-      nodes: productBrainNodes,
-      edges: productBrainEdges,
-      metric: "95% less context setup time"
-    },
-    {
-      title: "Meeting Memory", 
-      nodes: meetingMemoryNodes,
-      edges: meetingMemoryEdges,
-      metric: "400% better follow-through"
-    },
-    {
-      title: "Tech Bridge",
-      nodes: techBridgeNodes,
-      edges: techBridgeEdges,
-      metric: "90% faster technical answers"
-    },
-    {
-      title: "Data Wizard",
-      nodes: dataWizardNodes,
-      edges: dataWizardEdges,
-      metric: "85% less data grunt work"
-    },
-    {
-      title: "Voice Magic",
-      nodes: voiceMagicNodes,
-      edges: voiceMagicEdges,
-      metric: "80% faster PRD creation"
-    }
-  ];
+  const workflows = [{
+    title: "Product Brain",
+    tools: "Obsidian + Claude Code",
+    keyBenefits: ["No more copy-paste context feeding to AI", "Self-updating knowledge vault grows daily", "Instant access to cross-team dependencies"],
+    metric: "95% less context setup time",
+    icon: "brain" as const
+  }, {
+    title: "Meeting Memory",
+    tools: "Granola + Claude Code",
+    keyBenefits: ["Auto-tracks promises and commitments", "Never lose decisions or action items", "Supernatural memory powers unlocked"],
+    metric: "400% better follow-through",
+    icon: "message" as const
+  }, {
+    title: "Tech Bridge",
+    tools: "GitHub Copilot + Repository Map",
+    keyBenefits: ["Answer API questions in real-time", "Speak dev without learning to code", "Proactive technical research"],
+    metric: "90% faster technical answers",
+    icon: "code" as const
+  }, {
+    title: "Data Wizard",
+    tools: "Comet Browser + Perplexity Pro",
+    keyBenefits: ["Automated dashboard filtering", "Instant metric extraction", "Defend decisions with data"],
+    metric: "85% less data grunt work",
+    icon: "chart" as const
+  }, {
+    title: "Voice Magic",
+    tools: "Wispr Flow + Obsidian",
+    keyBenefits: ["Clean voice-to-text capture", "Beach walks become PRD sessions", "Rapid documentation workflow"],
+    metric: "80% faster PRD creation",
+    icon: "mic" as const
+  }];
   return <div className="min-h-screen bg-gradient-surface">
       <MobileNav />
       <StickyCTA />
@@ -134,10 +128,12 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            {workflows.map((workflow, index) => (
-              <WorkflowDiagram key={index} {...workflow} />
-            ))}
+          <div className="space-y-6">
+            {workflows.map((workflow, index) => <div key={index} className="animate-slide-up" style={{
+            animationDelay: `${index * 0.1}s`
+          }}>
+                <WorkflowSnippet {...workflow} />
+              </div>)}
           </div>
         </div>
       </section>
