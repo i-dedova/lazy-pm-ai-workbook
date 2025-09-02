@@ -3,7 +3,8 @@ import { MobileNav } from "@/components/MobileNav";
 import { StickyCTA } from "@/components/StickyCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette } from "lucide-react";
+import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, Hand, Rocket } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 const Index = () => {
   const workflows = [{
     title: "Product Brain",
@@ -62,7 +63,9 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl lg:text-3xl font-semibold">Hello 👋</CardTitle>
+              <CardTitle className="text-2xl lg:text-3xl font-semibold flex items-center justify-center gap-3">
+                Hello <Hand className="h-6 w-6 text-primary" />
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center space-y-6">
@@ -199,7 +202,7 @@ const Index = () => {
               <div className="flex justify-center">
                 <Button size="lg" variant="secondary" className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 px-8 py-4 text-lg font-semibold" asChild>
                   <a href="https://www.linkedin.com/in/innadedova/" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="w-6 h-6 mr-3" />
+                    <FaLinkedin className="w-6 h-6 mr-3" />
                     Connect on LinkedIn
                   </a>
                 </Button>
@@ -212,8 +215,8 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-6 border-t border-border/50 bg-background/50">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
-            Built with curiosity, powered by laziness 🚀
+          <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
+            Built with curiosity, powered by laziness <Rocket className="h-4 w-4 text-primary" />
           </p>
         </div>
       </footer>
