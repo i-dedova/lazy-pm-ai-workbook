@@ -91,9 +91,9 @@ const Index = () => {
       </section>
 
       {/* Framework - Simplified */}
-      <section id="framework" className="py-12 lg:py-16 bg-muted/30">
+      <section id="framework" className="py-12 lg:py-16">
         <div className="container mx-auto px-4 max-w-5xl">
-          <Card className="bg-card border-primary/20 shadow-[var(--shadow-elegant)]">
+          <Card className="bg-card/80 border-primary/20 shadow-lg">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">
                 How I Pick My Battles
@@ -136,7 +136,7 @@ const Index = () => {
       </section>
 
       {/* Lab - Condensed */}
-      <section id="lab" className="py-12 lg:py-16 bg-accent/5">
+      <section id="lab" className="py-12 lg:py-16">
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/80 border-accent/30">
             <CardHeader className="text-center">
