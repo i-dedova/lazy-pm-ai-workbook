@@ -75,18 +75,18 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
         <g>
           {/* Obsidian Vault */}
           <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Obsidian Vault</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Knowledge Base</text>
+          <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Obsidian Vault</text>
+          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#64748b">Knowledge Base</text>
           
           {/* Claude */}
           <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude Code</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Context Engine</text>
+          <text x={width/2} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude Code</text>
+          <text x={width/2} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Context Engine</text>
           
           {/* Generated Docs */}
           <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Generated Docs</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">PRDs, Stories</text>
+          <text x={width - 110} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Generated Docs</text>
+          <text x={width - 110} y="95" textAnchor="middle" fontSize="12" fill="#64748b">PRDs, Stories</text>
           
           {/* Arrows */}
           <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
@@ -166,18 +166,18 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
         <g>
           {/* Granola */}
           <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Granola</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Auto-record</text>
+          <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Granola</text>
+          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#64748b">Auto-record</text>
           
           {/* Claude */}
           <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Process & Sort</text>
+          <text x={width/2} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude</text>
+          <text x={width/2} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Process & Sort</text>
           
           {/* Daily TODOs */}
           <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Daily TODOs</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Action Items</text>
+          <text x={width - 110} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Daily TODOs</text>
+          <text x={width - 110} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Action Items</text>
           
           {/* Arrows */}
           <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
@@ -256,18 +256,18 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
         <g>
           {/* GitHub Copilot */}
           <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">GitHub Copilot</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Code Assistant</text>
+          <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">GitHub Copilot</text>
+          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#64748b">Code Assistant</text>
           
           {/* Repository Map */}
           <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Repository Map</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Code Navigation</text>
+          <text x={width/2} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Repository Map</text>
+          <text x={width/2} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Code Navigation</text>
           
           {/* Tech Q&A */}
           <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Tech Q&A</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Real-time answers</text>
+          <text x={width - 110} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Tech Q&A</text>
+          <text x={width - 110} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Real-time answers</text>
           
           {/* Arrows */}
           <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
@@ -346,18 +346,18 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
         <g>
           {/* Comet Browser */}
           <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Comet Browser</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Auto-scraping</text>
+          <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Comet Browser</text>
+          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#64748b">Auto-scraping</text>
           
           {/* Perplexity Pro */}
           <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Perplexity Pro</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Context Search</text>
+          <text x={width/2} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Perplexity Pro</text>
+          <text x={width/2} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Context Search</text>
           
           {/* Auto-Analysis */}
           <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Auto-Analysis</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Insights</text>
+          <text x={width - 110} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Auto-Analysis</text>
+          <text x={width - 110} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Insights</text>
           
           {/* Arrows */}
           <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
@@ -436,18 +436,18 @@ const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
         <g>
           {/* Wispr Flow */}
           <rect x="50" y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="110" y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Wispr Flow</text>
-          <text x="110" y="90" textAnchor="middle" fontSize="12" fill="#64748b">Voice Capture</text>
+          <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Wispr Flow</text>
+          <text x="110" y="95" textAnchor="middle" fontSize="12" fill="#64748b">Voice Capture</text>
           
           {/* Claude */}
           <rect x={width/2 - 60} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width/2} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude</text>
-          <text x={width/2} y="90" textAnchor="middle" fontSize="12" fill="#64748b">Structure</text>
+          <text x={width/2} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Claude</text>
+          <text x={width/2} y="95" textAnchor="middle" fontSize="12" fill="#64748b">Structure</text>
           
           {/* Obsidian */}
           <rect x={width - 170} y="60" width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x={width - 110} y="75" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Obsidian</text>
-          <text x={width - 110} y="90" textAnchor="middle" fontSize="12" fill="#64748b">PRD Ready</text>
+          <text x={width - 110} y="80" textAnchor="middle" fontSize="14" fill="#1e293b" fontWeight="600">Obsidian</text>
+          <text x={width - 110} y="95" textAnchor="middle" fontSize="12" fill="#64748b">PRD Ready</text>
           
           {/* Arrows */}
           <path d={`M 170 85 L ${width/2 - 60} 85`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
