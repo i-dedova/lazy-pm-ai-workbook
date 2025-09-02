@@ -28,9 +28,9 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
     <div className="w-full h-full flex items-center justify-center bg-gray-50 relative group">
       {renderDiagram()}
       
-      {/* Expansion hint - always visible on mobile, hover on desktop */}
+      {/* Expansion hint - always visible on mobile/tablet, hover on desktop */}
       {isPreview && (
-        <div className="absolute bottom-2 right-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+        <div className="absolute bottom-2 right-2 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
           <div className="bg-white px-2 py-1 rounded-md shadow-md flex items-center space-x-1 text-xs font-medium text-gray-600 border">
             <span>Detailed View</span>
             <Expand className="w-3 h-3" />
