@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Expand } from "lucide-react";
 
 interface WorkflowDiagramProps {
   type: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
@@ -33,7 +33,7 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
         <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
           <div className="bg-white px-2 py-1 rounded-md shadow-md flex items-center space-x-1 text-xs font-medium text-gray-600 border">
             <span>Detailed View</span>
-            <ChevronDown className="w-3 h-3" />
+            <Expand className="w-3 h-3" />
           </div>
         </div>
       )}
