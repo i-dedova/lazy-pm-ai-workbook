@@ -3,7 +3,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { StickyCTA } from "@/components/StickyCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, HeartHandshake, Rocket } from "lucide-react";
+import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, HeartHandshake, Rocket, Users } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 const Index = () => {
   const workflows = [{
@@ -160,7 +160,7 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex items-start gap-3 p-4 bg-background/50 rounded-xl">
                   <div className="p-2 bg-accent/10 rounded-lg flex-shrink-0">
-                    <TestTube className="h-5 w-5 text-accent" />
+                    <Users className="h-5 w-5 text-accent" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">UAT Automation</h4>
