@@ -30,19 +30,19 @@ export const MobileNav = () => {
             <nav className="flex gap-8">
               <button 
                 onClick={() => scrollToSection("arsenal")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-all duration-200"
               >
                 Arsenal
               </button>
               <button 
                 onClick={() => scrollToSection("lab")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-all duration-200"
               >
                 Lab
               </button>
               <button 
                 onClick={() => scrollToSection("connect")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-all duration-200"
               >
                 Connect
               </button>
