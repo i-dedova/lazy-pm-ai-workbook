@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 interface WorkflowDiagramProps {
   type: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
@@ -24,8 +25,18 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gray-50">
+    <div className="w-full h-full flex items-center justify-center bg-gray-50 relative group">
       {renderDiagram()}
+      
+      {/* Hover overlay for collapsed view */}
+      {isPreview && (
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/5 cursor-pointer">
+          <div className="bg-white px-3 py-1.5 rounded-lg shadow-md flex items-center space-x-2 text-sm font-medium text-gray-700">
+            <span>Detailed View</span>
+            <ChevronDown className="w-4 h-4" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
