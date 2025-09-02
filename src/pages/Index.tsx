@@ -201,7 +201,9 @@ const Index = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-3xl lg:text-4xl font-semibold max-w-3xl mx-auto">Let's Connect!</CardTitle>
               <CardDescription className="text-accent-foreground/80 text-lg lg:text-xl max-w-3xl mx-auto">
-                Love efficiency hacks? Let's chat about AI workflows and product strategy. Always happy to connect with fellow product people who automate busy work.
+                Love efficiency hacks? Let's chat about AI workflows and product strategy. 
+                <br />
+                Always happy to connect with fellow builders who automate busy work.
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-8">
