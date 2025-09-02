@@ -126,7 +126,7 @@ export default {
 				'glow': 'glow 3s ease-in-out infinite'
 			},
 			backgroundImage: {
-				'gradient-ocean': 'var(--gradient-ocean)',
+				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-surface': 'var(--gradient-surface)',
 				'gradient-accent': 'var(--gradient-accent)'
 			}

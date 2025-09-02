@@ -16,7 +16,7 @@ export const MetricBadge = ({ percentage, label, variant = "primary" }: MetricBa
   return (
     <Badge 
       variant="outline" 
-      className={`${variantClasses[variant]} font-semibold px-3 py-1 transition-colors`}
+      className={`${variantClasses[variant]} font-semibold px-4 py-2 text-sm lg:text-base lg:px-6 lg:py-3 transition-colors`}
     >
       {percentage} {label}
     </Badge>

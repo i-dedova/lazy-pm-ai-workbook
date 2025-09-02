@@ -8,51 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Portuguese-inspired palette with deep ocean colors and tile accents */
-    --background: 210 20% 98%;
-    --foreground: 185 15% 15%;
+    /* Comfortable warm neutral palette */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 185 15% 15%;
+    --card-foreground: 240 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 185 15% 15%;
+    --popover-foreground: 240 10% 15%;
 
-    /* Deep ocean green as primary */
-    --primary: 185 45% 25%;
-    --primary-foreground: 210 20% 98%;
+    /* Warm slate primary - comfortable and professional */
+    --primary: 215 25% 27%;
+    --primary-foreground: 0 0% 98%;
 
-    /* Soft sea foam secondary */
-    --secondary: 185 25% 90%;
-    --secondary-foreground: 185 45% 25%;
+    /* Light warm gray secondary */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 215 25% 27%;
 
-    /* Muted ocean tones */
-    --muted: 185 15% 92%;
-    --muted-foreground: 185 10% 45%;
+    /* Soft muted tones */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    /* Portuguese tile accent - warm brick red */
-    --accent: 12 85% 55%;
-    --accent-foreground: 210 20% 98%;
+    /* Warm purple accent - sophisticated but subtle */
+    --accent: 250 30% 60%;
+    --accent-foreground: 0 0% 98%;
 
-    /* Orange accent for highlights */
-    --highlight: 25 95% 58%;
-    --highlight-foreground: 185 15% 15%;
+    /* Warm amber highlight - energetic but not harsh */
+    --highlight: 43 74% 66%;
+    --highlight-foreground: 240 10% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 185 15% 85%;
-    --input: 185 15% 85%;
-    --ring: 185 45% 25%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 215 25% 27%;
 
-    /* Custom gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(185 45% 25%), hsl(195 50% 35%));
-    --gradient-surface: linear-gradient(180deg, hsl(210 20% 98%), hsl(185 25% 95%));
-    --gradient-accent: linear-gradient(135deg, hsl(12 85% 55%), hsl(25 95% 58%));
+    /* Subtle, comfortable gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215 25% 27%), hsl(215 25% 32%));
+    --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 14% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(250 30% 60%), hsl(43 74% 66%));
     
-    /* Shadows */
-    --shadow-elegant: 0 10px 40px -15px hsl(185 45% 25% / 0.3);
-    --shadow-glow: 0 0 30px hsl(185 45% 25% / 0.2);
+    /* Gentle shadows */
+    --shadow-elegant: 0 10px 40px -15px hsl(240 10% 15% / 0.1);
+    --shadow-glow: 0 0 30px hsl(215 25% 27% / 0.1);
 
     --radius: 0.5rem;
 
@@ -74,49 +74,49 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Dark ocean theme */
-    --background: 185 25% 8%;
-    --foreground: 185 15% 88%;
+    /* Comfortable dark theme */
+    --background: 240 10% 8%;
+    --foreground: 220 14% 90%;
 
-    --card: 185 20% 12%;
-    --card-foreground: 185 15% 88%;
+    --card: 240 8% 12%;
+    --card-foreground: 220 14% 90%;
 
-    --popover: 185 20% 12%;
-    --popover-foreground: 185 15% 88%;
+    --popover: 240 8% 12%;
+    --popover-foreground: 220 14% 90%;
 
-    /* Bright ocean accent for dark mode */
-    --primary: 185 55% 65%;
-    --primary-foreground: 185 25% 8%;
+    /* Lighter primary for dark mode visibility */
+    --primary: 215 25% 70%;
+    --primary-foreground: 240 10% 8%;
 
-    --secondary: 185 15% 18%;
-    --secondary-foreground: 185 15% 88%;
+    --secondary: 240 6% 18%;
+    --secondary-foreground: 220 14% 90%;
 
-    --muted: 185 15% 15%;
-    --muted-foreground: 185 10% 60%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 220 9% 60%;
 
-    /* Portuguese tile accent in dark mode */
-    --accent: 12 85% 65%;
-    --accent-foreground: 185 25% 8%;
+    /* Softer purple accent in dark mode */
+    --accent: 250 30% 70%;
+    --accent-foreground: 240 10% 8%;
 
-    /* Orange accent for dark mode */
-    --highlight: 25 95% 68%;
-    --highlight-foreground: 185 25% 8%;
+    /* Warmer amber highlight in dark mode */
+    --highlight: 43 74% 76%;
+    --highlight-foreground: 240 10% 8%;
 
     --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 185 15% 88%;
+    --destructive-foreground: 220 14% 90%;
 
-    --border: 185 15% 20%;
-    --input: 185 15% 20%;
-    --ring: 185 55% 65%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 215 25% 70%;
 
     /* Dark mode gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(185 25% 8%), hsl(185 20% 15%));
-    --gradient-surface: linear-gradient(180deg, hsl(185 20% 12%), hsl(185 15% 10%));
-    --gradient-accent: linear-gradient(135deg, hsl(12 85% 65%), hsl(25 95% 68%));
+    --gradient-primary: linear-gradient(135deg, hsl(240 10% 8%), hsl(240 8% 15%));
+    --gradient-surface: linear-gradient(180deg, hsl(240 8% 12%), hsl(240 6% 10%));
+    --gradient-accent: linear-gradient(135deg, hsl(250 30% 70%), hsl(43 74% 76%));
     
     /* Dark shadows */
     --shadow-elegant: 0 10px 40px -15px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 30px hsl(185 55% 65% / 0.3);
+    --shadow-glow: 0 0 30px hsl(215 25% 70% / 0.2);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
