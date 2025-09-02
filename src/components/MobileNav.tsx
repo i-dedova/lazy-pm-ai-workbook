@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X, Linkedin, FileText, Github } from "lucide-react";
+import { Menu, X, Github, FileText } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -83,9 +84,11 @@ export const MobileNav = () => {
               </button>
               <hr className="border-border" />
               <div className="pt-2">
-                <Button variant="outline" className="w-full justify-start">
-                  <Linkedin className="w-4 h-4 mr-2" />
-                  Connect on LinkedIn
+                <Button variant="outline" className="w-full justify-start" asChild>
+                  <a href="https://www.linkedin.com/in/innadedova/" target="_blank" rel="noopener noreferrer">
+                    <FaLinkedin className="w-4 h-4 mr-2" />
+                    Connect on LinkedIn
+                  </a>
                 </Button>
               </div>
             </nav>
