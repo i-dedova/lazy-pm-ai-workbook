@@ -77,7 +77,7 @@ const Index = () => {
                   <strong className="text-foreground">The result:</strong> My dev team calls me "unblocker" with supernatural powers.<br />
                   Stakeholders wonder how I get data so fast.
                 </p>
-                <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-8 lg:gap-12 max-w-3xl mx-auto">
                   <div className="flex items-center gap-2 text-sm text-primary font-medium">
                     <Zap className="h-4 w-4" />
                     95% faster context setup
