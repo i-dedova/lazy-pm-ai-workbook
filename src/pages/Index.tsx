@@ -212,9 +212,12 @@ const Index = () => {
                   size="lg"
                   variant="secondary" 
                   className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 px-8 py-4 text-lg font-semibold"
+                  asChild
                 >
-                  <Linkedin className="w-6 h-6 mr-3" />
-                  Connect on LinkedIn
+                  <a href="https://www.linkedin.com/in/innadedova/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-6 h-6 mr-3" />
+                    Connect on LinkedIn
+                  </a>
                 </Button>
               </div>
             </CardContent>
