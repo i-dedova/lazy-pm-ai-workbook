@@ -98,28 +98,28 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
       {/* Expanded Details - Show immediately when not preview */}
       {!isPreview && (
         <g>
-          {/* Standardized 4 grey nodes - centrally aligned */}
-          <rect x="140" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="190" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">#smart-tags</text>
-          <text x="190" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-linking</text>
+          {/* Standardized 4 grey nodes - properly centered */}
+          <rect x={width/2 - 190} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 145} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">#smart-tags</text>
+          <text x={width/2 - 145} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-linking</text>
 
-          <rect x="260" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="310" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
-          <text x="310" y="167" textAnchor="middle" fontSize="9" fill="#64748b">PRD, Stories</text>
+          <rect x={width/2 - 90} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 45} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
+          <text x={width/2 - 45} y="167" textAnchor="middle" fontSize="9" fill="#64748b">PRD, Stories</text>
 
-          <rect x="380" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="430" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Cross-refs</text>
-          <text x="430" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-connections</text>
+          <rect x={width/2 + 10} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 55} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Cross-refs</text>
+          <text x={width/2 + 55} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-connections</text>
 
-          <rect x="500" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Doc Types</text>
-          <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Strategy, Research</text>
+          <rect x={width/2 + 110} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 155} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Doc Types</text>
+          <text x={width/2 + 155} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Strategy, Research</text>
 
-          {/* Context Layer - consistent spacing */}
-          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Interconnected Knowledge System</text>
-          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across product areas</text>
-          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Transform scattered notes into structured product documentation</text>
+          {/* Context Layer - properly centered */}
+          <rect x={width/2 - 270} y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x={width/2} y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Interconnected Knowledge System</text>
+          <text x={width/2} y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across product areas</text>
+          <text x={width/2} y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Transform scattered notes into structured product documentation</text>
         </g>
       )}
       
@@ -188,28 +188,28 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
 
       {!isPreview && (
         <g>
-          {/* Standardized 4 grey nodes - centrally aligned */}
-          <rect x="140" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="190" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Smart Tags</text>
-          <text x="190" y="167" textAnchor="middle" fontSize="9" fill="#64748b">#psc #research</text>
+          {/* Standardized 4 grey nodes - properly centered */}
+          <rect x={width/2 - 190} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 145} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Smart Tags</text>
+          <text x={width/2 - 145} y="167" textAnchor="middle" fontSize="9" fill="#64748b">#psc #research</text>
 
-          <rect x="260" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="310" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Meeting Sync</text>
-          <text x="310" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-process</text>
+          <rect x={width/2 - 90} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 45} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Meeting Sync</text>
+          <text x={width/2 - 45} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-process</text>
 
-          <rect x="380" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="430" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Folder Sort</text>
-          <text x="430" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Organization</text>
+          <rect x={width/2 + 10} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 55} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Folder Sort</text>
+          <text x={width/2 + 55} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Organization</text>
 
-          <rect x="500" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Action Items</text>
-          <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Track commitments</text>
+          <rect x={width/2 + 110} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 155} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Action Items</text>
+          <text x={width/2 + 155} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Track commitments</text>
 
-          {/* Context Layer - consistent spacing */}
-          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Meeting Memory System</text>
-          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Auto-tracks commitments and action items across all meetings</text>
-          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Never lose track of decisions or who committed to what</text>
+          {/* Context Layer - properly centered */}
+          <rect x={width/2 - 270} y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x={width/2} y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Meeting Memory System</text>
+          <text x={width/2} y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Auto-tracks commitments and action items across all meetings</text>
+          <text x={width/2} y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Never lose track of decisions or who committed to what</text>
         </g>
       )}
       
@@ -278,28 +278,28 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
 
       {!isPreview && (
         <g>
-          {/* Standardized 4 grey nodes - centrally aligned */}
-          <rect x="140" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="190" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">API Docs</text>
-          <text x="190" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Real-time status</text>
+          {/* Standardized 4 grey nodes - properly centered */}
+          <rect x={width/2 - 190} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 145} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">API Docs</text>
+          <text x={width/2 - 145} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Real-time status</text>
 
-          <rect x="260" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="310" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Dependencies</text>
-          <text x="310" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Service mapping</text>
+          <rect x={width/2 - 90} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 45} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Dependencies</text>
+          <text x={width/2 - 45} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Service mapping</text>
 
-          <rect x="380" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="430" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Code Analysis</text>
-          <text x="430" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Complexity review</text>
+          <rect x={width/2 + 10} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 55} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Code Analysis</text>
+          <text x={width/2 + 55} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Complexity review</text>
 
-          <rect x="500" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">PM Bridge</text>
-          <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">No code needed</text>
+          <rect x={width/2 + 110} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 155} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">PM Bridge</text>
+          <text x={width/2 + 155} y="167" textAnchor="middle" fontSize="9" fill="#64748b">No code needed</text>
 
-          {/* Context Layer - consistent spacing */}
-          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Technical Bridge for Product Managers</text>
-          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Answer API questions instantly, understand technical dependencies</text>
-          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Make informed product decisions with real-time technical insights</text>
+          {/* Context Layer - properly centered */}
+          <rect x={width/2 - 270} y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x={width/2} y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Technical Bridge for Product Managers</text>
+          <text x={width/2} y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Answer API questions instantly, understand technical dependencies</text>
+          <text x={width/2} y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Make informed product decisions with real-time technical insights</text>
         </g>
       )}
       
@@ -368,28 +368,28 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
 
       {!isPreview && (
         <g>
-          {/* Standardized 4 grey nodes - centrally aligned */}
-          <rect x="140" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="190" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Business KPIs</text>
-          <text x="190" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Weekly metrics</text>
+          {/* Standardized 4 grey nodes - properly centered */}
+          <rect x={width/2 - 190} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 145} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Business KPIs</text>
+          <text x={width/2 - 145} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Weekly metrics</text>
 
-          <rect x="260" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="310" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Data Integration</text>
-          <text x="310" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-filter</text>
+          <rect x={width/2 - 90} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 45} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Data Filters</text>
+          <text x={width/2 - 45} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-filtering</text>
 
-          <rect x="380" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="430" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Competitor Intel</text>
-          <text x="430" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Market analysis</text>
+          <rect x={width/2 + 10} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 55} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Trend Analysis</text>
+          <text x={width/2 + 55} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Pattern detection</text>
 
-          <rect x="500" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Insights</text>
-          <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Data-driven</text>
+          <rect x={width/2 + 110} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 155} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Insights</text>
+          <text x={width/2 + 155} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Strategic decisions</text>
 
-          {/* Context Layer - consistent spacing */}
-          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Business Intelligence Automation</text>
-          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Extract insights from competitor data and industry trends</text>
-          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Transform raw information into strategic business intelligence</text>
+          {/* Context Layer - properly centered */}
+          <rect x={width/2 - 270} y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x={width/2} y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Business Intelligence Automation</text>
+          <text x={width/2} y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Extract insights from competitor data and industry trends</text>
+          <text x={width/2} y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Transform raw information into strategic business intelligence</text>
         </g>
       )}
       
@@ -458,28 +458,28 @@ const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
 
       {!isPreview && (
         <g>
-          {/* Standardized 4 grey nodes - centrally aligned */}
-          <rect x="140" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="190" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Voice Processing</text>
-          <text x="190" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Clean transcription</text>
+          {/* Standardized 4 grey nodes - properly centered */}
+          <rect x={width/2 - 190} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 145} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Voice Processing</text>
+          <text x={width/2 - 145} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Clean transcription</text>
 
-          <rect x="260" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="310" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
-          <text x="310" y="167" textAnchor="middle" fontSize="9" fill="#64748b">PRD format</text>
+          <rect x={width/2 - 90} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 - 45} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
+          <text x={width/2 - 45} y="167" textAnchor="middle" fontSize="9" fill="#64748b">PRD format</text>
 
-          <rect x="380" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="430" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Vault Sync</text>
-          <text x="430" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-tagging</text>
+          <rect x={width/2 + 10} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 55} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Vault Sync</text>
+          <text x={width/2 + 55} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Auto-tagging</text>
 
-          <rect x="500" y="140" width="100" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">PRD Output</text>
-          <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Stakeholder ready</text>
+          <rect x={width/2 + 110} y="140" width="90" height="35" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+          <text x={width/2 + 155} y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">PRD Output</text>
+          <text x={width/2 + 155} y="167" textAnchor="middle" fontSize="9" fill="#64748b">Stakeholder ready</text>
 
-          {/* Context Layer - consistent spacing */}
-          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Voice-to-PRD Workflow</text>
-          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Transform voice notes into structured product requirements</text>
-          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">From beach walks to stakeholder-ready documents in minutes</text>
+          {/* Context Layer - properly centered */}
+          <rect x={width/2 - 270} y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x={width/2} y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Voice-to-PRD Workflow</text>
+          <text x={width/2} y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Transform voice notes into structured product requirements</text>
+          <text x={width/2} y="268" textAnchor="middle" fontSize="10" fill="#65a30d">From beach walks to stakeholder-ready documents in minutes</text>
         </g>
       )}
       
