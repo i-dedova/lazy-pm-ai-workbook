@@ -75,7 +75,7 @@ const Index = () => {
             <CardContent>
               <div className="text-center space-y-6">
                 <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
-                  I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
+                  I'm curious, I like tinkering, and I hate routine tasks.<br />
                   So I automate them to focus on strategic work and support my team.
                 </p>
                 <p className="text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
