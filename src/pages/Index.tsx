@@ -71,7 +71,7 @@ const Index = () => {
 
       {/* Hero Section - Clean & Simple */}
       <section className="py-12 lg:py-20">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center space-y-6 lg:space-y-8 animate-fade-in">
             <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight">
               My Lazy PM's AI Workbook
@@ -85,7 +85,7 @@ const Index = () => {
 
       {/* Quick Intro - Scannable */}
       <section className="py-8 lg:py-12">
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/50 border-border/50 animate-slide-up">
             <CardContent className="p-6 lg:p-8">
               <div className="space-y-4">
@@ -118,7 +118,7 @@ const Index = () => {
 
       {/* Framework - Simplified */}
       <section id="framework" className="py-12 lg:py-16 bg-muted/30">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card border-primary/20 shadow-[var(--shadow-elegant)]">
             <CardHeader className="text-center pb-4">
               <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">
@@ -161,7 +161,7 @@ const Index = () => {
 
       {/* Lab - Condensed */}
       <section id="lab" className="py-12 lg:py-16 bg-accent/5">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/80 border-accent/30">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3">
@@ -194,7 +194,7 @@ const Index = () => {
 
       {/* Connect - Prominent CTAs */}
       <section id="connect" className="py-16 lg:py-20">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-gradient-accent text-accent-foreground">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl lg:text-4xl font-semibold">Let's Connect!</CardTitle>
