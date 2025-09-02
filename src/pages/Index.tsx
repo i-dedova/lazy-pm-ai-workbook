@@ -73,10 +73,10 @@ const Index = () => {
       <section className="py-12 lg:py-20">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center space-y-6 lg:space-y-8 animate-fade-in">
-            <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight">
+            <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight max-w-4xl mx-auto">
               My Lazy PM's AI Workbook
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
               Battle-tested workflows that turn procrastination into execution excellence
             </p>
           </div>
@@ -125,13 +125,15 @@ const Index = () => {
                 How I Pick My Battles
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-center space-y-6">
-              <div className="text-xl lg:text-2xl font-semibold text-foreground">
-                Pain Level + Time Consumed + Procrastination Factor = Priority
+            <CardContent>
+              <div className="text-center space-y-6">
+                <div className="text-xl lg:text-2xl font-semibold text-foreground max-w-3xl mx-auto">
+                  Pain Level + Time Consumed + Procrastination Factor = Priority
+                </div>
+                <p className="text-muted-foreground text-base lg:text-lg max-w-3xl mx-auto">
+                  I ask Claude/Perplexity endless questions until I crack each workflow. Messy but effective.
+                </p>
               </div>
-              <p className="text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto">
-                I ask Claude/Perplexity endless questions until I crack each workflow. Messy but effective.
-              </p>
             </CardContent>
           </Card>
         </div>
@@ -141,10 +143,10 @@ const Index = () => {
       <section id="arsenal" className="py-12 lg:py-16">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 max-w-3xl mx-auto">
               My AI Arsenal
             </h2>
-            <p className="text-lg lg:text-xl text-muted-foreground">
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
               5 workflows that eliminated my busywork
             </p>
           </div>
@@ -164,11 +166,11 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/80 border-accent/30">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3">
+              <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3 max-w-3xl mx-auto">
                 <Beaker className="h-6 w-6 lg:h-8 lg:w-8" />
                 What's Cooking in the Lab
               </CardTitle>
-              <CardDescription className="text-base lg:text-lg">
+              <CardDescription className="text-base lg:text-lg max-w-3xl mx-auto">
                 Because the automation addiction is real
               </CardDescription>
             </CardHeader>
@@ -197,13 +199,13 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-gradient-accent text-accent-foreground">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl lg:text-4xl font-semibold">Let's Connect!</CardTitle>
-              <CardDescription className="text-accent-foreground/80 text-lg lg:text-xl">
+              <CardTitle className="text-3xl lg:text-4xl font-semibold max-w-3xl mx-auto">Let's Connect!</CardTitle>
+              <CardDescription className="text-accent-foreground/80 text-lg lg:text-xl max-w-3xl mx-auto">
                 Love efficiency hacks? Let's chat about AI workflows and product strategy.
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-8">
-              <p className="text-accent-foreground/90 text-base lg:text-lg max-w-2xl mx-auto">
+              <p className="text-accent-foreground/90 text-base lg:text-lg max-w-3xl mx-auto">
                 Always happy to connect with fellow product people who automate busy work to focus on what matters.
               </p>
               
