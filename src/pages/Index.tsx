@@ -8,7 +8,7 @@ import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap } from "l
 const Index = () => {
   const workflows = [
     {
-      title: "Product Knowledge Brain",
+      title: "Product Brain",
       tools: "Obsidian + Claude Code",
       keyBenefits: [
         "No more copy-paste context feeding to AI",
@@ -19,7 +19,7 @@ const Index = () => {
       icon: "brain" as const
     },
     {
-      title: "Meeting Memory Machine", 
+      title: "Meeting Memory", 
       tools: "Granola + Claude Code",
       keyBenefits: [
         "Auto-tracks promises and commitments",
@@ -30,7 +30,7 @@ const Index = () => {
       icon: "message" as const
     },
     {
-      title: "Tech Knowledge Bridge",
+      title: "Tech Bridge",
       tools: "GitHub Copilot + Repository Map", 
       keyBenefits: [
         "Answer API questions in real-time",
@@ -41,7 +41,7 @@ const Index = () => {
       icon: "code" as const
     },
     {
-      title: "Data Analysis on Steroids",
+      title: "Data Wizard",
       tools: "Comet Browser + Perplexity Pro",
       keyBenefits: [
         "Automated dashboard filtering",
@@ -52,7 +52,7 @@ const Index = () => {
       icon: "chart" as const
     },
     {
-      title: "Voice Capture Engine",
+      title: "Voice Magic",
       tools: "Wispr Flow + Obsidian",
       keyBenefits: [
         "Clean voice-to-text capture",
