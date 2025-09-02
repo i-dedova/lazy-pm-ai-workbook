@@ -1,90 +1,96 @@
 import { ReactFlow, Node, Edge, Background, Controls } from '@xyflow/react';
-import { Mic, FileText, Zap, Clock } from 'lucide-react';
 
 interface VoiceMagicDiagramProps {
   isPreview?: boolean;
 }
 
 export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps) => {
+  const baseSize = isPreview ? { width: 75, height: 45 } : { width: 160, height: 80 };
+  const fontSize = isPreview ? '10px' : '14px';
+  
   const nodes: Node[] = [
     {
       id: '1',
       type: 'default',
-      position: { x: 50, y: 50 },
+      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
       data: { 
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Mic className="h-4 w-4 text-red-500" />
-            Wispr Flow
+          <div className="text-center">
+            <div className="font-medium text-red-600">🎤 Wispr</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Voice Flow</div>}
           </div>
         )
       },
       style: { 
-        background: 'hsl(var(--primary) / 0.1)',
-        border: '1px solid hsl(var(--primary) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 90 : 130,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #ef4444',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(239, 68, 68, 0.15)'
       }
     },
     {
       id: '2', 
       type: 'default',
-      position: { x: 180, y: 50 },
+      position: isPreview ? { x: 95, y: 10 } : { x: 270, y: 50 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <FileText className="h-4 w-4 text-blue-500" />
-            Obsidian
+          <div className="text-center">
+            <div className="font-medium text-blue-600">📝 Obsidian</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Notes</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--accent) / 0.1)',
-        border: '1px solid hsl(var(--accent) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 90 : 130,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #3b82f6',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.15)'
       }
     },
     {
       id: '3',
       type: 'default', 
-      position: { x: 50, y: 150 },
+      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Zap className="h-4 w-4 text-yellow-500" />
-            Voice to PRD
+          <div className="text-center">
+            <div className="font-medium text-yellow-600">⚡ Voice→PRD</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Magic</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--highlight) / 0.1)',
-        border: '1px solid hsl(var(--highlight) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 100 : 140,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #eab308',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(234, 179, 8, 0.15)'
       }
     },
     {
       id: '4',
       type: 'default', 
-      position: { x: 180, y: 150 },
+      position: isPreview ? { x: 95, y: 70 } : { x: 270, y: 180 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Clock className="h-4 w-4 text-green-500" />
-            80% Faster
+          <div className="text-center">
+            <div className="font-medium text-green-600">⏱️ 80% Faster</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Creation</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--muted) / 0.3)',
-        border: '1px solid hsl(var(--muted-foreground) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 100 : 140,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #10b981',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
       }
     }
   ];
@@ -95,21 +101,33 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
       source: '1',
       target: '3',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--primary))' }
+      style: { 
+        stroke: '#ef4444', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
     },
     {
       id: 'e2-3',
       source: '2',
       target: '3',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--accent))' }
+      style: { 
+        stroke: '#3b82f6', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
     },
     {
       id: 'e3-4',
       source: '3',
       target: '4',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--highlight))' }
+      style: { 
+        stroke: '#eab308', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
     }
   ];
 
@@ -123,8 +141,15 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
       nodesConnectable={!isPreview}
       elementsSelectable={!isPreview}
       style={{ background: 'transparent' }}
+      panOnDrag={!isPreview}
+      zoomOnScroll={!isPreview}
+      zoomOnPinch={!isPreview}
     >
-      <Background />
+      <Background 
+        color="#e5e7eb" 
+        size={isPreview ? 0.5 : 1}
+        style={{ opacity: 0.3 }}
+      />
       {!isPreview && <Controls />}
     </ReactFlow>
   );

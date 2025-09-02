@@ -61,31 +61,35 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon, diagr
           </div>
         </div>
         
-        {/* Right Half - Interactive Workflow Diagram */}
+        {/* Right Half - Whiteboard Preview */}
         <div className="md:flex-1 mt-6 md:mt-0">
           <div className="relative h-full md:min-h-[280px]">
-            {/* Mini Preview */}
-            <div className="h-full rounded-xl border border-border/50 bg-background/50 overflow-hidden">
-              <WorkflowDiagram type={diagramType} isPreview={true} />
-            </div>
-            
-            {/* Expand Button */}
+            {/* Whiteboard Preview */}
             <Dialog>
               <DialogTrigger asChild>
-                <Button 
-                  variant="secondary" 
-                  size="sm" 
-                  className="absolute top-3 right-3 bg-background/80 hover:bg-background/90 backdrop-blur-sm"
-                >
-                  <Expand className="h-4 w-4 mr-2" />
-                  View Flow
-                </Button>
+                <div className="h-full rounded-xl bg-white border-2 border-muted-foreground/20 cursor-pointer hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50"></div>
+                  <div className="relative h-full p-4 flex items-center justify-center">
+                    <WorkflowDiagram type={diagramType} isPreview={true} />
+                  </div>
+                  
+                  {/* Overlay hint */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                      <Expand className="h-5 w-5 text-muted-foreground" />
+                    </div>
+                  </div>
+                </div>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-hidden">
-                <DialogHeader>
-                  <DialogTitle className="text-xl font-semibold">{title} - Workflow</DialogTitle>
-                </DialogHeader>
-                <div className="h-[70vh]">
+              <DialogContent className="max-w-[95vw] w-[95vw] max-h-[95vh] h-[95vh] p-0 bg-white">
+                <div className="h-full w-full bg-gradient-to-br from-blue-50/30 to-purple-50/30">
+                  <div className="absolute top-4 right-4 z-10">
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="bg-white/80 backdrop-blur-sm">
+                        ✕
+                      </Button>
+                    </DialogTrigger>
+                  </div>
                   <WorkflowDiagram type={diagramType} isPreview={false} />
                 </div>
               </DialogContent>

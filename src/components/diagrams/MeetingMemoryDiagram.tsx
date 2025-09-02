@@ -1,90 +1,96 @@
 import { ReactFlow, Node, Edge, Background, Controls } from '@xyflow/react';
-import { Mic, MessageSquare, CheckCircle, TrendingUp } from 'lucide-react';
 
 interface MeetingMemoryDiagramProps {
   isPreview?: boolean;
 }
 
 export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagramProps) => {
+  const baseSize = isPreview ? { width: 70, height: 45 } : { width: 160, height: 80 };
+  const fontSize = isPreview ? '10px' : '14px';
+  
   const nodes: Node[] = [
     {
       id: '1',
       type: 'default',
-      position: { x: 50, y: 50 },
+      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
       data: { 
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Mic className="h-4 w-4 text-red-500" />
-            Granola
+          <div className="text-center">
+            <div className="font-medium text-red-600">🎤 Granola</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Recording</div>}
           </div>
         )
       },
       style: { 
-        background: 'hsl(var(--primary) / 0.1)',
-        border: '1px solid hsl(var(--primary) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 80 : 120,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #ef4444',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(239, 68, 68, 0.15)'
       }
     },
     {
       id: '2', 
       type: 'default',
-      position: { x: 180, y: 50 },
+      position: isPreview ? { x: 90, y: 10 } : { x: 250, y: 50 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <MessageSquare className="h-4 w-4 text-blue-500" />
-            Claude Code
+          <div className="text-center">
+            <div className="font-medium text-blue-600">💬 Claude</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Processing</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--accent) / 0.1)',
-        border: '1px solid hsl(var(--accent) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 100 : 140,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #3b82f6',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.15)'
       }
     },
     {
       id: '3',
       type: 'default', 
-      position: { x: 50, y: 150 },
+      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            Action Items
+          <div className="text-center">
+            <div className="font-medium text-green-600">✅ Actions</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Tracked</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--highlight) / 0.1)',
-        border: '1px solid hsl(var(--highlight) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 100 : 140,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #10b981',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
       }
     },
     {
       id: '4',
       type: 'default', 
-      position: { x: 200, y: 150 },
+      position: isPreview ? { x: 90, y: 70 } : { x: 250, y: 180 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <TrendingUp className="h-4 w-4 text-orange-500" />
-            400% Better
+          <div className="text-center">
+            <div className="font-medium text-orange-600">📈 400%</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Better</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--muted) / 0.3)',
-        border: '1px solid hsl(var(--muted-foreground) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 100 : 140,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #f97316',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(249, 115, 22, 0.15)'
       }
     }
   ];
@@ -95,21 +101,33 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
       source: '1',
       target: '2',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--primary))' }
+      style: { 
+        stroke: '#ef4444', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '3,3' : 'none'
+      }
     },
     {
       id: 'e2-3',
       source: '2',
       target: '3',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--accent))' }
+      style: { 
+        stroke: '#3b82f6', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '3,3' : 'none'
+      }
     },
     {
       id: 'e3-4',
       source: '3',
       target: '4',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--highlight))' }
+      style: { 
+        stroke: '#10b981', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '3,3' : 'none'
+      }
     }
   ];
 
@@ -123,8 +141,15 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
       nodesConnectable={!isPreview}
       elementsSelectable={!isPreview}
       style={{ background: 'transparent' }}
+      panOnDrag={!isPreview}
+      zoomOnScroll={!isPreview}
+      zoomOnPinch={!isPreview}
     >
-      <Background />
+      <Background 
+        color="#e5e7eb" 
+        size={isPreview ? 0.5 : 1}
+        style={{ opacity: 0.3 }}
+      />
       {!isPreview && <Controls />}
     </ReactFlow>
   );

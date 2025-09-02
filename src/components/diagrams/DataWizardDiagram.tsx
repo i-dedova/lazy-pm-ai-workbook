@@ -1,90 +1,96 @@
 import { ReactFlow, Node, Edge, Background, Controls } from '@xyflow/react';
-import { Globe, Search, BarChart3, Shield } from 'lucide-react';
 
 interface DataWizardDiagramProps {
   isPreview?: boolean;
 }
 
 export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps) => {
+  const baseSize = isPreview ? { width: 75, height: 45 } : { width: 170, height: 80 };
+  const fontSize = isPreview ? '10px' : '14px';
+  
   const nodes: Node[] = [
     {
       id: '1',
       type: 'default',
-      position: { x: 50, y: 50 },
+      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
       data: { 
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Globe className="h-4 w-4 text-blue-500" />
-            Comet Browser
+          <div className="text-center">
+            <div className="font-medium text-blue-600">🌐 Comet</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Browser</div>}
           </div>
         )
       },
       style: { 
-        background: 'hsl(var(--primary) / 0.1)',
-        border: '1px solid hsl(var(--primary) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 110 : 150,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #3b82f6',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.15)'
       }
     },
     {
       id: '2', 
       type: 'default',
-      position: { x: 200, y: 50 },
+      position: isPreview ? { x: 95, y: 10 } : { x: 280, y: 50 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Search className="h-4 w-4 text-purple-500" />
-            Perplexity Pro
+          <div className="text-center">
+            <div className="font-medium text-purple-600">🔍 Perplexity</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Pro Search</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--accent) / 0.1)',
-        border: '1px solid hsl(var(--accent) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 110 : 150,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #8b5cf6',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(139, 92, 246, 0.15)'
       }
     },
     {
       id: '3',
       type: 'default', 
-      position: { x: 50, y: 150 },
+      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <BarChart3 className="h-4 w-4 text-green-500" />
-            Auto Filtering
+          <div className="text-center">
+            <div className="font-medium text-green-600">📊 Auto Filter</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Data Magic</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--highlight) / 0.1)',
-        border: '1px solid hsl(var(--highlight) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 110 : 150,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #10b981',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
       }
     },
     {
       id: '4',
       type: 'default', 
-      position: { x: 200, y: 150 },
+      position: isPreview ? { x: 95, y: 70 } : { x: 280, y: 180 },
       data: {
         label: (
-          <div className="flex items-center gap-2 text-xs">
-            <Shield className="h-4 w-4 text-orange-500" />
-            85% Less Work
+          <div className="text-center">
+            <div className="font-medium text-orange-600">🛡️ 85% Less</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Grunt Work</div>}
           </div>
         )
       },
       style: {
-        background: 'hsl(var(--muted) / 0.3)',
-        border: '1px solid hsl(var(--muted-foreground) / 0.3)',
-        fontSize: isPreview ? '10px' : '12px',
-        width: isPreview ? 110 : 150,
-        height: isPreview ? 40 : 60
+        background: '#ffffff',
+        border: '2px solid #f97316',
+        borderRadius: '12px',
+        fontSize,
+        ...baseSize,
+        boxShadow: '0 2px 8px rgba(249, 115, 22, 0.15)'
       }
     }
   ];
@@ -95,21 +101,33 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
       source: '1',
       target: '3',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--primary))' }
+      style: { 
+        stroke: '#3b82f6', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
     },
     {
       id: 'e2-4',
       source: '2',
       target: '4',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--accent))' }
+      style: { 
+        stroke: '#8b5cf6', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
     },
     {
       id: 'e3-4',
       source: '3',
       target: '4',
       type: 'smoothstep',
-      style: { stroke: 'hsl(var(--highlight))' }
+      style: { 
+        stroke: '#10b981', 
+        strokeWidth: 2,
+        strokeDasharray: isPreview ? '4,4' : 'none'
+      }
     }
   ];
 
@@ -123,8 +141,15 @@ export const DataWizardDiagram = ({ isPreview = false }: DataWizardDiagramProps)
       nodesConnectable={!isPreview}
       elementsSelectable={!isPreview}
       style={{ background: 'transparent' }}
+      panOnDrag={!isPreview}
+      zoomOnScroll={!isPreview}
+      zoomOnPinch={!isPreview}
     >
-      <Background />
+      <Background 
+        color="#e5e7eb" 
+        size={isPreview ? 0.5 : 1}
+        style={{ opacity: 0.3 }}
+      />
       {!isPreview && <Controls />}
     </ReactFlow>
   );
