@@ -23,8 +23,9 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
 
   return (
     <Card className="border-border/50 hover:shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-1 group">
-      <CardHeader className="pb-4">
-        <div className="flex items-start gap-4">
+      <div className="lg:flex lg:items-center lg:gap-8 p-6">
+        {/* Icon and Title Section */}
+        <div className="flex items-start gap-4 lg:flex-shrink-0 lg:w-80 mb-6 lg:mb-0">
           <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
             <IconComponent className="h-6 w-6 lg:h-8 lg:w-8 text-primary" />
           </div>
@@ -35,30 +36,34 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
             </Badge>
           </div>
         </div>
-      </CardHeader>
-      
-      <CardContent className="space-y-4">
-        <ul className="space-y-2">
-          {keyBenefits.map((benefit, index) => (
-            <li key={index} className="flex items-start gap-2 text-sm lg:text-base text-muted-foreground">
-              <span className="text-accent text-lg">•</span>
-              <span>{benefit}</span>
-            </li>
-          ))}
-        </ul>
         
-        <div className="p-4 bg-highlight/10 border border-highlight/30 rounded-xl">
-          <p className="text-sm lg:text-base font-semibold text-highlight">
-            {metric}
-          </p>
+        {/* Benefits Section */}
+        <div className="flex-1 mb-6 lg:mb-0">
+          <ul className="space-y-2">
+            {keyBenefits.map((benefit, index) => (
+              <li key={index} className="flex items-start gap-2 text-sm lg:text-base text-muted-foreground">
+                <span className="text-accent text-lg">•</span>
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         
-        <div className="p-4 bg-muted/30 rounded-xl border border-dashed border-muted-foreground/30">
-          <p className="text-xs text-muted-foreground text-center italic">
-            Workflow diagram
-          </p>
+        {/* Metric Section */}
+        <div className="lg:flex-shrink-0 lg:w-60">
+          <div className="p-4 bg-highlight/10 border border-highlight/30 rounded-xl mb-4 lg:mb-0">
+            <p className="text-sm lg:text-base font-semibold text-highlight">
+              {metric}
+            </p>
+          </div>
+          
+          <div className="p-4 bg-muted/30 rounded-xl border border-dashed border-muted-foreground/30 lg:hidden">
+            <p className="text-xs text-muted-foreground text-center italic">
+              Workflow diagram
+            </p>
+          </div>
         </div>
-      </CardContent>
+      </div>
     </Card>
   );
 };
