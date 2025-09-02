@@ -28,12 +28,12 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
     <div className="w-full h-full flex items-center justify-center bg-gray-50 relative group">
       {renderDiagram()}
       
-      {/* Hover overlay for collapsed view */}
+      {/* Hover hint in bottom-right corner for collapsed view */}
       {isPreview && (
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/5 cursor-pointer">
-          <div className="bg-white px-3 py-1.5 rounded-lg shadow-md flex items-center space-x-2 text-sm font-medium text-gray-700">
+        <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <div className="bg-white px-2 py-1 rounded-md shadow-md flex items-center space-x-1 text-xs font-medium text-gray-600 border">
             <span>Detailed View</span>
-            <ChevronDown className="w-4 h-4" />
+            <ChevronDown className="w-3 h-3" />
           </div>
         </div>
       )}
