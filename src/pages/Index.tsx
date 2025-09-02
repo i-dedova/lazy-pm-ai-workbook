@@ -151,7 +151,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 lg:gap-4 md:grid-cols-2 lg:grid-cols-5">
             {workflows.map((workflow, index) => (
               <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <WorkflowSnippet {...workflow} />
