@@ -5,39 +5,39 @@ interface VoiceMagicDiagramProps {
 }
 
 export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps) => {
-  const baseSize = isPreview ? { width: 75, height: 45 } : { width: 160, height: 80 };
-  const fontSize = isPreview ? '10px' : '14px';
+  const baseSize = isPreview ? { width: 55, height: 35 } : { width: 130, height: 70 };
+  const fontSize = isPreview ? '9px' : '13px';
   
   const nodes: Node[] = [
     {
       id: '1',
       type: 'default',
-      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
+      position: isPreview ? { x: 5, y: 15 } : { x: 50, y: 100 },
       data: { 
         label: (
           <div className="text-center">
-            <div className="font-medium text-red-600">🎤 Wispr</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Beach walks</div>}
+            <div className="font-medium text-red-600">🎧 Wispr</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Voice Flow</div>}
           </div>
         )
       },
       style: { 
         background: '#ffffff',
         border: '2px solid #ef4444',
-        borderRadius: '12px',
+        borderRadius: '8px',
         fontSize,
         ...baseSize,
-        boxShadow: '0 2px 8px rgba(239, 68, 68, 0.15)'
+        boxShadow: '0 2px 6px rgba(239, 68, 68, 0.15)'
       }
     },
     {
       id: '2', 
       type: 'default',
-      position: isPreview ? { x: 95, y: 10 } : { x: 270, y: 50 },
+      position: isPreview ? { x: 70, y: 15 } : { x: 210, y: 100 },
       data: {
         label: (
           <div className="text-center">
-            <div className="font-medium text-blue-600">📝 Claude</div>
+            <div className="font-medium text-blue-600">🤖 Claude</div>
             {!isPreview && <div className="text-xs text-gray-600 mt-1">Structure</div>}
           </div>
         )
@@ -45,52 +45,31 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
       style: {
         background: '#ffffff',
         border: '2px solid #3b82f6',
-        borderRadius: '12px',
+        borderRadius: '8px',
         fontSize,
         ...baseSize,
-        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.15)'
+        boxShadow: '0 2px 6px rgba(59, 130, 246, 0.15)'
       }
     },
     {
       id: '3',
       type: 'default', 
-      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
+      position: isPreview ? { x: 135, y: 15 } : { x: 370, y: 100 },
       data: {
         label: (
           <div className="text-center">
-            <div className="font-medium text-green-600">📖 Templates</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">PRD Format</div>}
+            <div className="font-medium text-purple-600">📝 Obsidian</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">PRD Ready</div>}
           </div>
         )
       },
       style: {
         background: '#ffffff',
-        border: '2px solid #10b981',
-        borderRadius: '12px',
+        border: '2px solid #8b5cf6',
+        borderRadius: '8px',
         fontSize,
         ...baseSize,
-        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
-      }
-    },
-    {
-      id: '4',
-      type: 'default', 
-      position: isPreview ? { x: 95, y: 70 } : { x: 270, y: 180 },
-      data: {
-        label: (
-          <div className="text-center">
-            <div className="font-medium text-yellow-600">🔗 AS24 Vault</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Integration</div>}
-          </div>
-        )
-      },
-      style: {
-        background: '#ffffff',
-        border: '2px solid #eab308',
-        borderRadius: '12px',
-        fontSize,
-        ...baseSize,
-        boxShadow: '0 2px 8px rgba(234, 179, 8, 0.15)'
+        boxShadow: '0 2px 6px rgba(139, 92, 246, 0.15)'
       }
     }
   ];
@@ -100,33 +79,20 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
       id: 'e1-2',
       source: '1',
       target: '2',
-      type: 'smoothstep',
+      type: 'straight',
       style: { 
         stroke: '#ef4444', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '4,4' : 'none'
+        strokeWidth: 2
       }
     },
     {
       id: 'e2-3',
       source: '2',
       target: '3',
-      type: 'smoothstep',
+      type: 'straight',
       style: { 
         stroke: '#3b82f6', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '4,4' : 'none'
-      }
-    },
-    {
-      id: 'e3-4',
-      source: '3',
-      target: '4',
-      type: 'smoothstep',
-      style: { 
-        stroke: '#10b981', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '4,4' : 'none'
+        strokeWidth: 2
       }
     }
   ];

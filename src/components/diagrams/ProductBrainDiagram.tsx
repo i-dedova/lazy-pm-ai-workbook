@@ -5,92 +5,71 @@ interface ProductBrainDiagramProps {
 }
 
 export const ProductBrainDiagram = ({ isPreview = false }: ProductBrainDiagramProps) => {
-  const baseSize = isPreview ? { width: 80, height: 50 } : { width: 180, height: 80 };
-  const fontSize = isPreview ? '11px' : '14px';
+  const baseSize = isPreview ? { width: 60, height: 35 } : { width: 140, height: 70 };
+  const fontSize = isPreview ? '9px' : '13px';
   
   const nodes: Node[] = [
     {
       id: '1',
       type: 'default',
-      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
+      position: isPreview ? { x: 10, y: 15 } : { x: 50, y: 100 },
       data: { 
         label: (
           <div className="text-center">
-            <div className="font-medium text-blue-600">📋 AS24 Vault</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Knowledge Base</div>}
+            <div className="font-medium text-purple-600">📝 Obsidian</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">Knowledge Vault</div>}
           </div>
         )
       },
       style: { 
         background: '#ffffff',
-        border: '2px solid #3b82f6',
-        borderRadius: '12px',
+        border: '2px solid #8b5cf6',
+        borderRadius: '8px',
         fontSize,
         ...baseSize,
-        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.15)'
+        boxShadow: '0 2px 6px rgba(139, 92, 246, 0.15)'
       }
     },
     {
       id: '2', 
       type: 'default',
-      position: isPreview ? { x: 120, y: 10 } : { x: 300, y: 50 },
+      position: isPreview ? { x: 80, y: 15 } : { x: 220, y: 100 },
       data: {
         label: (
           <div className="text-center">
-            <div className="font-medium text-purple-600">🏷️ Smart Tags</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Auto-linking</div>}
+            <div className="font-medium text-blue-600">🤖 Claude</div>
+            {!isPreview && <div className="text-xs text-gray-600 mt-1">AI Assistant</div>}
           </div>
         )
       },
       style: {
         background: '#ffffff',
-        border: '2px solid #8b5cf6',
-        borderRadius: '12px',
+        border: '2px solid #3b82f6',
+        borderRadius: '8px',
         fontSize,
         ...baseSize,
-        boxShadow: '0 2px 8px rgba(139, 92, 246, 0.15)'
+        boxShadow: '0 2px 6px rgba(59, 130, 246, 0.15)'
       }
     },
     {
       id: '3',
       type: 'default', 
-      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
+      position: isPreview ? { x: 150, y: 15 } : { x: 390, y: 100 },
       data: {
         label: (
           <div className="text-center">
-            <div className="font-medium text-green-600">🧠 Claude Code</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Context Engine</div>}
-          </div>
-        )
-      },
-      style: {
-        background: '#ffffff',
-        border: '2px solid #10b981',
-        borderRadius: '12px',
-        fontSize,
-        ...baseSize,
-        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
-      }
-    },
-    {
-      id: '4',
-      type: 'default', 
-      position: isPreview ? { x: 120, y: 70 } : { x: 300, y: 180 },
-      data: {
-        label: (
-          <div className="text-center">
-            <div className="font-medium text-orange-600">📖 PRDs</div>
+            <div className="font-medium text-green-600">📄 PRDs</div>
             {!isPreview && <div className="text-xs text-gray-600 mt-1">Auto-generated</div>}
           </div>
         )
       },
       style: {
         background: '#ffffff',
-        border: '2px solid #f97316',
-        borderRadius: '12px',
+        border: '2px solid #10b981',
+        borderRadius: '8px',
         fontSize,
         ...baseSize,
-        boxShadow: '0 2px 8px rgba(249, 115, 22, 0.15)'
+        boxShadow: '0 2px 6px rgba(16, 185, 129, 0.15)'
       }
     }
   ];
@@ -100,44 +79,20 @@ export const ProductBrainDiagram = ({ isPreview = false }: ProductBrainDiagramPr
       id: 'e1-2',
       source: '1',
       target: '2',
-      type: 'smoothstep',
-      style: { 
-        stroke: '#3b82f6', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '5,5' : 'none'
-      }
-    },
-    {
-      id: 'e1-3',
-      source: '1',
-      target: '3',
-      type: 'smoothstep',
-      style: { 
-        stroke: '#3b82f6', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '5,5' : 'none'
-      }
-    },
-    {
-      id: 'e2-4',
-      source: '2',
-      target: '4',
-      type: 'smoothstep',
+      type: 'straight',
       style: { 
         stroke: '#8b5cf6', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '5,5' : 'none'
+        strokeWidth: 2
       }
     },
     {
-      id: 'e3-4',
-      source: '3',
-      target: '4',
-      type: 'smoothstep',
+      id: 'e2-3',
+      source: '2',
+      target: '3',
+      type: 'straight',
       style: { 
-        stroke: '#10b981', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '5,5' : 'none'
+        stroke: '#3b82f6', 
+        strokeWidth: 2
       }
     }
   ];
