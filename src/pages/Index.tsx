@@ -142,8 +142,8 @@ const Index = () => {
       {/* Arsenal - Mobile-Optimized Cards */}
       <section id="arsenal" className="py-12 lg:py-16">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               My AI Arsenal
             </h2>
             <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -166,7 +166,7 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/80 border-accent/30">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3 max-w-3xl mx-auto">
+              <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3">
                 <Beaker className="h-6 w-6 lg:h-8 lg:w-8" />
                 What's Cooking in the Lab
               </CardTitle>
@@ -214,7 +214,7 @@ const Index = () => {
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-gradient-accent text-accent-foreground">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl lg:text-4xl font-semibold max-w-3xl mx-auto">Let's Connect!</CardTitle>
+              <CardTitle className="text-3xl lg:text-4xl font-semibold">Let's Connect!</CardTitle>
               <CardDescription className="text-accent-foreground/80 text-lg lg:text-xl max-w-3xl mx-auto">
                 Love efficiency hacks? Let's chat about AI workflows and product strategy. 
                 <br />
