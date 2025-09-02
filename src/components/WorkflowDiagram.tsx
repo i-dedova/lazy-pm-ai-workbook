@@ -36,23 +36,22 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {/* Main Flow - Positioned at top in expanded view */}
+      {/* Main Flow - Left to right: Obsidian > Claude > Docs */}
       <g>
-        {/* Reversed order: Obsidian > Claude > Docs */}
-        {/* Generated Docs */}
+        {/* Obsidian Vault */}
         <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Generated Docs</text>
-        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRDs, Stories</text>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian Vault</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Knowledge Base</text>
         
         {/* Claude */}
         <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude Code</text>
         <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Context Engine</text>
         
-        {/* Obsidian Vault */}
+        {/* Generated Docs */}
         <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian Vault</text>
-        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Knowledge Base</text>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Generated Docs</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRDs, Stories</text>
         
         {/* Arrows */}
         <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
@@ -79,17 +78,11 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
           <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Doc Types</text>
           <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Strategy, Research</text>
 
-          {/* Context Layer - raised higher from bottom */}
-          <rect x="80" y="280" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="300" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Interconnected Knowledge System</text>
-          <text x="350" y="315" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across product areas</text>
-          <text x="350" y="328" textAnchor="middle" fontSize="10" fill="#65a30d">Transform scattered notes into structured product documentation</text>
-
-          {/* Connection lines to main flow */}
-          <path d="M 190 175 L 110 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 310 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 430 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 550 175 L ${width - 110} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+          {/* Context Layer - consistent spacing */}
+          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Interconnected Knowledge System</text>
+          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across product areas</text>
+          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Transform scattered notes into structured product documentation</text>
         </g>
       )}
       
@@ -108,21 +101,24 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {/* Main Flow - Positioned at top in expanded view */}
+      {/* Main Flow - Left to right: Granola > Claude > Daily TODOs */}
       <g>
-        {/* Reversed order: Daily TODOs > Claude > Granola */}
+        {/* Granola */}
         <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Daily TODOs</text>
-        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Action Items</text>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Granola</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-record</text>
         
+        {/* Claude */}
         <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
         <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Process & Sort</text>
         
+        {/* Daily TODOs */}
         <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Granola</text>
-        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-record</text>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Daily TODOs</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Action Items</text>
         
+        {/* Arrows */}
         <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
         <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
@@ -146,17 +142,11 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
           <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Action Items</text>
           <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Track commitments</text>
 
-          {/* Context Layer - raised higher from bottom */}
-          <rect x="80" y="280" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="300" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Meeting Memory System</text>
-          <text x="350" y="315" textAnchor="middle" fontSize="10" fill="#65a30d">Auto-tracks commitments and action items across all meetings</text>
-          <text x="350" y="328" textAnchor="middle" fontSize="10" fill="#65a30d">Never lose track of decisions or who committed to what</text>
-
-          {/* Connection lines */}
-          <path d="M 190 175 L 110 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 310 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 430 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 550 175 L ${width - 110} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+          {/* Context Layer - consistent spacing */}
+          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Meeting Memory System</text>
+          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Auto-tracks commitments and action items across all meetings</text>
+          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Never lose track of decisions or who committed to what</text>
         </g>
       )}
       
@@ -175,21 +165,24 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {/* Main Flow - Positioned at top in expanded view */}
+      {/* Main Flow - Left to right: GitHub Copilot > Repository Map > Tech Q&A */}
       <g>
-        {/* Reversed order: Tech Q&A > Repository Map > GitHub Copilot */}
+        {/* GitHub Copilot */}
         <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Tech Q&A</text>
-        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Real-time answers</text>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">GitHub Copilot</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Assistant</text>
         
+        {/* Repository Map */}
         <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Repository Map</text>
         <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Navigation</text>
         
+        {/* Tech Q&A */}
         <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">GitHub Copilot</text>
-        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Assistant</text>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Tech Q&A</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Real-time answers</text>
         
+        {/* Arrows */}
         <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
         <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
@@ -213,17 +206,11 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
           <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">PM Bridge</text>
           <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">No code needed</text>
 
-          {/* Context Layer - raised higher from bottom */}
-          <rect x="80" y="260" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="280" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Technical Bridge for Product Managers</text>
-          <text x="350" y="295" textAnchor="middle" fontSize="10" fill="#65a30d">Answer API questions instantly, understand technical dependencies</text>
-          <text x="350" y="308" textAnchor="middle" fontSize="10" fill="#65a30d">Make informed product decisions with real-time technical insights</text>
-
-          {/* Connection lines */}
-          <path d="M 190 175 L 110 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 310 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 430 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 550 175 L ${width - 110} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+          {/* Context Layer - consistent spacing */}
+          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Technical Bridge for Product Managers</text>
+          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Answer API questions instantly, understand technical dependencies</text>
+          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Make informed product decisions with real-time technical insights</text>
         </g>
       )}
       
@@ -242,21 +229,24 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {/* Main Flow - Positioned at top in expanded view */}
+      {/* Main Flow - Left to right: Comet Browser > Perplexity Pro > Auto-Analysis */}
       <g>
-        {/* Reversed order: Auto-Analysis > Perplexity Pro > Comet Browser */}
+        {/* Comet Browser */}
         <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Auto-Analysis</text>
-        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Insights</text>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Comet Browser</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-scraping</text>
         
+        {/* Perplexity Pro */}
         <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Perplexity Pro</text>
         <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Context Search</text>
         
+        {/* Auto-Analysis */}
         <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Comet Browser</text>
-        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-scraping</text>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Auto-Analysis</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Insights</text>
         
+        {/* Arrows */}
         <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
         <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
@@ -280,17 +270,11 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
           <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Insights</text>
           <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Data-driven</text>
 
-          {/* Context Layer - raised higher from bottom */}
-          <rect x="80" y="260" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="280" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Data-Driven Decision Making</text>
-          <text x="350" y="295" textAnchor="middle" fontSize="10" fill="#65a30d">Automated dashboard filtering and instant metric extraction</text>
-          <text x="350" y="308" textAnchor="middle" fontSize="10" fill="#65a30d">Transform raw data into strategic insights for informed decisions</text>
-
-          {/* Connection lines */}
-          <path d="M 190 175 L 110 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 310 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 430 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 550 175 L ${width - 110} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+          {/* Context Layer - consistent spacing */}
+          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Business Intelligence Automation</text>
+          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Extract insights from competitor data and industry trends</text>
+          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">Transform raw information into strategic business intelligence</text>
         </g>
       )}
       
@@ -309,21 +293,24 @@ const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {/* Main Flow - Positioned at top in expanded view */}
+      {/* Main Flow - Left to right: Wispr Flow > Claude > Obsidian */}
       <g>
-        {/* Reversed order: Obsidian > Claude > Wispr Flow */}
+        {/* Wispr Flow */}
         <rect x="50" y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian</text>
-        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRD Ready</text>
+        <text x="110" y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Wispr Flow</text>
+        <text x="110" y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Voice Capture</text>
         
+        {/* Claude */}
         <rect x={width/2 - 60} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
         <text x={width/2} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Structure</text>
         
+        {/* Obsidian */}
         <rect x={width - 170} y={isPreview ? height/2 - 25 : 60} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Wispr Flow</text>
-        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Voice Capture</text>
+        <text x={width - 110} y={isPreview ? height/2 - 5 : 75} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian</text>
+        <text x={width - 110} y={isPreview ? height/2 + 10 : 90} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRD Ready</text>
         
+        {/* Arrows */}
         <path d={`M 170 ${isPreview ? height/2 : 85} L ${width/2 - 60} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
         <path d={`M ${width/2 + 60} ${isPreview ? height/2 : 85} L ${width - 170} ${isPreview ? height/2 : 85}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
@@ -347,17 +334,11 @@ const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
           <text x="550" y="155" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">PRD Output</text>
           <text x="550" y="167" textAnchor="middle" fontSize="9" fill="#64748b">Stakeholder ready</text>
 
-          {/* Context Layer - raised higher from bottom */}
-          <rect x="80" y="260" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
-          <text x="350" y="280" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Voice-to-PRD Workflow</text>
-          <text x="350" y="295" textAnchor="middle" fontSize="10" fill="#65a30d">Transform voice notes into structured product requirements</text>
-          <text x="350" y="308" textAnchor="middle" fontSize="10" fill="#65a30d">From beach walks to stakeholder-ready documents in minutes</text>
-
-          {/* Connection lines */}
-          <path d="M 190 175 L 110 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 310 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 430 175 L ${width/2} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
-          <path d="M 550 175 L ${width - 110} 110" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+          {/* Context Layer - consistent spacing */}
+          <rect x="80" y="220" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+          <text x="350" y="240" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Voice-to-PRD Workflow</text>
+          <text x="350" y="255" textAnchor="middle" fontSize="10" fill="#65a30d">Transform voice notes into structured product requirements</text>
+          <text x="350" y="268" textAnchor="middle" fontSize="10" fill="#65a30d">From beach walks to stakeholder-ready documents in minutes</text>
         </g>
       )}
       
