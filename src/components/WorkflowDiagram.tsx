@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface WorkflowDiagramProps {
   type: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
   isPreview?: boolean;
@@ -29,32 +31,88 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
 };
 
 const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const width = isPreview ? 300 : 600;
-  const height = isPreview ? 150 : 300;
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const width = isPreview ? 300 : 700;
+  const height = isPreview ? 150 : expandedSections.details ? 450 : 300;
+  
+  const toggleSection = (section: string) => {
+    if (!isPreview) {
+      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    }
+  };
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
-      {/* Clean horizontal flow */}
+      {/* Main Flow */}
       <g>
-        {/* Obsidian */}
-        <rect x="20" y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="70" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian</text>
-        <text x="70" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Vault</text>
+        {/* Obsidian Vault */}
+        <rect x="50" y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian Vault</text>
+        <text x="110" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Knowledge Base</text>
         
         {/* Claude */}
-        <rect x={width/2 - 50} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
-        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">AI Engine</text>
+        <rect x={width/2 - 60} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude Code</text>
+        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Context Engine</text>
         
-        {/* Output */}
-        <rect x={width - 120} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 70} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">PRDs</text>
-        <text x={width - 70} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Generated</text>
+        {/* Generated Docs */}
+        <rect x={width - 170} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Generated Docs</text>
+        <text x={width - 110} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRDs, Stories</text>
         
-        {/* Clean arrows */}
-        <path d={`M 120 ${height/2} L ${width/2 - 50} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        <path d={`M ${width/2 + 50} ${height/2} L ${width - 120} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        {/* Arrows */}
+        <path d={`M 170 ${height/2} L ${width/2 - 60} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${height/2} L ${width - 170} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
+
+      {/* Expandable Details - Only show in full view */}
+      {!isPreview && (
+        <g>
+          {/* Expand button */}
+          <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
+                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+          <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
+            {expandedSections.details ? '▼ Hide Details' : '▶ Show Workflow Details'}
+          </text>
+
+          {/* Expanded Content */}
+          {expandedSections.details && (
+            <g>
+              {/* Smart Tagging Layer */}
+              <rect x="60" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="110" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">#smart-tags</text>
+              <text x="110" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Auto-linking</text>
+
+              {/* Templates */}
+              <rect x="180" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="230" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Templates</text>
+              <text x="230" y="108" textAnchor="middle" fontSize="9" fill="#64748b">PRD, Stories, Reports</text>
+
+              {/* Cross-referencing */}
+              <rect x="300" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="350" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">[[Cross-refs]]</text>
+              <text x="350" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Auto-connections</text>
+
+              {/* Document Types */}
+              <rect x="420" y="80" width="100" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="470" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="500">Doc Types</text>
+              <text x="470" y="108" textAnchor="middle" fontSize="9" fill="#64748b">Strategy, Research, Features</text>
+
+              {/* Context Layer */}
+              <rect x="100" y="360" width="500" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+              <text x="350" y="380" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Interconnected Knowledge System</text>
+              <text x="350" y="395" textAnchor="middle" fontSize="10" fill="#65a30d">Strategic tagging creates automatic connections across all product areas</text>
+              <text x="350" y="408" textAnchor="middle" fontSize="10" fill="#65a30d">#psc #apsl #research #DE #IT #web #apps #user-story #prd #meeting-notes</text>
+
+              {/* Connection lines to main flow */}
+              <path d="M 110 120 L 110 ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 230 120 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 350 120 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 470 120 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+            </g>
+          )}
+        </g>
+      )}
       
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -66,31 +124,88 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
-  const width = isPreview ? 300 : 600;
-  const height = isPreview ? 150 : 300;
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const width = isPreview ? 300 : 700;
+  const height = isPreview ? 150 : expandedSections.details ? 480 : 300;
+  
+  const toggleSection = (section: string) => {
+    if (!isPreview) {
+      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    }
+  };
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
+      {/* Main Flow */}
       <g>
-        {/* Granola */}
-        <rect x="20" y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="70" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Granola</text>
-        <text x="70" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Record</text>
+        <rect x="50" y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Granola</text>
+        <text x="110" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-record</text>
         
-        {/* Claude */}
-        <rect x={width/2 - 50} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <rect x={width/2 - 60} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
-        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Process</text>
+        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Process & Sort</text>
         
-        {/* TODOs */}
-        <rect x={width - 120} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 70} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">TODOs</text>
-        <text x={width - 70} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Daily</text>
+        <rect x={width - 170} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Daily TODOs</text>
+        <text x={width - 110} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Action Items</text>
         
-        {/* Clean arrows */}
-        <path d={`M 120 ${height/2} L ${width/2 - 50} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        <path d={`M ${width/2 + 50} ${height/2} L ${width - 120} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M 170 ${height/2} L ${width/2 - 60} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${height/2} L ${width - 170} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
+
+      {!isPreview && (
+        <g>
+          <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
+                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+          <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
+            {expandedSections.details ? '▼ Hide Organization' : '▶ Show Auto-Organization'}
+          </text>
+
+          {expandedSections.details && (
+            <g>
+              {/* Folder Organization */}
+              <rect x="60" y="80" width="110" height="80" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="115" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Meeting Folders</text>
+              <text x="70" y="110" fontSize="9" fill="#64748b">📁 /Team-Meetings/PSC/</text>
+              <text x="70" y="122" fontSize="9" fill="#64748b">📁 /Cross-Functional/UX/</text>
+              <text x="70" y="134" fontSize="9" fill="#64748b">📁 /1-on-1s/Manager/</text>
+              <text x="70" y="146" fontSize="9" fill="#64748b">📁 /Business-Reviews/WBR/</text>
+
+              {/* Smart Tagging */}
+              <rect x="190" y="80" width="110" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="245" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Smart Tagging</text>
+              <text x="200" y="110" fontSize="9" fill="#64748b">#psc #apsl #research</text>
+              <text x="200" y="122" fontSize="9" fill="#64748b">#DE #IT #web #apps</text>
+
+              {/* Granola-sync workflow */}
+              <rect x="320" y="80" width="120" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="380" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">granola-sync</text>
+              <text x="330" y="110" fontSize="9" fill="#64748b">Process all new meetings</text>
+              <text x="330" y="122" fontSize="9" fill="#64748b">Sort to Processed/ folders</text>
+
+              {/* Daily TODO workflow */}
+              <rect x="460" y="80" width="120" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="520" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">daily-todo</text>
+              <text x="470" y="110" fontSize="9" fill="#64748b">Generate action items</text>
+              <text x="470" y="122" fontSize="9" fill="#64748b">From processed meetings</text>
+
+              {/* Context Layer */}
+              <rect x="80" y="380" width="540" height="80" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+              <text x="350" y="400" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Meeting Memory Supernatural Powers</text>
+              <text x="350" y="415" textAnchor="middle" fontSize="10" fill="#65a30d">Auto-tracks promises, commitments, and action items across all meetings</text>
+              <text x="350" y="428" textAnchor="middle" fontSize="10" fill="#65a30d">Cross-references decisions with vault knowledge for context awareness</text>
+              <text x="350" y="441" textAnchor="middle" fontSize="10" fill="#65a30d">Never lose track of what was decided or who committed to what</text>
+              <text x="350" y="454" textAnchor="middle" fontSize="10" fill="#65a30d">400% better follow-through on commitments</text>
+
+              {/* Connection lines */}
+              <path d="M 245 130 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 380 130 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 520 130 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+            </g>
+          )}
+        </g>
+      )}
       
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -102,31 +217,86 @@ const MeetingMemorySVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const width = isPreview ? 300 : 600;
-  const height = isPreview ? 150 : 300;
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const width = isPreview ? 300 : 700;
+  const height = isPreview ? 150 : expandedSections.details ? 420 : 300;
+  
+  const toggleSection = (section: string) => {
+    if (!isPreview) {
+      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    }
+  };
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
+      {/* Main Flow */}
       <g>
-        {/* GitHub */}
-        <rect x="20" y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="70" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">GitHub</text>
-        <text x="70" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Copilot</text>
+        <rect x="50" y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">GitHub Copilot</text>
+        <text x="110" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Assistant</text>
         
-        {/* Repository */}
-        <rect x={width/2 - 50} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Repository</text>
-        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Map</text>
+        <rect x={width/2 - 60} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Repository Map</text>
+        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Code Navigation</text>
         
-        {/* Tech Q&A */}
-        <rect x={width - 120} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 70} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Tech Q&A</text>
-        <text x={width - 70} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Real-time</text>
+        <rect x={width - 170} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Tech Q&A</text>
+        <text x={width - 110} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Real-time answers</text>
         
-        {/* Clean arrows */}
-        <path d={`M 120 ${height/2} L ${width/2 - 50} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        <path d={`M ${width/2 + 50} ${height/2} L ${width - 120} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M 170 ${height/2} L ${width/2 - 60} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${height/2} L ${width - 170} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
+
+      {!isPreview && (
+        <g>
+          <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
+                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+          <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
+            {expandedSections.details ? '▼ Hide Tech Bridge' : '▶ Show PM-Dev Bridge'}
+          </text>
+
+          {expandedSections.details && (
+            <g>
+              {/* Technical Capabilities */}
+              <rect x="60" y="80" width="100" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="110" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">API Docs</text>
+              <text x="70" y="110" fontSize="9" fill="#64748b">• Real-time API status</text>
+              <text x="70" y="122" fontSize="9" fill="#64748b">• Endpoint documentation</text>
+              <text x="70" y="134" fontSize="9" fill="#64748b">• Response examples</text>
+
+              <rect x="180" y="80" width="100" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="230" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Dependencies</text>
+              <text x="190" y="110" fontSize="9" fill="#64748b">• Service mapping</text>
+              <text x="190" y="122" fontSize="9" fill="#64748b">• Integration points</text>
+              <text x="190" y="134" fontSize="9" fill="#64748b">• Technical debt</text>
+
+              <rect x="300" y="80" width="100" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="350" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Code Analysis</text>
+              <text x="310" y="110" fontSize="9" fill="#64748b">• Feature complexity</text>
+              <text x="310" y="122" fontSize="9" fill="#64748b">• Development scope</text>
+              <text x="310" y="134" fontSize="9" fill="#64748b">• Risk assessment</text>
+
+              <rect x="420" y="80" width="100" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="470" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Context Bridge</text>
+              <text x="430" y="110" fontSize="9" fill="#64748b">• PM ↔ Engineering</text>
+              <text x="430" y="122" fontSize="9" fill="#64748b">• No code required</text>
+              <text x="430" y="134" fontSize="9" fill="#64748b">• Instant translation</text>
+
+              {/* Context Layer */}
+              <rect x="80" y="330" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+              <text x="350" y="350" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Speak Dev Without Learning to Code</text>
+              <text x="350" y="365" textAnchor="middle" fontSize="10" fill="#65a30d">Answer API questions in real-time, understand technical dependencies</text>
+              <text x="350" y="378" textAnchor="middle" fontSize="10" fill="#65a30d">Proactive technical research for informed product decisions - 90% faster technical answers</text>
+
+              {/* Connection lines */}
+              <path d="M 110 150 L 110 ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 230 150 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 350 150 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 470 150 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+            </g>
+          )}
+        </g>
+      )}
       
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -138,31 +308,89 @@ const TechBridgeSVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const width = isPreview ? 300 : 600;
-  const height = isPreview ? 150 : 300;
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const width = isPreview ? 300 : 700;
+  const height = isPreview ? 150 : expandedSections.details ? 450 : 300;
+  
+  const toggleSection = (section: string) => {
+    if (!isPreview) {
+      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    }
+  };
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
+      {/* Main Flow */}
       <g>
-        {/* Comet */}
-        <rect x="20" y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="70" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Comet</text>
-        <text x="70" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Browser</text>
+        <rect x="50" y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Comet Browser</text>
+        <text x="110" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-scraping</text>
         
-        {/* Perplexity */}
-        <rect x={width/2 - 50} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Perplexity</text>
-        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Research</text>
+        <rect x={width/2 - 60} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Perplexity Pro</text>
+        <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Context Search</text>
         
-        {/* Insights */}
-        <rect x={width - 120} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 70} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Insights</text>
-        <text x={width - 70} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Auto-analysis</text>
+        <rect x={width - 170} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Auto-Analysis</text>
+        <text x={width - 110} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Insights</text>
         
-        {/* Clean arrows */}
-        <path d={`M 120 ${height/2} L ${width/2 - 50} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        <path d={`M ${width/2 + 50} ${height/2} L ${width - 120} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M 170 ${height/2} L ${width/2 - 60} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${height/2} L ${width - 170} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
+
+      {!isPreview && (
+        <g>
+          <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
+                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+          <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
+            {expandedSections.details ? '▼ Hide Data Workflow' : '▶ Show WBR Integration'}
+          </text>
+
+          {expandedSections.details && (
+            <g>
+              {/* Data Sources */}
+              <rect x="60" y="80" width="100" height="80" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="110" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">WBR Data</text>
+              <text x="70" y="110" fontSize="9" fill="#64748b">• Weekly metrics</text>
+              <text x="70" y="122" fontSize="9" fill="#64748b">• Performance KPIs</text>
+              <text x="70" y="134" fontSize="9" fill="#64748b">• Business reviews</text>
+              <text x="70" y="146" fontSize="9" fill="#64748b">• Dashboard data</text>
+
+              {/* Processing Layer */}
+              <rect x="180" y="80" width="120" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="240" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Data Integration</text>
+              <text x="190" y="110" fontSize="9" fill="#64748b">Auto-filter dashboards</text>
+              <text x="190" y="122" fontSize="9" fill="#64748b">Extract key metrics</text>
+
+              {/* Competitive Analysis */}
+              <rect x="320" y="80" width="100" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="370" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Competitor Intel</text>
+              <text x="330" y="110" fontSize="9" fill="#64748b">Market analysis</text>
+              <text x="330" y="122" fontSize="9" fill="#64748b">Feature tracking</text>
+
+              {/* Output Types */}
+              <rect x="440" y="80" width="120" height="80" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="500" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Generated Insights</text>
+              <text x="450" y="110" fontSize="9" fill="#64748b">• Trend analysis</text>
+              <text x="450" y="122" fontSize="9" fill="#64748b">• Stakeholder reports</text>
+              <text x="450" y="134" fontSize="9" fill="#64748b">• Data-driven decisions</text>
+              <text x="450" y="146" fontSize="9" fill="#64748b">• Competitive positioning</text>
+
+              {/* Context Layer */}
+              <rect x="80" y="360" width="540" height="60" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+              <text x="350" y="380" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Defend Decisions with Data</text>
+              <text x="350" y="395" textAnchor="middle" fontSize="10" fill="#65a30d">Automated dashboard filtering, instant metric extraction, contextualized insights</text>
+              <text x="350" y="408" textAnchor="middle" fontSize="10" fill="#65a30d">Cross-reference with vault knowledge for strategic context - 85% less data grunt work</text>
+
+              {/* Connection lines */}
+              <path d="M 110 160 L 110 ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 240 130 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 370 130 L ${width/2} ${height/2 + 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 500 160 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+            </g>
+          )}
+        </g>
+      )}
       
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -174,31 +402,98 @@ const DataWizardSVG = ({ isPreview }: { isPreview: boolean }) => {
 };
 
 const VoiceMagicSVG = ({ isPreview }: { isPreview: boolean }) => {
-  const width = isPreview ? 300 : 600;
-  const height = isPreview ? 150 : 300;
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const width = isPreview ? 300 : 700;
+  const height = isPreview ? 150 : expandedSections.details ? 480 : 300;
+  
+  const toggleSection = (section: string) => {
+    if (!isPreview) {
+      setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    }
+  };
   
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
+      {/* Main Flow */}
       <g>
-        {/* Wispr */}
-        <rect x="20" y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x="70" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Wispr</text>
-        <text x="70" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Voice</text>
+        <rect x="50" y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x="110" y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Wispr Flow</text>
+        <text x="110" y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Voice Capture</text>
         
-        {/* Claude */}
-        <rect x={width/2 - 50} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <rect x={width/2 - 60} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
         <text x={width/2} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Claude</text>
         <text x={width/2} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">Structure</text>
         
-        {/* Obsidian */}
-        <rect x={width - 120} y={height/2 - 25} width="100" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-        <text x={width - 70} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian</text>
-        <text x={width - 70} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRD Ready</text>
+        <rect x={width - 170} y={height/2 - 25} width="120" height="50" rx="8" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
+        <text x={width - 110} y={height/2 - 5} textAnchor="middle" fontSize={isPreview ? "12" : "14"} fill="#1e293b" fontWeight="600">Obsidian</text>
+        <text x={width - 110} y={height/2 + 10} textAnchor="middle" fontSize={isPreview ? "10" : "12"} fill="#64748b">PRD Ready</text>
         
-        {/* Clean arrows */}
-        <path d={`M 120 ${height/2} L ${width/2 - 50} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
-        <path d={`M ${width/2 + 50} ${height/2} L ${width - 120} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M 170 ${height/2} L ${width/2 - 60} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+        <path d={`M ${width/2 + 60} ${height/2} L ${width - 170} ${height/2}`} stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
       </g>
+
+      {!isPreview && (
+        <g>
+          <rect x={width/2 - 80} y="20" width="160" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1" 
+                style={{cursor: 'pointer'}} onClick={() => toggleSection('details')}/>
+          <text x={width/2} y="38" textAnchor="middle" fontSize="12" fill="#64748b">
+            {expandedSections.details ? '▼ Hide Voice Workflow' : '▶ Show Beach Walk Magic'}
+          </text>
+
+          {expandedSections.details && (
+            <g>
+              {/* Voice Processing */}
+              <rect x="60" y="80" width="100" height="60" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="110" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Voice Processing</text>
+              <text x="70" y="110" fontSize="9" fill="#64748b">• Beach walks</text>
+              <text x="70" y="122" fontSize="9" fill="#64748b">• Clean transcription</text>
+              <text x="70" y="134" fontSize="9" fill="#64748b">• Natural capture</text>
+
+              {/* Template Engine */}
+              <rect x="180" y="80" width="100" height="60" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="230" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Template Engine</text>
+              <text x="190" y="110" fontSize="9" fill="#64748b">• PRD templates</text>
+              <text x="190" y="122" fontSize="9" fill="#64748b">• User story format</text>
+              <text x="190" y="134" fontSize="9" fill="#64748b">• Structure matching</text>
+
+              {/* Vault Integration */}
+              <rect x="300" y="80" width="100" height="60" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="350" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">Vault Integration</text>
+              <text x="310" y="110" fontSize="9" fill="#64748b">• Auto-tagging</text>
+              <text x="310" y="122" fontSize="9" fill="#64748b">• Cross-linking</text>
+              <text x="310" y="134" fontSize="9" fill="#64748b">• Context awareness</text>
+
+              {/* Output Quality */}
+              <rect x="420" y="80" width="120" height="60" rx="6" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
+              <text x="480" y="95" textAnchor="middle" fontSize="11" fill="#334155" fontWeight="600">PRD Output</text>
+              <text x="430" y="110" fontSize="9" fill="#64748b">• Structured documents</text>
+              <text x="430" y="122" fontSize="9" fill="#64748b">• Cross-referenced</text>
+              <text x="430" y="134" fontSize="9" fill="#64748b">• Stakeholder ready</text>
+
+              {/* Voice-to-PRD Flow */}
+              <rect x="80" y="170" width="540" height="80" rx="8" fill="#ecfdf5" stroke="#10b981" strokeWidth="1"/>
+              <text x="350" y="190" textAnchor="middle" fontSize="12" fill="#14532d" fontWeight="600">Voice-to-PRD Workflow Pipeline</text>
+              <text x="350" y="205" textAnchor="middle" fontSize="10" fill="#166534">Voice capture → AI transcription → Template matching → Context integration</text>
+              <text x="350" y="218" textAnchor="middle" fontSize="10" fill="#166534">→ Auto-tagging → Vault storage → Cross-linking → Ready for stakeholders</text>
+              <text x="350" y="235" textAnchor="middle" fontSize="11" fill="#14532d" fontWeight="600">Beach walks become structured product requirements in minutes</text>
+
+              {/* Context Layer */}
+              <rect x="80" y="380" width="540" height="80" rx="8" fill="#fefce8" stroke="#eab308" strokeWidth="1"/>
+              <text x="350" y="400" textAnchor="middle" fontSize="12" fill="#365314" fontWeight="600">Rapid Documentation Workflow</text>
+              <text x="350" y="415" textAnchor="middle" fontSize="10" fill="#65a30d">Clean voice-to-text capture during beach walks becomes structured PRD sessions</text>
+              <text x="350" y="428" textAnchor="middle" fontSize="10" fill="#65a30d">Automatic template matching and vault integration with smart cross-referencing</text>
+              <text x="350" y="441" textAnchor="middle" fontSize="10" fill="#65a30d">80% faster PRD creation - from voice notes to stakeholder-ready documents</text>
+              <text x="350" y="454" textAnchor="middle" fontSize="10" fill="#65a30d">Perfect for remote work and creative thinking sessions</text>
+
+              {/* Connection lines */}
+              <path d="M 110 140 L 110 ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 230 140 L ${width/2} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 350 140 L ${width/2} ${height/2 + 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+              <path d="M 480 140 L ${width - 110} ${height/2 - 25}" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3,3"/>
+            </g>
+          )}
+        </g>
+      )}
       
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
