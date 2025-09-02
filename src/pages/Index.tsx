@@ -4,39 +4,68 @@ import { StickyCTA } from "@/components/StickyCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap } from "lucide-react";
+
 const Index = () => {
-  const workflows = [{
-    title: "Product Brain",
-    tools: "Obsidian + Claude Code",
-    keyBenefits: ["No more copy-paste context feeding to AI", "Self-updating knowledge vault grows daily", "Instant access to cross-team dependencies"],
-    metric: "95% less context setup time",
-    icon: "brain" as const
-  }, {
-    title: "Meeting Memory",
-    tools: "Granola + Claude Code",
-    keyBenefits: ["Auto-tracks promises and commitments", "Never lose decisions or action items", "Supernatural memory powers unlocked"],
-    metric: "400% better follow-through",
-    icon: "message" as const
-  }, {
-    title: "Tech Bridge",
-    tools: "GitHub Copilot + Repository Map",
-    keyBenefits: ["Answer API questions in real-time", "Speak dev without learning to code", "Proactive technical research"],
-    metric: "90% faster technical answers",
-    icon: "code" as const
-  }, {
-    title: "Data Wizard",
-    tools: "Comet Browser + Perplexity Pro",
-    keyBenefits: ["Automated dashboard filtering", "Instant metric extraction", "Defend decisions with data"],
-    metric: "85% less data grunt work",
-    icon: "chart" as const
-  }, {
-    title: "Voice Magic",
-    tools: "Wispr Flow + Obsidian",
-    keyBenefits: ["Clean voice-to-text capture", "Beach walks become PRD sessions", "Rapid documentation workflow"],
-    metric: "80% faster PRD creation",
-    icon: "mic" as const
-  }];
-  return <div className="min-h-screen bg-gradient-surface">
+  const workflows = [
+    {
+      title: "Product Brain",
+      tools: "Obsidian + Claude Code",
+      keyBenefits: [
+        "No more copy-paste context feeding to AI",
+        "Self-updating knowledge vault grows daily", 
+        "Instant access to cross-team dependencies"
+      ],
+      metric: "95% less context setup time",
+      icon: "brain" as const
+    },
+    {
+      title: "Meeting Memory", 
+      tools: "Granola + Claude Code",
+      keyBenefits: [
+        "Auto-tracks promises and commitments",
+        "Never lose decisions or action items",
+        "Supernatural memory powers unlocked"
+      ],
+      metric: "400% better follow-through",
+      icon: "message" as const
+    },
+    {
+      title: "Tech Bridge",
+      tools: "GitHub Copilot + Repository Map", 
+      keyBenefits: [
+        "Answer API questions in real-time",
+        "Speak dev without learning to code",
+        "Proactive technical research"
+      ],
+      metric: "90% faster technical answers",
+      icon: "code" as const
+    },
+    {
+      title: "Data Wizard",
+      tools: "Comet Browser + Perplexity Pro",
+      keyBenefits: [
+        "Automated dashboard filtering",
+        "Instant metric extraction", 
+        "Defend decisions with data"
+      ],
+      metric: "85% less data grunt work",
+      icon: "chart" as const
+    },
+    {
+      title: "Voice Magic",
+      tools: "Wispr Flow + Obsidian",
+      keyBenefits: [
+        "Clean voice-to-text capture",
+        "Beach walks become PRD sessions",
+        "Rapid documentation workflow"
+      ],
+      metric: "80% faster PRD creation",
+      icon: "mic" as const
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-surface">
       <MobileNav />
       <StickyCTA />
 
@@ -123,11 +152,11 @@ const Index = () => {
           </div>
           
           <div className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {workflows.map((workflow, index) => <div key={index} className="animate-slide-up" style={{
-            animationDelay: `${index * 0.1}s`
-          }}>
+            {workflows.map((workflow, index) => (
+              <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <WorkflowSnippet {...workflow} />
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -176,10 +205,16 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-8">
-              <p className="text-accent-foreground/90 text-base lg:text-lg max-w-3xl mx-auto">Happy to connect with fellow builders who automate busy work to focus on what matters.</p>
+              <p className="text-accent-foreground/90 text-base lg:text-lg max-w-3xl mx-auto">
+                Always happy to connect with fellow product people who automate busy work to focus on what matters.
+              </p>
               
               <div className="flex justify-center">
-                <Button size="lg" variant="secondary" className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 px-8 py-4 text-lg font-semibold">
+                <Button 
+                  size="lg"
+                  variant="secondary" 
+                  className="bg-background/20 hover:bg-background/30 text-accent-foreground border-background/30 px-8 py-4 text-lg font-semibold"
+                >
                   <Linkedin className="w-6 h-6 mr-3" />
                   Connect on LinkedIn
                 </Button>
@@ -197,6 +232,8 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
