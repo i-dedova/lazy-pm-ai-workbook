@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Linkedin, FileText, Github, ExternalLink } from "lucide-react";
+import { FileText, Github, ExternalLink } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 
 export const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -50,7 +51,7 @@ export const StickyCTA = () => {
         asChild
       >
         <a href="https://www.linkedin.com/in/innadedova/" target="_blank" rel="noopener noreferrer">
-          <Linkedin className="w-5 h-5 mr-2" />
+          <FaLinkedin className="w-5 h-5 mr-2" />
           Connect on LinkedIn
         </a>
       </Button>
