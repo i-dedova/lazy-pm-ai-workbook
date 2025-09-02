@@ -146,7 +146,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
                 <div className="flex-1 min-w-[280px] max-w-[320px] flex items-start gap-3 p-4 bg-background/50 rounded-xl">
                   <div className="p-2 bg-accent/10 rounded-lg flex-shrink-0">
                     <TestTube className="h-5 w-5 text-accent" />
