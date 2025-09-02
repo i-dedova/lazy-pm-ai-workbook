@@ -139,7 +139,7 @@ const Index = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl lg:text-3xl font-semibold text-accent flex items-center justify-center gap-3">
                 <Beaker className="h-6 w-6 lg:h-8 lg:w-8" />
-                What's Cooking in the Lab
+                Cooking in the Lab
               </CardTitle>
               <CardDescription className="text-base lg:text-lg max-w-3xl mx-auto py-[6px]">
                 Because the automation addiction is real
