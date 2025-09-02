@@ -34,12 +34,6 @@ export const MobileNav = () => {
           <div className="container mx-auto px-4 py-3">
             <nav className="flex justify-center gap-8">
               <button 
-                onClick={() => scrollToSection("framework")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Framework
-              </button>
-              <button 
                 onClick={() => scrollToSection("arsenal")}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -68,12 +62,6 @@ export const MobileNav = () => {
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="absolute top-20 left-4 right-4 bg-card border border-border rounded-lg shadow-lg p-6">
             <nav className="space-y-4">
-              <button 
-                onClick={() => scrollToSection("framework")}
-                className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
-              >
-                How I Pick My Battles
-              </button>
               <button 
                 onClick={() => scrollToSection("arsenal")}
                 className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
