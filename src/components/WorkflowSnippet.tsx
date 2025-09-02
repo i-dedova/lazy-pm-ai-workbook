@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Brain, MessageSquare, Code, BarChart3, Mic, Expand } from "lucide-react";
+import { Brain, MessageSquare, Code, BarChart3, Mic } from "lucide-react";
 import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 
 interface WorkflowSnippetProps {
@@ -71,12 +71,7 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon, diagr
                     <WorkflowDiagram type={diagramType} isPreview={true} />
                   </div>
                   
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                      <Expand className="h-5 w-5 text-muted-foreground" />
-                    </div>
-                  </div>
+                  {/* Remove duplicate hover overlay - handled in WorkflowDiagram */}
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-[95vw] w-[95vw] max-h-[95vh] h-[95vh] p-6">
