@@ -12,7 +12,7 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
     {
       id: '1',
       type: 'default',
-      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
+      position: isPreview ? { x: 10, y: 30 } : { x: 100, y: 100 },
       data: { 
         label: (
           <div className="text-center">
@@ -33,7 +33,7 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
     {
       id: '2', 
       type: 'default',
-      position: isPreview ? { x: 95, y: 10 } : { x: 270, y: 50 },
+      position: isPreview ? { x: 95, y: 30 } : { x: 300, y: 100 },
       data: {
         label: (
           <div className="text-center">
@@ -54,7 +54,7 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
     {
       id: '3',
       type: 'default', 
-      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
+      position: isPreview ? { x: 50, y: 85 } : { x: 200, y: 220 },
       data: {
         label: (
           <div className="text-center">
@@ -71,35 +71,14 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
         ...baseSize,
         boxShadow: '0 2px 8px rgba(234, 179, 8, 0.15)'
       }
-    },
-    {
-      id: '4',
-      type: 'default', 
-      position: isPreview ? { x: 95, y: 70 } : { x: 270, y: 180 },
-      data: {
-        label: (
-          <div className="text-center">
-            <div className="font-medium text-green-600">⏱️ 80% Faster</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Creation</div>}
-          </div>
-        )
-      },
-      style: {
-        background: '#ffffff',
-        border: '2px solid #10b981',
-        borderRadius: '12px',
-        fontSize,
-        ...baseSize,
-        boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
-      }
     }
   ];
 
   const edges: Edge[] = [
     {
-      id: 'e1-3',
+      id: 'e1-2',
       source: '1',
-      target: '3',
+      target: '2',
       type: 'smoothstep',
       style: { 
         stroke: '#ef4444', 
@@ -114,17 +93,6 @@ export const VoiceMagicDiagram = ({ isPreview = false }: VoiceMagicDiagramProps)
       type: 'smoothstep',
       style: { 
         stroke: '#3b82f6', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '4,4' : 'none'
-      }
-    },
-    {
-      id: 'e3-4',
-      source: '3',
-      target: '4',
-      type: 'smoothstep',
-      style: { 
-        stroke: '#eab308', 
         strokeWidth: 2,
         strokeDasharray: isPreview ? '4,4' : 'none'
       }

@@ -12,7 +12,7 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
     {
       id: '1',
       type: 'default',
-      position: isPreview ? { x: 10, y: 10 } : { x: 50, y: 50 },
+      position: isPreview ? { x: 10, y: 30 } : { x: 100, y: 100 },
       data: { 
         label: (
           <div className="text-center">
@@ -33,7 +33,7 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
     {
       id: '2', 
       type: 'default',
-      position: isPreview ? { x: 90, y: 10 } : { x: 250, y: 50 },
+      position: isPreview ? { x: 90, y: 30 } : { x: 300, y: 100 },
       data: {
         label: (
           <div className="text-center">
@@ -54,7 +54,7 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
     {
       id: '3',
       type: 'default', 
-      position: isPreview ? { x: 10, y: 70 } : { x: 50, y: 180 },
+      position: isPreview ? { x: 50, y: 85 } : { x: 200, y: 220 },
       data: {
         label: (
           <div className="text-center">
@@ -70,27 +70,6 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
         fontSize,
         ...baseSize,
         boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
-      }
-    },
-    {
-      id: '4',
-      type: 'default', 
-      position: isPreview ? { x: 90, y: 70 } : { x: 250, y: 180 },
-      data: {
-        label: (
-          <div className="text-center">
-            <div className="font-medium text-orange-600">📈 400%</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Better</div>}
-          </div>
-        )
-      },
-      style: {
-        background: '#ffffff',
-        border: '2px solid #f97316',
-        borderRadius: '12px',
-        fontSize,
-        ...baseSize,
-        boxShadow: '0 2px 8px rgba(249, 115, 22, 0.15)'
       }
     }
   ];
@@ -114,17 +93,6 @@ export const MeetingMemoryDiagram = ({ isPreview = false }: MeetingMemoryDiagram
       type: 'smoothstep',
       style: { 
         stroke: '#3b82f6', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '3,3' : 'none'
-      }
-    },
-    {
-      id: 'e3-4',
-      source: '3',
-      target: '4',
-      type: 'smoothstep',
-      style: { 
-        stroke: '#10b981', 
         strokeWidth: 2,
         strokeDasharray: isPreview ? '3,3' : 'none'
       }

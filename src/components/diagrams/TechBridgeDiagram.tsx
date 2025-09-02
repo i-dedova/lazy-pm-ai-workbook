@@ -12,7 +12,7 @@ export const TechBridgeDiagram = ({ isPreview = false }: TechBridgeDiagramProps)
     {
       id: '1',
       type: 'default',
-      position: isPreview ? { x: 20, y: 20 } : { x: 100, y: 50 },
+      position: isPreview ? { x: 20, y: 30 } : { x: 150, y: 100 },
       data: { 
         label: (
           <div className="text-center">
@@ -33,7 +33,7 @@ export const TechBridgeDiagram = ({ isPreview = false }: TechBridgeDiagramProps)
     {
       id: '2', 
       type: 'default',
-      position: isPreview ? { x: 120, y: 20 } : { x: 400, y: 50 },
+      position: isPreview ? { x: 120, y: 30 } : { x: 400, y: 100 },
       data: {
         label: (
           <div className="text-center">
@@ -50,46 +50,14 @@ export const TechBridgeDiagram = ({ isPreview = false }: TechBridgeDiagramProps)
         ...baseSize,
         boxShadow: '0 2px 8px rgba(59, 130, 246, 0.15)'
       }
-    },
-    {
-      id: '3',
-      type: 'default', 
-      position: isPreview ? { x: 70, y: 90 } : { x: 250, y: 200 },
-      data: {
-        label: (
-          <div className="text-center">
-            <div className="font-medium text-yellow-600">⚡ 90% Faster</div>
-            {!isPreview && <div className="text-xs text-gray-600 mt-1">Tech Answers</div>}
-          </div>
-        )
-      },
-      style: {
-        background: '#ffffff',
-        border: '2px solid #eab308',
-        borderRadius: '12px',
-        fontSize,
-        ...baseSize,
-        boxShadow: '0 2px 8px rgba(234, 179, 8, 0.15)'
-      }
     }
   ];
 
   const edges: Edge[] = [
     {
-      id: 'e1-3',
+      id: 'e1-2',
       source: '1',
-      target: '3',
-      type: 'smoothstep',
-      style: { 
-        stroke: '#6b7280', 
-        strokeWidth: 2,
-        strokeDasharray: isPreview ? '5,5' : 'none'
-      }
-    },
-    {
-      id: 'e2-3',
-      source: '2',
-      target: '3',
+      target: '2',
       type: 'smoothstep',
       style: { 
         stroke: '#3b82f6', 
