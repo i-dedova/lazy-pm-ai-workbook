@@ -41,7 +41,7 @@ const Index = () => {
       <StickyCTA />
 
       {/* Hero Section - Clean & Simple */}
-      <section className="py-12 lg:py-20">
+      <section className="py-12 lg:py-20 bg-gradient-to-br from-background via-background to-muted/20">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center space-y-6 lg:space-y-8 animate-fade-in">
             <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight max-w-4xl mx-auto">
