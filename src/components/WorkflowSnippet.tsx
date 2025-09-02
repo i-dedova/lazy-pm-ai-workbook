@@ -1,6 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Brain, MessageSquare, Code, BarChart3, Mic } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Brain, MessageSquare, Code, BarChart3, Mic, Expand } from "lucide-react";
+import { WorkflowDiagram } from "@/components/WorkflowDiagram";
 
 interface WorkflowSnippetProps {
   title: string;
@@ -8,6 +11,7 @@ interface WorkflowSnippetProps {
   keyBenefits: string[];
   metric: string;
   icon: "brain" | "message" | "code" | "chart" | "mic";
+  diagramType: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
 }
 
 const iconMap = {
@@ -18,7 +22,7 @@ const iconMap = {
   mic: Mic,
 };
 
-export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: WorkflowSnippetProps) => {
+export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon, diagramType }: WorkflowSnippetProps) => {
   const IconComponent = iconMap[icon];
 
   return (
@@ -57,12 +61,35 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
           </div>
         </div>
         
-        {/* Right Half - Workflow Diagram */}
+        {/* Right Half - Interactive Workflow Diagram */}
         <div className="md:flex-1 mt-6 md:mt-0">
-          <div className="p-8 bg-muted/30 rounded-xl border border-dashed border-muted-foreground/30 h-full md:min-h-[200px] flex items-center justify-center">
-            <p className="text-xs lg:text-sm text-muted-foreground text-center italic">
-              Workflow diagram
-            </p>
+          <div className="relative h-full md:min-h-[280px]">
+            {/* Mini Preview */}
+            <div className="h-full rounded-xl border border-border/50 bg-background/50 overflow-hidden">
+              <WorkflowDiagram type={diagramType} isPreview={true} />
+            </div>
+            
+            {/* Expand Button */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  variant="secondary" 
+                  size="sm" 
+                  className="absolute top-3 right-3 bg-background/80 hover:bg-background/90 backdrop-blur-sm"
+                >
+                  <Expand className="h-4 w-4 mr-2" />
+                  View Flow
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-hidden">
+                <DialogHeader>
+                  <DialogTitle className="text-xl font-semibold">{title} - Workflow</DialogTitle>
+                </DialogHeader>
+                <div className="h-[70vh]">
+                  <WorkflowDiagram type={diagramType} isPreview={false} />
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

@@ -11,31 +11,36 @@ const Index = () => {
     tools: "Obsidian + Claude Code",
     keyBenefits: ["No more copy-paste context feeding to AI", "Self-updating knowledge vault grows daily", "Instant access to cross-team dependencies"],
     metric: "95% less context setup time",
-    icon: "brain" as const
+    icon: "brain" as const,
+    diagramType: "product-brain" as const
   }, {
     title: "Meeting Memory",
     tools: "Granola + Claude Code",
     keyBenefits: ["Auto-tracks promises and commitments", "Never lose decisions or action items", "Supernatural memory powers unlocked"],
     metric: "400% better follow-through",
-    icon: "message" as const
+    icon: "message" as const,
+    diagramType: "meeting-memory" as const
   }, {
     title: "Tech Bridge",
     tools: "GitHub Copilot + Repository Map",
     keyBenefits: ["Answer API questions in real-time", "Speak dev without learning to code", "Proactive technical research"],
     metric: "90% faster technical answers",
-    icon: "code" as const
+    icon: "code" as const,
+    diagramType: "tech-bridge" as const
   }, {
     title: "Data Wizard",
     tools: "Comet Browser + Perplexity Pro",
     keyBenefits: ["Automated dashboard filtering", "Instant metric extraction", "Defend decisions with data"],
     metric: "85% less data grunt work",
-    icon: "chart" as const
+    icon: "chart" as const,
+    diagramType: "data-wizard" as const
   }, {
     title: "Voice Magic",
     tools: "Wispr Flow + Obsidian",
     keyBenefits: ["Clean voice-to-text capture", "Beach walks become PRD sessions", "Rapid documentation workflow"],
     metric: "80% faster PRD creation",
-    icon: "mic" as const
+    icon: "mic" as const,
+    diagramType: "voice-magic" as const
   }];
   return <div className="min-h-screen bg-gradient-surface">
       <MobileNav />
