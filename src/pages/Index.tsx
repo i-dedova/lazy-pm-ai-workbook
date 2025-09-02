@@ -87,10 +87,10 @@ const Index = () => {
       <section className="py-8 lg:py-12">
         <div className="container mx-auto px-4 max-w-5xl">
           <Card className="bg-card/50 border-border/50 animate-slide-up">
-            <CardContent className="p-6 lg:p-8">
+            <CardContent className="p-6 lg:p-8 text-center">
               <div className="space-y-4">
                 <h2 className="text-2xl lg:text-3xl font-semibold">Hello 👋</h2>
-                <div className="space-y-4 text-muted-foreground">
+                <div className="space-y-4 text-muted-foreground max-w-3xl mx-auto">
                   <p className="text-base lg:text-lg">
                     I'm Inna Dedova. I'm curious, I like tinkering, and I hate routine tasks.<br />
                     So I automate them to focus on strategic work and support my team.
@@ -100,7 +100,7 @@ const Index = () => {
                     Stakeholders wonder how I get data so fast.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-3 pt-2">
+                <div className="flex flex-wrap justify-center gap-3 pt-2">
                   <div className="flex items-center gap-2 text-sm text-primary font-medium">
                     <Zap className="h-4 w-4" />
                     95% faster context setup
