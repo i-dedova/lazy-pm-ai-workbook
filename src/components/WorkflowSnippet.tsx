@@ -23,9 +23,9 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
 
   return (
     <Card className="border-border/50 hover:shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-1 group">
-      <div className="lg:flex lg:gap-8 p-6">
+      <div className="md:flex md:gap-8 p-6">
         {/* Left Half - All Content */}
-        <div className="lg:flex-1 space-y-6">
+        <div className="md:flex-1 space-y-6">
           {/* Icon and Title */}
           <div className="flex items-start gap-4">
             <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
@@ -58,8 +58,8 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon }: Wor
         </div>
         
         {/* Right Half - Workflow Diagram */}
-        <div className="lg:flex-1 mt-6 lg:mt-0">
-          <div className="p-8 bg-muted/30 rounded-xl border border-dashed border-muted-foreground/30 h-full lg:min-h-[200px] flex items-center justify-center">
+        <div className="md:flex-1 mt-6 md:mt-0">
+          <div className="p-8 bg-muted/30 rounded-xl border border-dashed border-muted-foreground/30 h-full md:min-h-[200px] flex items-center justify-center">
             <p className="text-xs lg:text-sm text-muted-foreground text-center italic">
               Workflow diagram
             </p>
