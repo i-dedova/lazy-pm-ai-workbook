@@ -3,7 +3,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { StickyCTA } from "@/components/StickyCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap } from "lucide-react";
+import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette } from "lucide-react";
 
 const Index = () => {
   const workflows = [
@@ -177,14 +177,29 @@ const Index = () => {
             <CardContent>
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="text-center p-4 bg-background/50 rounded-xl">
+                  <div className="flex justify-center mb-3">
+                    <div className="p-2 bg-accent/10 rounded-lg">
+                      <TestTube className="h-5 w-5 text-accent" />
+                    </div>
+                  </div>
                   <h4 className="font-semibold text-foreground mb-2">UAT Automation</h4>
                   <p className="text-sm text-muted-foreground">Comet Browser magic</p>
                 </div>
                 <div className="text-center p-4 bg-background/50 rounded-xl">
+                  <div className="flex justify-center mb-3">
+                    <div className="p-2 bg-accent/10 rounded-lg">
+                      <Eye className="h-5 w-5 text-accent" />
+                    </div>
+                  </div>
                   <h4 className="font-semibold text-foreground mb-2">Competitor Intel</h4>
                   <p className="text-sm text-muted-foreground">Automated flow analysis</p>
                 </div>
                 <div className="text-center p-4 bg-background/50 rounded-xl">
+                  <div className="flex justify-center mb-3">
+                    <div className="p-2 bg-accent/10 rounded-lg">
+                      <Palette className="h-5 w-5 text-accent" />
+                    </div>
+                  </div>
                   <h4 className="font-semibold text-foreground mb-2">UI Prototyping</h4>
                   <p className="text-sm text-muted-foreground">Magic Patterns integration</p>
                 </div>
