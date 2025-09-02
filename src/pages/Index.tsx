@@ -41,15 +41,18 @@ const Index = () => {
       <StickyCTA />
 
       {/* Hero Section - Clean & Simple */}
-      <section className="py-12 lg:py-20 bg-gradient-to-br from-primary/10 via-background to-accent/10 dark:from-primary/15 dark:to-accent/15">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center space-y-6 lg:space-y-8 animate-fade-in">
-            <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight max-w-4xl mx-auto">
-              My Lazy PM's AI Workbook
-            </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Battle-tested workflows that turn procrastination into execution excellence
-            </p>
+      <section className="py-12 lg:py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-background to-background dark:from-primary/8 dark:via-background dark:to-background"></div>
+        <div className="relative z-10">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="text-center space-y-6 lg:space-y-8 animate-fade-in">
+              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight max-w-4xl mx-auto">
+                My Lazy PM's AI Workbook
+              </h1>
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+                Battle-tested workflows that turn procrastination into execution excellence
+              </p>
+            </div>
           </div>
         </div>
       </section>

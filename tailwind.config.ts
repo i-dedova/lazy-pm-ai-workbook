@@ -128,7 +128,8 @@ export default {
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-surface': 'var(--gradient-surface)',
-				'gradient-accent': 'var(--gradient-accent)'
+				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))'
 			}
 		}
 	},
