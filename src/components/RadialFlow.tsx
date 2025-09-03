@@ -91,11 +91,13 @@ const OutputNode = ({ data }: { data: any }) => {
     <div 
       onClick={() => data.onClick(data.outputType)}
       className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
-        isActive ? 'border-highlight/60 shadow-glow scale-105 relative z-50' : 'border-highlight/30 hover:border-highlight/50'
+        isActive ? 'border-highlight/60 shadow-glow scale-110' : 'border-highlight/30 hover:border-highlight/50'
       }`}
       style={{
-        transform: isActive ? 'scale(1.05) translateY(-5px)' : undefined,
-        boxShadow: isActive ? '0 20px 40px rgba(0,0,0,0.15)' : undefined
+        zIndex: isActive ? 1000 : 1,
+        position: 'relative',
+        transform: isActive ? 'scale(1.1)' : 'scale(1)',
+        boxShadow: isActive ? '0 20px 40px rgba(0,0,0,0.2)' : undefined
       }}
     >
       <div className="flex items-center gap-2 mb-3">
@@ -166,25 +168,25 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
       ];
 
-      // Center outputs horizontally above the main nodes - stack side by side
-      const totalOutputWidth = outputs.length * 200 + (outputs.length - 1) * 10; // 200px per output plus 10px gaps
-      const startX = (760 - totalOutputWidth) / 2; // Center in container
+      // Align outputs side by side with proper overlay stacking
+      const baseY = 30;
+      const spacing = 220;
+      const startX = 50;
 
       outputs.forEach((output, idx) => {
+        const isActiveOutput = activeWorkflow === output.outputType;
+        
         nodes.push({
           id: `output-${idx}`,
           type: 'output',
-          position: { x: startX + idx * 210, y: 30 }, // 210px includes gap
+          position: { x: startX + idx * spacing, y: baseY },
           data: { 
             ...output,
-            isActive: activeWorkflow === output.outputType,
+            isActive: isActiveOutput,
             onClick: handleOutputClick
           },
           draggable: true,
-          style: {
-            zIndex: activeWorkflow === output.outputType ? 1000 : 1,
-            position: 'relative'
-          }
+          zIndex: isActiveOutput ? 1000 : 1,
         });
       });
     }

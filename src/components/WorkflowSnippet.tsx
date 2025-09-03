@@ -74,7 +74,7 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon, diagr
                   {/* Remove duplicate hover overlay - handled in WorkflowDiagram */}
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-[95vw] md:max-w-[67vw] w-[95vw] md:w-[67vw] max-h-[95vh] h-[95vh] p-6 mx-auto">
+              <DialogContent className="max-w-[67vw] w-[67vw] max-h-[95vh] h-[95vh] p-6 mx-auto">
                 <div className="h-full w-full">
                   <WorkflowDiagram type={diagramType} isPreview={false} />
                 </div>
