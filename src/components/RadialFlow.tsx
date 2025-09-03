@@ -97,14 +97,10 @@ const OutputNode = ({ data }: { data: any }) => {
         }`}></div>
         <h3 className="font-semibold text-foreground text-sm">Output</h3>
       </div>
-      <div className={`rounded-lg p-3 transition-all duration-300 ${
-        isActive ? 'bg-highlight/20' : 'bg-highlight/10'
-      }`}>
-        <div className="text-sm font-medium text-foreground">{data.label}</div>
-        <div className={`text-xs font-semibold transition-all duration-300 ${
-          isActive ? 'text-highlight' : 'text-highlight/80'
-        }`}>{data.time}</div>
-      </div>
+      <div className="text-sm font-medium text-foreground">{data.label}</div>
+      <div className={`text-xs font-semibold transition-all duration-300 ${
+        isActive ? 'text-highlight' : 'text-highlight/80'
+      }`}>{data.time}</div>
     </div>
   );
 };
