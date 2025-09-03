@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Expand } from "lucide-react";
+import { RadialFlow } from "./RadialFlow";
 
 interface WorkflowDiagramProps {
   type: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
@@ -10,7 +11,7 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
   const renderDiagram = () => {
     switch (type) {
       case "product-brain":
-        return <ProductBrainSVG isPreview={isPreview} />;
+        return <RadialFlow isPreview={isPreview} />;
       case "meeting-memory":
         return <MeetingMemorySVG isPreview={isPreview} />;
       case "tech-bridge":
