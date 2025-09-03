@@ -191,10 +191,10 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Overlapped positioning for mobile collapsed preview
+    // Obsidian Vault - Centered and lower for mobile collapsed preview
     const isMobileCollapsed = isPreview && window.innerWidth < 768;
     const obsidianX = isPreview ? (isMobileCollapsed ? 10 : 50) : (window.innerWidth < 768 ? 10 : 50);
-    const obsidianY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
+    const obsidianY = isPreview ? (isMobileCollapsed ? 100 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
@@ -209,9 +209,9 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Overlapped positioning for mobile collapsed preview
+    // Claude Code - Centered and lower for mobile collapsed preview
     const claudeX = isPreview ? (isMobileCollapsed ? 130 : 280) : (window.innerWidth < 768 ? 250 : 400);
-    const claudeY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
+    const claudeY = isPreview ? (isMobileCollapsed ? 100 : 120) : 200;
     nodes.push({
       id: 'claude-center',
       type: 'claude',
@@ -298,25 +298,27 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   if (isPreview) {
     return (
-      <div className="w-full h-[180px] flex items-end justify-center bg-gradient-surface overflow-hidden">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          nodeTypes={nodeTypes}
-          fitView
-          attributionPosition="bottom-right"
-          proOptions={{ hideAttribution: true }}
-          nodesDraggable={false}
-          nodesConnectable={false}
-          elementsSelectable={false}
-          zoomOnScroll={false}
-          panOnScroll={false}
-          zoomOnPinch={false}
-          panOnDrag={false}
-          fitViewOptions={{ padding: 0.1 }}
-        >
-          <Background color="hsl(220 13% 91%)" size={1} />
-        </ReactFlow>
+      <div className="w-full h-[180px] flex items-center justify-center bg-gradient-surface overflow-hidden relative">
+        <div className="absolute inset-0" style={{ top: window.innerWidth < 768 ? '30px' : '0px' }}>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            nodeTypes={nodeTypes}
+            fitView
+            attributionPosition="bottom-right"
+            proOptions={{ hideAttribution: true }}
+            nodesDraggable={false}
+            nodesConnectable={false}
+            elementsSelectable={false}
+            zoomOnScroll={false}
+            panOnScroll={false}
+            zoomOnPinch={false}
+            panOnDrag={false}
+            fitViewOptions={{ padding: 0.1 }}
+          >
+            <Background color="hsl(220 13% 91%)" size={1} />
+          </ReactFlow>
+        </div>
       </div>
     );
   }
