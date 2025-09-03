@@ -31,15 +31,15 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
     <div className="w-full h-full flex items-center justify-center bg-gray-50 relative group">
       {renderDiagram()}
       
-      {/* Expansion hint - subtle text only */}
+      {/* Expansion hint - positioned top right with generous spacing */}
       {isPreview && (
-        <div className={`absolute pointer-events-none ${
+        <div className={`absolute top-4 right-4 pointer-events-none ${
           isMobile 
-            ? 'top-1 right-2' 
-            : 'bottom-1 right-2 lg:opacity-0 lg:group-hover:opacity-100'
+            ? 'opacity-100' 
+            : 'opacity-100 md:opacity-0 md:group-hover:opacity-100'
         } transition-opacity duration-200`}>
-          <div className="flex items-center space-x-1 text-xs text-gray-500">
-            <span>Detailed View</span>
+          <div className="flex items-center space-x-4 text-xs text-gray-500 py-2">
+            <span className="leading-4">Detailed View</span>
             <Expand className="w-3 h-3" />
           </div>
         </div>

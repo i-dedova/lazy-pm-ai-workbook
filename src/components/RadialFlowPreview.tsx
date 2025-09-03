@@ -59,7 +59,7 @@ export const RadialFlowPreview = () => {
         edges={[]}
         nodeTypes={nodeTypes}
         fitView={false}
-        defaultViewport={isMobile ? { x: -30, y: -20, zoom: 0.7 } : { x: -20, y: -40, zoom: 0.8 }}
+        defaultViewport={isMobile ? { x: -30, y: -20, zoom: 0.5 } : { x: -20, y: -40, zoom: 0.6 }}
         attributionPosition="bottom-right"
         proOptions={{ hideAttribution: true }}
         nodesDraggable={false}
