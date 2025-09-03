@@ -71,78 +71,72 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
           <text x="255" y={height/2 + 4} textAnchor="middle" fontSize="11" fill="#1e293b" fontWeight="500">Docs</text>
         </g>
       ) : (
-        /* Expanded View - Three-Tier Layout */
+        /* Expanded View - Free-Floating Design */
         <g>
-          {/* Tier 1: Obsidian Vault */}
-          <rect x="50" y="20" width="600" height="80" rx="15" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="350" y="40" textAnchor="middle" fontSize="16" fill="#1e293b" fontWeight="600">Obsidian Vault</text>
+          {/* Tier 1: Obsidian Vault - Free floating sections */}
+          <text x="350" y="30" textAnchor="middle" fontSize="18" fill="hsl(215 25% 27%)" fontWeight="700">Obsidian Vault</text>
           
-          {/* Top row items */}
-          <rect x="70" y="50" width="100" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="120" y="66" textAnchor="middle" fontSize="10" fill="#334155" fontWeight="500">Competitor Knowledge</text>
+          {/* Column 1: Strategy & KPIs + User Research */}
+          <text x="130" y="60" textAnchor="middle" fontSize="14" fill="hsl(240 10% 15%)" fontWeight="600">Strategy & KPIs</text>
+          <text x="130" y="80" textAnchor="middle" fontSize="14" fill="hsl(240 10% 15%)" fontWeight="600">User Research</text>
           
-          <rect x="185" y="50" width="80" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="225" y="66" textAnchor="middle" fontSize="10" fill="#334155" fontWeight="500">Feature Context</text>
+          {/* Column 2: Feature Context + Competitor Knowledge */}
+          <text x="350" y="60" textAnchor="middle" fontSize="14" fill="hsl(240 10% 15%)" fontWeight="600">Feature Context</text>
+          <text x="350" y="80" textAnchor="middle" fontSize="14" fill="hsl(240 10% 15%)" fontWeight="600">Competitor Knowledge</text>
           
-          <rect x="280" y="50" width="80" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="320" y="66" textAnchor="middle" fontSize="10" fill="#334155" fontWeight="500">User Research</text>
-          
-          <rect x="375" y="50" width="80" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="415" y="66" textAnchor="middle" fontSize="10" fill="#334155" fontWeight="500">Strategy & KPIs</text>
-          
-          {/* Bottom row items */}
-          <rect x="200" y="75" width="80" height="20" rx="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="240" y="87" textAnchor="middle" fontSize="9" fill="#475569">Claude Config</text>
-          
-          <rect x="290" y="75" width="80" height="20" rx="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="330" y="87" textAnchor="middle" fontSize="9" fill="#475569">Doc Templates</text>
-          
-          <rect x="380" y="75" width="70" height="20" rx="4" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="415" y="87" textAnchor="middle" fontSize="9" fill="#475569">Workflows</text>
+          {/* Column 3: Claude Config + Templates & Workflows */}
+          <text x="570" y="60" textAnchor="middle" fontSize="14" fill="hsl(240 10% 15%)" fontWeight="600">Claude Config</text>
+          <text x="570" y="80" textAnchor="middle" fontSize="14" fill="hsl(240 10% 15%)" fontWeight="600">Templates & Workflows</text>
           
           {/* Arrow 1 */}
-          <path d="M 350 105 L 350 135" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+          <path d="M 350 100 L 350 125" stroke="hsl(215 25% 27%)" strokeWidth="3" markerEnd="url(#arrow-primary)"/>
           
-          {/* Tier 2: Claude Code */}
-          <rect x="50" y="140" width="600" height="70" rx="15" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="350" y="160" textAnchor="middle" fontSize="16" fill="#1e293b" fontWeight="600">Claude Code</text>
+          {/* Tier 2: Claude Code - Tasks with icons */}
+          <text x="350" y="145" textAnchor="middle" fontSize="18" fill="hsl(215 25% 27%)" fontWeight="700">Claude Code</text>
           
-          <rect x="80" y="170" width="110" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="135" y="182" textAnchor="middle" fontSize="9" fill="#334155" fontWeight="500">smart-tags auto-linking</text>
+          {/* Task icons and labels */}
+          <circle cx="120" cy="170" r="3" fill="hsl(250 30% 60%)"/>
+          <text x="140" y="175" fontSize="12" fill="hsl(240 10% 15%)" fontWeight="500">Cross-link with tags</text>
           
-          <rect x="205" y="170" width="110" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="260" y="182" textAnchor="middle" fontSize="9" fill="#334155" fontWeight="500">Scan & auto-correct</text>
+          <circle cx="280" cy="170" r="3" fill="hsl(250 30% 60%)"/>
+          <text x="300" y="175" fontSize="12" fill="hsl(240 10% 15%)" fontWeight="500">Scan & auto-correct</text>
           
-          <rect x="330" y="170" width="110" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="385" y="182" textAnchor="middle" fontSize="9" fill="#334155" fontWeight="500">Update Master Files</text>
+          <circle cx="120" cy="195" r="3" fill="hsl(250 30% 60%)"/>
+          <text x="140" y="200" fontSize="12" fill="hsl(240 10% 15%)" fontWeight="500">Update master notes</text>
           
-          <rect x="455" y="170" width="110" height="25" rx="6" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1"/>
-          <text x="510" y="182" textAnchor="middle" fontSize="9" fill="#334155" fontWeight="500">Review Performance</text>
+          <circle cx="280" cy="195" r="3" fill="hsl(250 30% 60%)"/>
+          <text x="300" y="200" fontSize="12" fill="hsl(240 10% 15%)" fontWeight="500">Review performance</text>
+          
+          <circle cx="450" cy="170" r="3" fill="hsl(250 30% 60%)"/>
+          <text x="470" y="175" fontSize="12" fill="hsl(240 10% 15%)" fontWeight="500">Workflow commands</text>
+          
+          <circle cx="450" cy="195" r="3" fill="hsl(250 30% 60%)"/>
+          <text x="470" y="200" fontSize="12" fill="hsl(240 10% 15%)" fontWeight="500">Brainstorm ideas</text>
           
           {/* Arrow 2 */}
-          <path d="M 350 215 L 350 245" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrow)"/>
+          <path d="M 350 220 L 350 245" stroke="hsl(215 25% 27%)" strokeWidth="3" markerEnd="url(#arrow-primary)"/>
           
-          {/* Tier 3: Outputs */}
-          <rect x="50" y="250" width="600" height="70" rx="15" fill="white" stroke="#e2e8f0" strokeWidth="2"/>
-          <text x="350" y="270" textAnchor="middle" fontSize="16" fill="#1e293b" fontWeight="600">Outputs</text>
+          {/* Tier 3: Outputs - Metric style with icons */}
+          <text x="350" y="265" textAnchor="middle" fontSize="18" fill="hsl(215 25% 27%)" fontWeight="700">Outputs</text>
           
-          {/* Yellow output boxes */}
-          <rect x="120" y="285" width="70" height="25" rx="6" fill="#fef3c7" stroke="#f59e0b" strokeWidth="1"/>
-          <text x="155" y="299" textAnchor="middle" fontSize="10" fill="#92400e" fontWeight="500">PRDs</text>
+          {/* Output metrics styled like main page */}
+          <g transform="translate(120, 285)">
+            <circle cx="8" cy="8" r="6" fill="hsl(43 74% 66%)" opacity="0.2"/>
+            <circle cx="8" cy="8" r="3" fill="hsl(43 74% 66%)"/>
+            <text x="25" y="12" fontSize="13" fill="hsl(240 10% 15%)" fontWeight="600">Product Answers in ~1 min</text>
+          </g>
           
-          <rect x="210" y="285" width="70" height="25" rx="6" fill="#fef3c7" stroke="#f59e0b" strokeWidth="1"/>
-          <text x="245" y="299" textAnchor="middle" fontSize="10" fill="#92400e" fontWeight="500">User Stories</text>
+          <g transform="translate(320, 285)">
+            <circle cx="8" cy="8" r="6" fill="hsl(250 30% 60%)" opacity="0.2"/>
+            <circle cx="8" cy="8" r="3" fill="hsl(250 30% 60%)"/>
+            <text x="25" y="12" fontSize="13" fill="hsl(240 10% 15%)" fontWeight="600">Artifacts in ~30 mins</text>
+          </g>
           
-          <rect x="300" y="285" width="90" height="25" rx="6" fill="#fef3c7" stroke="#f59e0b" strokeWidth="1"/>
-          <text x="345" y="299" textAnchor="middle" fontSize="10" fill="#92400e" fontWeight="500">Stakeholder Reports</text>
-          
-          <rect x="410" y="285" width="70" height="25" rx="6" fill="#fef3c7" stroke="#f59e0b" strokeWidth="1"/>
-          <text x="445" y="299" textAnchor="middle" fontSize="10" fill="#92400e" fontWeight="500">New Ideas</text>
-          
-          {/* Timing information */}
-          <text x="70" y="345" fontSize="10" fill="#64748b">~1 min to get answers on features and competitors</text>
-          <text x="70" y="360" fontSize="10" fill="#64748b">~30 mins to generate artifacts including edits</text>
-          <text x="70" y="375" fontSize="10" fill="#64748b">~60 mins to brainstorm ideas aligned with strategy & OKRs</text>
+          <g transform="translate(520, 285)">
+            <circle cx="8" cy="8" r="6" fill="hsl(215 25% 27%)" opacity="0.2"/>
+            <circle cx="8" cy="8" r="3" fill="hsl(215 25% 27%)"/>
+            <text x="25" y="12" fontSize="13" fill="hsl(240 10% 15%)" fontWeight="600">Performance Reports ~60 mins</text>
+          </g>
         </g>
       )}
       </g>
@@ -151,6 +145,9 @@ const ProductBrainSVG = ({ isPreview }: { isPreview: boolean }) => {
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
           <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+        </marker>
+        <marker id="arrow-primary" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="hsl(215 25% 27%)"/>
         </marker>
       </defs>
     </svg>
