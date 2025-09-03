@@ -87,7 +87,9 @@ const OutputNode = ({ data }: { data: any }) => {
   return (
     <div 
       onClick={() => data.onClick(data.outputType)}
-      className="bg-transparent cursor-pointer transition-all duration-300 hover:scale-105 min-w-[200px]"
+      className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant min-w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
+        isActive ? 'border-highlight/60 shadow-glow scale-105' : 'border-highlight/30 hover:border-highlight/50'
+      }`}
     >
       <div className="flex items-center gap-2 mb-3">
         <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
