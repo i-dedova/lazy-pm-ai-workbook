@@ -327,7 +327,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   if (isPreview) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-surface">
+      <div className="w-full h-[180px] flex items-center justify-center bg-gradient-surface">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -342,7 +342,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
           panOnScroll={false}
           zoomOnPinch={false}
           panOnDrag={false}
-          fitViewOptions={{ padding: 0.2 }}
+          fitViewOptions={{ padding: 0.1 }}
         >
           <Background color="hsl(220 13% 91%)" size={1} />
         </ReactFlow>
