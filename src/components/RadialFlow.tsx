@@ -223,8 +223,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Mobile gets taller collapsed preview, desktop stays same
-    const obsidianY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
+    // Obsidian Vault - Only change collapsed preview positioning for mobile
+    const obsidianY = isPreview ? 120 : 200; // Keep expanded view unchanged
     const obsidianX = isPreview ? 50 : (window.innerWidth < 768 ? 5 : 50);
     nodes.push({
       id: 'obsidian-vault',
@@ -240,8 +240,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Mobile gets taller collapsed preview, desktop stays same
-    const claudeY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
+    // Claude Code - Only change collapsed preview positioning for mobile
+    const claudeY = isPreview ? 120 : 200; // Keep expanded view unchanged
     const claudeX = isPreview ? 280 : (window.innerWidth < 768 ? 230 : 400);
     nodes.push({
       id: 'claude-center',
