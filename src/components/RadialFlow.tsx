@@ -87,8 +87,8 @@ const OutputNode = ({ data }: { data: any }) => {
   return (
     <div 
       onClick={() => data.onClick(data.outputType)}
-      className={`bg-card/60 backdrop-blur-sm border rounded-xl p-4 shadow-elegant min-w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
-        isActive ? 'border-highlight/60 shadow-glow scale-105' : 'border-border/50 hover:border-highlight/50'
+      className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant min-w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
+        isActive ? 'border-highlight/60 shadow-glow scale-105' : 'border-highlight/30 hover:border-highlight/50'
       }`}
     >
       <div className="flex items-center gap-2 mb-3">
@@ -97,10 +97,14 @@ const OutputNode = ({ data }: { data: any }) => {
         }`}></div>
         <h3 className="font-semibold text-foreground text-sm">Output</h3>
       </div>
-      <div className="text-sm font-medium text-foreground mb-1">{data.label}</div>
-      <div className={`text-xs font-semibold transition-all duration-300 ${
-        isActive ? 'text-highlight' : 'text-muted-foreground'
-      }`}>{data.time}</div>
+      <div className={`rounded-lg p-3 transition-all duration-300 ${
+        isActive ? 'bg-highlight/20' : 'bg-highlight/10'
+      }`}>
+        <div className="text-sm font-medium text-foreground">{data.label}</div>
+        <div className={`text-xs font-semibold transition-all duration-300 ${
+          isActive ? 'text-highlight' : 'text-highlight/80'
+        }`}>{data.time}</div>
+      </div>
     </div>
   );
 };
