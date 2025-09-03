@@ -137,3 +137,16 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* ReactFlow overrides - remove default node borders */
+.react-flow__node {
+  border: none !important;
+}
+
+.react-flow__node.selected {
+  border: none !important;
+}
+
+.react-flow__node:hover {
+  border: none !important;
+}

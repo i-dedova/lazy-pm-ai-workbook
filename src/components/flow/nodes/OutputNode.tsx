@@ -1,53 +1,43 @@
+import { Handle, Position } from '@xyflow/react';
 import { BaseNode } from './BaseNode';
 import { OutputNodeData } from '../types';
 
 export const OutputNode = ({ data }: { data: OutputNodeData }) => {
   const { outputType, label, time, isActive, onClick } = data;
+  const nodeSize = data.isPreview ? 'sm' : 'md';
   
   return (
-    <div 
-      onClick={() => onClick(outputType)}
-      className={`
-        cursor-pointer transition-all duration-300 hover:scale-105
-        ${isActive ? 'scale-110' : 'scale-100'}
-      `}
-      style={{
-        zIndex: isActive ? 1000 : 1,
-        position: 'relative',
-        transform: isActive ? 'scale(1.1)' : 'scale(1)',
-        boxShadow: isActive ? '0 20px 40px rgba(0,0,0,0.2)' : undefined
-      }}
-    >
-      <BaseNode 
-        size="sm"
-        className={`
-          border transition-all duration-300 w-[200px]
-          ${isActive 
-            ? 'border-highlight/60 shadow-glow' 
-            : 'border-highlight/30 hover:border-highlight/50'
-          }
-        `}
+    <>
+      <Handle
+        type="target"
+        position={Position.Left}
+        style={{ opacity: 0, pointerEvents: 'none' }}
+      />
+      <div 
+        onClick={() => onClick(outputType)}
+        className="cursor-pointer transition-all duration-300 hover:scale-105"
       >
-        <div className="flex items-center gap-2 mb-3">
-          <div className={`
-            w-3 h-3 rounded-full transition-all duration-300
-            ${isActive ? 'bg-highlight animate-pulse' : 'bg-highlight/70'}
-          `}></div>
-          <h3 className="font-semibold text-foreground text-sm">Output</h3>
-        </div>
-        <div className={`
-          rounded-lg p-3 transition-all duration-300
-          ${isActive ? 'bg-highlight/20' : 'bg-highlight/10'}
-        `}>
-          <div className="text-sm font-medium text-foreground">{label}</div>
-          <div className={`
-            text-xs font-semibold transition-all duration-300
-            ${isActive ? 'text-highlight' : 'text-highlight/80'}
-          `}>
-            {time}
+        <BaseNode variant="primary" size={nodeSize}>
+          <div className="flex items-center gap-2 mb-3">
+            <div className={`w-3 h-3 rounded-full transition-all duration-300 ${isActive ? 'bg-accent animate-pulse' : 'bg-accent/60'}`}></div>
+            <h3 className={`font-bold text-foreground ${data.isPreview ? 'text-sm' : 'text-lg'}`}>{time}</h3>
           </div>
-        </div>
-      </BaseNode>
-    </div>
+          <div className="space-y-1">
+            <div 
+              className={`
+                flex items-center ${data.isPreview ? 'text-xs' : 'text-sm'} rounded-lg px-2 py-1 
+                transition-all duration-300
+                ${isActive 
+                  ? 'text-accent bg-accent/20 border border-accent/40 scale-105' 
+                  : 'text-accent/80 bg-accent/10'
+                }
+              `}
+            >
+              <span className="truncate font-medium">{label}</span>
+            </div>
+          </div>
+        </BaseNode>
+      </div>
+    </>
   );
 };

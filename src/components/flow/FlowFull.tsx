@@ -21,19 +21,33 @@ export const FlowFull = ({
 }: FlowProps) => {
   const [activeWorkflow, setActiveWorkflow] = useState<string | null>('answers');
   const isMobile = useIsMobile();
+  
+  // Add tablet detection for better responsive behavior
+  const [isTablet, setIsTablet] = useState(false);
+  
+  useEffect(() => {
+    const checkTablet = () => {
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+    
+    checkTablet();
+    window.addEventListener('resize', checkTablet);
+    return () => window.removeEventListener('resize', checkTablet);
+  }, []);
 
-  const handleOutputClick = (outputType: string) => {
-    setActiveWorkflow(activeWorkflow === outputType ? null : outputType);
-  };
+  const handleOutputClick = useCallback((outputType: string) => {
+    const newActiveWorkflow = activeWorkflow === outputType ? null : outputType;
+    setActiveWorkflow(newActiveWorkflow);
+  }, [activeWorkflow]);
 
   const initialNodes: Node[] = useMemo(() => {
     const workflow = activeWorkflow ? workflowData[activeWorkflow] : null;
     const nodes: Node[] = [];
 
-    // Output nodes - responsive positioning
-    const baseY = 30;
-    const spacing = isMobile ? 150 : 220;
-    const startX = 20;
+    // Output nodes - responsive positioning with better spacing
+    const baseY = 50;
+    const spacing = isMobile ? 180 : isTablet ? 250 : 300;
+    const startX = isMobile ? 50 : isTablet ? 100 : 150;
 
     outputs.forEach((output, idx) => {
       const isActiveOutput = activeWorkflow === output.outputType;
@@ -47,14 +61,14 @@ export const FlowFull = ({
           isActive: isActiveOutput,
           onClick: handleOutputClick
         },
-        draggable: true,
+        draggable: false,
         zIndex: isActiveOutput ? 1000 : 1,
       });
     });
 
-    // Left node - responsive positioning
-    const leftX = isMobile ? 10 : 50;
-    const leftY = 200;
+    // Left node - responsive positioning with better spacing
+    const leftX = isMobile ? 50 : isTablet ? 100 : 150;
+    const leftY = isMobile ? 280 : 320;
     nodes.push({
       id: 'left-node',
       type: 'list',
@@ -67,12 +81,12 @@ export const FlowFull = ({
         })),
         isPreview: false
       },
-      draggable: true,
+      draggable: false,
     });
 
-    // Center node - responsive positioning
-    const centerX = isMobile ? 250 : 400;
-    const centerY = 200;
+    // Center node - responsive positioning with better spacing
+    const centerX = isMobile ? 300 : isTablet ? 400 : 500;
+    const centerY = isMobile ? 280 : 320;
     nodes.push({
       id: 'center-node',
       type: 'center',
@@ -85,74 +99,24 @@ export const FlowFull = ({
         })),
         isPreview: false
       },
-      draggable: true,
+      draggable: false,
     });
 
     return nodes;
-  }, [activeWorkflow, isMobile, workflowData, allLeftSections, allCenterTasks, outputs]);
+  }, [activeWorkflow, isMobile, isTablet, workflowData, allLeftSections, allCenterTasks, outputs, handleOutputClick]);
 
   const initialEdges: Edge[] = useMemo(() => {
-    const workflow = activeWorkflow ? workflowData[activeWorkflow] : null;
-    const edges: Edge[] = [];
+    return [];
+  }, []);
 
-    // Left <-> Center (bidirectional collaboration)
-    edges.push({
-      id: 'left-to-center',
-      source: 'left-node',
-      target: 'center-node',
-      type: 'smoothstep',
-      animated: !!workflow,
-      style: { 
-        stroke: workflow?.color || 'hsl(215 25% 27%)',
-        strokeWidth: workflow ? 3 : 1,
-        opacity: workflow ? 0.8 : 0.3
-      },
-    });
-
-    edges.push({
-      id: 'center-to-left',
-      source: 'center-node', 
-      target: 'left-node',
-      type: 'smoothstep',
-      animated: !!workflow,
-      style: { 
-        stroke: workflow?.color || 'hsl(215 25% 27%)',
-        strokeWidth: workflow ? 3 : 1,
-        opacity: workflow ? 0.8 : 0.3
-      },
-    });
-
-    // Center -> Outputs
-    outputs.forEach((output, i) => {
-      const isActiveOutput = activeWorkflow === output.outputType;
-      
-      edges.push({
-        id: `center-to-output-${i}`,
-        source: 'center-node',
-        target: `output-${i}`,
-        type: 'smoothstep',
-        animated: isActiveOutput,
-        style: { 
-          stroke: isActiveOutput ? workflow?.color : 'hsl(215 25% 27%)',
-          strokeWidth: isActiveOutput ? 3 : 1,
-          opacity: isActiveOutput ? 0.8 : 0.3
-        },
-      });
-    });
-
-    return edges;
-  }, [activeWorkflow, workflowData, outputs]);
-
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes, setNodes] = useNodesState(initialNodes);
+  const [edges, setEdges] = useEdgesState(initialEdges);
 
   // Update nodes when activeWorkflow changes
   useEffect(() => {
     setNodes(initialNodes);
     setEdges(initialEdges);
   }, [initialNodes, initialEdges, setNodes, setEdges]);
-
-  const onConnect = useCallback(() => {}, []);
 
   return (
     <div className={`w-full h-full md:h-[600px] bg-gradient-surface rounded-lg overflow-hidden relative ${
@@ -161,18 +125,21 @@ export const FlowFull = ({
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
         attributionPosition="bottom-right"
         proOptions={{ hideAttribution: true }}
         className="rounded-lg"
+        nodesDraggable={false}
+        nodesConnectable={false}
+        elementsSelectable={true}
+        panOnDrag={true}
+        zoomOnScroll={true}
+        zoomOnPinch={true}
         fitViewOptions={{ 
-          padding: isMobile ? 0.15 : 0.1,
-          maxZoom: isMobile ? 0.8 : 1.2,
-          minZoom: isMobile ? 0.6 : 0.5
+          padding: isMobile ? 0.2 : 0.15,
+          maxZoom: 2.0,
+          minZoom: 0.3
         }}
       >
         <Background 
@@ -181,8 +148,15 @@ export const FlowFull = ({
           gap={20}
         />
         <Controls 
-          className="!bg-card/80 !border-border/50 !backdrop-blur-sm"
+          className="!bg-card/80 !border-border/50 !backdrop-blur-sm !rounded-lg !shadow-lg"
           showInteractive={false}
+          showZoom={true}
+          showFitView={true}
+          fitViewOptions={{
+            padding: isMobile ? 0.2 : 0.15,
+            maxZoom: 2.0,
+            minZoom: 0.3
+          }}
         />
       </ReactFlow>
     </div>

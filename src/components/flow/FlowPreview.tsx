@@ -20,9 +20,9 @@ export const FlowPreview = ({
 
   const nodes: Node[] = [
     {
-      id: 'left-node',
+      id: 'preview-left-node',
       type: 'list',
-      position: { x: isMobile ? 10 : 30, y: isMobile ? 20 : 40 },
+      position: { x: 50, y: 50 },
       data: {
         title: 'Obsidian Vault',
         sections: allLeftSections.slice(0, 2).map(section => ({
@@ -35,9 +35,9 @@ export const FlowPreview = ({
       draggable: false,
     },
     {
-      id: 'center-node',
-      type: 'center',
-      position: { x: isMobile ? 140 : 220, y: isMobile ? 20 : 40 },
+      id: 'preview-center-node',
+      type: 'center', 
+      position: { x: 250, y: 50 },
       data: {
         title: 'Claude Code',
         tasks: allCenterTasks.slice(0, 2).map(task => ({
@@ -49,9 +49,9 @@ export const FlowPreview = ({
       draggable: false,
     },
     {
-      id: 'output-node',
+      id: 'preview-output-node',
       type: 'output',
-      position: { x: isMobile ? 270 : 420, y: isMobile ? 50 : 70 },
+      position: { x: 450, y: 80 },
       data: {
         ...outputs[0],
         isActive: false,
@@ -61,27 +61,14 @@ export const FlowPreview = ({
     }
   ];
 
-  const edges: Edge[] = [
-    {
-      id: 'left-to-center',
-      source: 'left-node',
-      target: 'center-node',
-      type: 'smoothstep',
-      animated: false,
-      style: { stroke: 'hsl(215 25% 27%)', strokeWidth: 2, opacity: 0.6 }
-    },
-    {
-      id: 'center-to-output',
-      source: 'center-node',
-      target: 'output-node',
-      type: 'smoothstep',
-      animated: false,
-      style: { stroke: 'hsl(215 25% 27%)', strokeWidth: 2, opacity: 0.6 }
-    }
-  ];
+  const edges: Edge[] = [];
+
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg overflow-hidden">
+    <div 
+      className="w-full bg-gradient-surface rounded-lg overflow-hidden"
+      style={{ height: '280px' }}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -91,11 +78,11 @@ export const FlowPreview = ({
         proOptions={{ hideAttribution: true }}
         nodesDraggable={false}
         nodesConnectable={false}
-        elementsSelectable={false}
+        elementsSelectable={true}
         fitViewOptions={{ 
-          padding: isMobile ? 0.15 : 0.2,
-          maxZoom: isMobile ? 0.8 : 1.0,
-          minZoom: 0.5
+          padding: 0.3,
+          maxZoom: 1.0,
+          minZoom: 0.4
         }}
       >
         <Background 
