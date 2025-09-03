@@ -170,7 +170,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
       // Align outputs side by side with closer spacing on mobile
       const baseY = 30;
-      const spacing = 180; // Closer spacing for mobile
+      const spacing = 150; // Even closer spacing for mobile
       const startX = 20; // Start closer to edge on mobile
 
       outputs.forEach((output, idx) => {
