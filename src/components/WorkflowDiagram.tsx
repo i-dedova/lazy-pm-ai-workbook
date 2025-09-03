@@ -33,7 +33,7 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
       
       {/* Expansion hint - positioned top right with generous spacing */}
       {isPreview && (
-        <div className={`absolute top-2 right-2 z-50 pointer-events-none ${
+        <div className={`absolute top-2 right-2 z-[9999] pointer-events-none ${
           isMobile 
             ? 'opacity-100' 
             : 'opacity-100 md:opacity-0 md:group-hover:opacity-100'
