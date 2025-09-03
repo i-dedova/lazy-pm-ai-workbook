@@ -22,21 +22,22 @@ export const FlowPreview = ({
     {
       id: 'left-node',
       type: 'list',
-      position: { x: isMobile ? 10 : 50, y: 50 },
+      position: { x: isMobile ? 5 : 20, y: isMobile ? 10 : 30 },
       data: {
         title: 'Obsidian Vault',
-        sections: allLeftSections.slice(0, 3).map(section => ({
+        sections: allLeftSections.slice(0, 2).map(section => ({
           name: section,
           active: false
         })),
-        isPreview: true
+        isPreview: true,
+        variant: 'primary'
       },
       draggable: false,
     },
     {
       id: 'center-node',
       type: 'center',
-      position: { x: isMobile ? 200 : 300, y: 50 },
+      position: { x: isMobile ? 120 : 200, y: isMobile ? 10 : 30 },
       data: {
         title: 'Claude Code',
         tasks: allCenterTasks.slice(0, 2).map(task => ({
@@ -50,7 +51,7 @@ export const FlowPreview = ({
     {
       id: 'output-node',
       type: 'output',
-      position: { x: isMobile ? 380 : 550, y: 80 },
+      position: { x: isMobile ? 240 : 380, y: isMobile ? 40 : 60 },
       data: {
         ...outputs[0],
         isActive: false,
@@ -92,9 +93,9 @@ export const FlowPreview = ({
         nodesConnectable={false}
         elementsSelectable={false}
         fitViewOptions={{ 
-          padding: isMobile ? 0.4 : 0.6,
-          maxZoom: isMobile ? 0.5 : 0.6,
-          minZoom: 0.3
+          padding: isMobile ? 0.2 : 0.3,
+          maxZoom: isMobile ? 0.7 : 0.8,
+          minZoom: 0.4
         }}
       >
         <Background 

@@ -14,9 +14,9 @@ const variantStyles = {
 };
 
 const sizeStyles = {
-  sm: 'min-w-[180px] p-4',
-  md: 'min-w-[220px] md:min-w-[280px] p-6',
-  lg: 'min-w-[280px] md:min-w-[320px] p-8'
+  sm: 'min-w-[140px] p-3',
+  md: 'min-w-[180px] md:min-w-[220px] p-4',
+  lg: 'min-w-[220px] md:min-w-[280px] p-6'
 };
 
 export const BaseNode = ({ 

@@ -2,21 +2,22 @@ import { BaseNode } from './BaseNode';
 import { CenterNodeData } from '../types';
 
 export const CenterNode = ({ data }: { data: CenterNodeData }) => {
-  const { title, tasks } = data;
+  const { title, tasks, isPreview } = data;
+  const nodeSize = isPreview ? 'sm' : 'md';
   
   return (
-    <BaseNode variant="accent" className="text-center relative">
-      <div className="flex items-center justify-center gap-3 mb-4">
-        <div className="w-4 h-4 rounded-full bg-accent-foreground/80"></div>
-        <h3 className="font-bold text-accent-foreground text-lg">{title}</h3>
+    <BaseNode variant="accent" size={nodeSize} className="text-center relative">
+      <div className="flex items-center justify-center gap-2 mb-3">
+        <div className="w-3 h-3 rounded-full bg-accent-foreground/80"></div>
+        <h3 className={`font-bold text-accent-foreground ${isPreview ? 'text-sm' : 'text-lg'}`}>{title}</h3>
       </div>
       
-      <div className="space-y-2">
+      <div className="space-y-1">
         {tasks?.map((task, idx) => (
           <div 
             key={idx} 
             className={`
-              flex items-center gap-2 text-sm rounded-lg px-3 py-2 
+              flex items-center gap-2 ${isPreview ? 'text-xs' : 'text-sm'} rounded-lg px-2 py-1 
               transition-all duration-300
               ${task.active 
                 ? 'text-accent-foreground bg-accent-foreground/30 scale-105 shadow-md' 
@@ -25,7 +26,7 @@ export const CenterNode = ({ data }: { data: CenterNodeData }) => {
             `}
           >
             <div className={`
-              w-2 h-2 rounded-full transition-all duration-300
+              w-1.5 h-1.5 rounded-full transition-all duration-300
               ${task.active ? 'bg-accent-foreground animate-pulse' : 'bg-accent-foreground/60'}
             `}></div>
             <span className="truncate">{task.name}</span>
