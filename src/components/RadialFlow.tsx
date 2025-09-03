@@ -127,7 +127,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
     setActiveWorkflow(activeWorkflow === workflowKey ? null : workflowKey);
   };
 
-  // Create nodes in linear horizontal layout: Vault <-> Claude -> Outputs
+  // Create nodes in proper spaced layout: Outputs -> Vault <-> Claude
   const initialNodes: Node[] = useMemo(() => {
     const workflow = activeWorkflow ? WORKFLOWS[activeWorkflow] : null;
     
@@ -149,36 +149,9 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       'Brainstorm'
     ];
 
-    const nodes: Node[] = [
-      // Obsidian Vault - Left
-      {
-        id: 'obsidian-vault',
-        type: 'obsidian',
-        position: { x: 50, y: 150 },
-        data: {
-          sections: allVaultSections.map(section => ({
-            name: section,
-            active: workflow?.vaultSections.includes(section) || false
-          }))
-        },
-        draggable: !isPreview,
-      },
-      // Claude Code - Center  
-      {
-        id: 'claude-center',
-        type: 'claude',
-        position: { x: 400, y: 150 },
-        data: {
-          tasks: allClaudeTasks.map(task => ({
-            name: task,
-            active: workflow?.claudeTasks.includes(task) || false
-          }))
-        },
-        draggable: !isPreview,
-      }
-    ];
+    const nodes: Node[] = [];
 
-    // Add output nodes if not preview - moved to top
+    // Add output nodes if not preview - positioned at top with proper spacing
     if (!isPreview) {
       const outputs = [
         { outputType: 'answers', label: 'Product Answers', time: '~1 min' },
@@ -186,11 +159,15 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
       ];
 
+      // Center outputs horizontally above the main nodes
+      const totalOutputWidth = outputs.length * 220 - 20; // 220px per output minus gap
+      const startX = (760 - totalOutputWidth) / 2; // Center in 760px container
+
       outputs.forEach((output, idx) => {
         nodes.push({
           id: `output-${idx}`,
           type: 'output',
-          position: { x: 150 + idx * 220, y: 20 },
+          position: { x: startX + idx * 220, y: 30 },
           data: { 
             ...output,
             isActive: activeWorkflow === output.outputType,
@@ -200,6 +177,34 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         });
       });
     }
+
+    // Obsidian Vault - Left, positioned below outputs with gap
+    nodes.push({
+      id: 'obsidian-vault',
+      type: 'obsidian',
+      position: { x: 50, y: isPreview ? 100 : 200 },
+      data: {
+        sections: allVaultSections.map(section => ({
+          name: section,
+          active: workflow?.vaultSections.includes(section) || false
+        }))
+      },
+      draggable: !isPreview,
+    });
+
+    // Claude Code - Right, positioned below outputs with gap  
+    nodes.push({
+      id: 'claude-center',
+      type: 'claude',
+      position: { x: 400, y: isPreview ? 100 : 200 },
+      data: {
+        tasks: allClaudeTasks.map(task => ({
+          name: task,
+          active: workflow?.claudeTasks.includes(task) || false
+        }))
+      },
+      draggable: !isPreview,
+    });
 
     return nodes;
   }, [isPreview, activeWorkflow]);
@@ -296,7 +301,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
   }
 
   return (
-    <div className="w-full h-[500px] bg-gradient-surface rounded-lg overflow-hidden relative">
+    <div className="w-full h-[600px] bg-gradient-surface rounded-lg overflow-hidden relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -308,6 +313,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         attributionPosition="bottom-right"
         proOptions={{ hideAttribution: true }}
         className="rounded-lg"
+        fitViewOptions={{ padding: 0.1 }}
       >
         <Background 
           color="hsl(220 13% 91%)" 
