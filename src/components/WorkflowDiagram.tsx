@@ -39,7 +39,7 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
         <div className={`absolute bottom-2 right-4 z-10 pointer-events-none ${
           isMobile 
             ? 'opacity-100' 
-            : 'opacity-100 md:opacity-0 md:group-hover:opacity-100'
+            : 'opacity-100 lg:opacity-0 lg:group-hover:opacity-100'
         } transition-opacity duration-200`}>
           <div className="flex items-center space-x-4 text-sm text-gray-600 bg-white/80 backdrop-blur-sm rounded-lg px-3 py-2 shadow-sm">
             <span className="leading-4">Detailed View</span>
