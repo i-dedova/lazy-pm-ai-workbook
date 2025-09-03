@@ -75,6 +75,7 @@ export const WorkflowSnippet = ({ title, tools, keyBenefits, metric, icon, diagr
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-full w-full md:max-w-[67vw] md:w-[67vw] max-h-[67vh] h-[67vh] md:max-h-[95vh] md:h-[95vh] p-6 mx-auto">
+                <DialogTitle className="sr-only">Workflow Diagram</DialogTitle>
                 <div className="h-full w-full">
                   <WorkflowDiagram type={diagramType} isPreview={false} />
                 </div>
