@@ -315,7 +315,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
   }
 
   return (
-    <div className="w-full h-[600px] bg-gradient-surface rounded-lg overflow-hidden relative">
+    <div className="w-full h-full md:h-[600px] bg-gradient-surface rounded-lg overflow-hidden relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
