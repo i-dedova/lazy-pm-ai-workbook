@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   ReactFlow,
   Background,
@@ -9,6 +9,28 @@ import {
   Edge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+
+// Workflow scenarios for output interactions
+const WORKFLOWS = {
+  analysis: {
+    name: 'Data Analysis',
+    vaultSections: ['Strategy & KPIs', 'User Research'],
+    claudeTasks: ['Cross-link', 'Review KPIs'],
+    color: 'hsl(220 50% 55%)'
+  },
+  generation: {
+    name: 'Content Generation', 
+    vaultSections: ['Feature Context', 'Templates & Workflows'],
+    claudeTasks: ['Generate', 'Workflows'],
+    color: 'hsl(280 45% 60%)'
+  },
+  optimization: {
+    name: 'Process Optimization',
+    vaultSections: ['Competitor Knowledge', 'Claude Config'],
+    claudeTasks: ['Scan & correct', 'Brainstorm'],
+    color: 'hsl(160 50% 50%)'
+  }
+};
 
 
 // Custom Node Components
@@ -60,10 +82,31 @@ const ClaudeNode = ({ data }: { data: any }) => {
   );
 };
 
+const OutputContainer = ({ data }: { data: any }) => {
+  return (
+    <div 
+      onClick={() => data.onClick(data.workflowType)}
+      className={`bg-card/80 backdrop-blur-sm border border-secondary/30 rounded-xl p-5 shadow-elegant min-w-[240px] cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
+        data.isActive ? 'border-accent/50 shadow-glow bg-gradient-subtle' : 'hover:border-secondary/50'
+      }`}
+    >
+      <div className="flex items-center gap-3 mb-3">
+        <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
+          data.isActive ? 'bg-accent animate-pulse' : 'bg-secondary'
+        }`}></div>
+        <h3 className="font-semibold text-foreground text-base">{data.name}</h3>
+      </div>
+      <div className="text-xs text-muted-foreground opacity-75">
+        Click to activate workflow
+      </div>
+    </div>
+  );
+};
 
 const nodeTypes = {
   obsidian: ObsidianNode,
   claude: ClaudeNode,
+  output: OutputContainer,
 };
 
 interface RadialFlowProps {
@@ -71,8 +114,17 @@ interface RadialFlowProps {
 }
 
 export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
-  // Create nodes in linear horizontal layout: Vault <-> Claude
+  const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>(null);
+
+  const handleWorkflowClick = (workflowType: string) => {
+    const workflowKey = workflowType as keyof typeof WORKFLOWS;
+    setActiveWorkflow(activeWorkflow === workflowKey ? null : workflowKey);
+  };
+
+  // Create nodes with dynamic animations based on active workflow
   const initialNodes: Node[] = useMemo(() => {
+    const workflow = activeWorkflow ? WORKFLOWS[activeWorkflow] : null;
+    
     const allVaultSections = [
       'Strategy & KPIs',
       'User Research', 
@@ -100,7 +152,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         data: {
           sections: allVaultSections.map(section => ({
             name: section,
-            active: false
+            active: workflow?.vaultSections.includes(section) || false
           }))
         },
         draggable: !isPreview,
@@ -113,20 +165,44 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         data: {
           tasks: allClaudeTasks.map(task => ({
             name: task,
-            active: false
+            active: workflow?.claudeTasks.includes(task) || false
           }))
         },
         draggable: !isPreview,
       }
     ];
 
+    // Add output containers if not preview
+    if (!isPreview) {
+      const outputs = [
+        { workflowType: 'analysis', name: 'Data Analysis' },
+        { workflowType: 'generation', name: 'Content Generation' },
+        { workflowType: 'optimization', name: 'Process Optimization' }
+      ];
+
+      outputs.forEach((output, idx) => {
+        nodes.push({
+          id: `output-${idx}`,
+          type: 'output',
+          position: { x: 120 + idx * 260, y: 20 },
+          data: { 
+            ...output,
+            isActive: activeWorkflow === output.workflowType,
+            onClick: handleWorkflowClick
+          },
+          draggable: true,
+        });
+      });
+    }
+
     return nodes;
-  }, [isPreview]);
+  }, [isPreview, activeWorkflow]);
 
   // Create edges showing data flow
   const initialEdges: Edge[] = useMemo(() => {
     if (isPreview) return [];
 
+    const workflow = activeWorkflow ? WORKFLOWS[activeWorkflow] : null;
     const edges: Edge[] = [];
 
     // Vault <-> Claude (bidirectional collaboration)
@@ -135,11 +211,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       source: 'obsidian-vault',
       target: 'claude-center',
       type: 'smoothstep',
-      animated: false,
+      animated: !!workflow,
       style: { 
-        stroke: 'hsl(215 25% 27%)',
-        strokeWidth: 1,
-        opacity: 0.3
+        stroke: workflow?.color || 'hsl(215 25% 27%)',
+        strokeWidth: workflow ? 3 : 1,
+        opacity: workflow ? 0.8 : 0.3
       },
     });
 
@@ -148,16 +224,50 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       source: 'claude-center', 
       target: 'obsidian-vault',
       type: 'smoothstep',
-      animated: false,
+      animated: !!workflow,
       style: { 
-        stroke: 'hsl(215 25% 27%)',
-        strokeWidth: 1,
-        opacity: 0.3
+        stroke: workflow?.color || 'hsl(215 25% 27%)',
+        strokeWidth: workflow ? 3 : 1,
+        opacity: workflow ? 0.8 : 0.3
       },
     });
 
+    // Connect output containers to both Obsidian and Claude
+    for (let i = 0; i < 3; i++) {
+      const workflowTypes = ['analysis', 'generation', 'optimization'];
+      const isActiveOutput = activeWorkflow === workflowTypes[i];
+      
+      // Output -> Obsidian
+      edges.push({
+        id: `output-${i}-to-vault`,
+        source: `output-${i}`,
+        target: 'obsidian-vault',
+        type: 'smoothstep',
+        animated: isActiveOutput,
+        style: { 
+          stroke: isActiveOutput ? workflow?.color : 'hsl(215 25% 27%)',
+          strokeWidth: isActiveOutput ? 2 : 1,
+          opacity: isActiveOutput ? 0.7 : 0.2
+        },
+      });
+
+      // Output -> Claude
+      edges.push({
+        id: `output-${i}-to-claude`,
+        source: `output-${i}`,
+        target: 'claude-center',
+        type: 'smoothstep',
+        animated: isActiveOutput,
+        style: { 
+          stroke: isActiveOutput ? workflow?.color : 'hsl(215 25% 27%)',
+          strokeWidth: isActiveOutput ? 2 : 1,
+          opacity: isActiveOutput ? 0.7 : 0.2
+        },
+      });
+    }
+
     return edges;
-  }, [isPreview]);
+  }, [isPreview, activeWorkflow]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
