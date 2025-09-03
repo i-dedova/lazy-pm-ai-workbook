@@ -156,7 +156,9 @@ export const RadialFlowFull = () => {
   const onConnect = useCallback(() => {}, []);
 
   return (
-    <div className="w-full h-full md:h-[600px] bg-gradient-surface rounded-lg overflow-hidden relative">
+    <div className={`w-full h-full md:h-[600px] bg-gradient-surface rounded-lg overflow-hidden relative ${
+      isMobile ? 'mx-4' : ''
+    }`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -168,7 +170,11 @@ export const RadialFlowFull = () => {
         attributionPosition="bottom-right"
         proOptions={{ hideAttribution: true }}
         className="rounded-lg"
-        fitViewOptions={{ padding: 0.1 }}
+        fitViewOptions={{ 
+          padding: isMobile ? 0.15 : 0.1,
+          maxZoom: isMobile ? 0.8 : 1.2,
+          minZoom: isMobile ? 0.6 : 0.5
+        }}
       >
         <Background 
           color="hsl(220 13% 91%)" 
