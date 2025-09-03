@@ -14,9 +14,5 @@ export const FlowContainer = ({ isPreview = false, useStatic = false, ...flowPro
     return <FlowPreview {...flowProps} />;
   }
 
-  if (useStatic) {
-    return <FlowStatic {...flowProps} />;
-  }
-
   return <FlowFull {...flowProps} />;
 };

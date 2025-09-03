@@ -14,7 +14,7 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
   const renderDiagram = () => {
     switch (type) {
       case "product-brain":
-        return <RadialFlow isPreview={isPreview} useStatic={!isPreview} />;
+        return <RadialFlow isPreview={isPreview} />;
       case "meeting-memory":
         return <MeetingMemorySVG isPreview={isPreview} />;
       case "tech-bridge":
