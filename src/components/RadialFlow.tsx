@@ -87,29 +87,23 @@ const OutputNode = ({ data }: { data: any }) => {
   return (
     <div 
       onClick={() => data.onClick(data.outputType)}
-      className={`bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-6 shadow-elegant min-w-[280px] cursor-pointer transition-all duration-300 hover:scale-105 ${
-        isActive ? 'border-primary/60 shadow-glow scale-105' : 'hover:border-primary/40'
+      className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant min-w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
+        isActive ? 'border-highlight/60 shadow-glow scale-105' : 'border-highlight/30 hover:border-highlight/50'
       }`}
     >
-      <div className="flex items-center gap-3 mb-4">
-        <div className={`w-4 h-4 rounded-full transition-all duration-300 ${
-          isActive ? 'bg-primary animate-pulse' : 'bg-primary/60'
+      <div className="flex items-center gap-2 mb-3">
+        <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
+          isActive ? 'bg-highlight animate-pulse' : 'bg-highlight/70'
         }`}></div>
-        <h3 className="font-bold text-foreground text-lg">Output</h3>
+        <h3 className="font-semibold text-foreground text-sm">Output</h3>
       </div>
-      <div className="space-y-2">
-        <div className={`text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
-          isActive 
-            ? 'text-foreground bg-primary/20 border border-primary/40 scale-105' 
-            : 'text-muted-foreground bg-secondary/50'
-        }`}>
-          {data.label}
-        </div>
-        <div className={`text-xs font-semibold px-3 py-1 rounded transition-all duration-300 ${
-          isActive ? 'text-primary' : 'text-muted-foreground'
-        }`}>
-          {data.time}
-        </div>
+      <div className={`rounded-lg p-3 transition-all duration-300 ${
+        isActive ? 'bg-highlight/20' : 'bg-highlight/10'
+      }`}>
+        <div className="text-sm font-medium text-foreground">{data.label}</div>
+        <div className={`text-xs font-semibold transition-all duration-300 ${
+          isActive ? 'text-highlight' : 'text-highlight/80'
+        }`}>{data.time}</div>
       </div>
     </div>
   );
