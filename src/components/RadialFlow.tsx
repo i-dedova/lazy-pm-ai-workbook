@@ -298,7 +298,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   if (isPreview) {
     return (
-      <div className="w-full h-[180px] flex items-end justify-center bg-gradient-surface overflow-hidden">
+      <div className="w-full h-[180px] flex items-end justify-center bg-gradient-surface overflow-hidden pt-8">
         <ReactFlow
           nodes={nodes}
           edges={edges}
