@@ -24,7 +24,7 @@ export const FlowPreview = ({
       type: 'list',
       position: { x: isMobile ? 10 : 50, y: 50 },
       data: {
-        title: 'Knowledge Base',
+        title: 'Obsidian Vault',
         sections: allLeftSections.slice(0, 3).map(section => ({
           name: section,
           active: false
@@ -38,7 +38,7 @@ export const FlowPreview = ({
       type: 'center',
       position: { x: isMobile ? 200 : 300, y: 50 },
       data: {
-        title: 'AI Engine',
+        title: 'Claude Code',
         tasks: allCenterTasks.slice(0, 2).map(task => ({
           name: task,
           active: false

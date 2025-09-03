@@ -60,7 +60,7 @@ export const FlowFull = ({
       type: 'list',
       position: { x: leftX, y: leftY },
       data: {
-        title: 'Knowledge Base',
+        title: 'Obsidian Vault',
         sections: allLeftSections.map(section => ({
           name: section,
           active: workflow?.leftSections.includes(section) || false
@@ -78,7 +78,7 @@ export const FlowFull = ({
       type: 'center',
       position: { x: centerX, y: centerY },
       data: {
-        title: 'AI Engine',
+        title: 'Claude Code',
         tasks: allCenterTasks.map(task => ({
           name: task,
           active: workflow?.centerTasks.includes(task) || false
