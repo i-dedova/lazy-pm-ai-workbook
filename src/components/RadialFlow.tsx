@@ -196,7 +196,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
     // Obsidian Vault - Overlapped positioning for mobile collapsed preview
     const isMobileCollapsed = isPreview && isMobile;
     const obsidianX = isPreview ? (isMobileCollapsed ? 20 : 50) : (isMobile ? 10 : 50);
-    const obsidianY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
+    const obsidianY = isPreview ? (isMobileCollapsed ? 100 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
@@ -213,7 +213,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
     // Claude Code - Overlapped positioning for mobile collapsed preview
     const claudeX = isPreview ? (isMobileCollapsed ? 180 : 280) : (isMobile ? 250 : 400);
-    const claudeY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
+    const claudeY = isPreview ? (isMobileCollapsed ? 100 : 120) : 200;
     nodes.push({
       id: 'claude-center',
       type: 'claude',
@@ -300,7 +300,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   if (isPreview) {
     return (
-      <div className="w-full h-[180px] flex items-center justify-center bg-gradient-surface overflow-visible relative">
+      <div className="w-full h-[180px] flex items-center justify-center bg-gradient-surface overflow-hidden">
         <ReactFlow
           nodes={nodes}
           edges={edges}
