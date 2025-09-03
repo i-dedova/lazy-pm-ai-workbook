@@ -168,10 +168,10 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
       ];
 
-      // Align outputs side by side with closer spacing on mobile
+      // Different spacing for mobile vs desktop/tablet in expanded view
       const baseY = 30;
-      const spacing = 150; // Even closer spacing for mobile
-      const startX = 20; // Start closer to edge on mobile
+      const spacing = window.innerWidth < 768 ? 150 : 220; // Tight on mobile, proper spacing on desktop/tablet
+      const startX = 20;
 
       outputs.forEach((output, idx) => {
         const isActiveOutput = activeWorkflow === output.outputType;
