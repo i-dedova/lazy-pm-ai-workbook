@@ -181,11 +181,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Left, positioned below outputs with gap
+    // Obsidian Vault - Left, positioned lower in preview mode
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
-      position: { x: 50, y: isPreview ? 100 : 200 },
+      position: { x: 50, y: isPreview ? 180 : 200 },
       data: {
         sections: allVaultSections.map(section => ({
           name: section,
@@ -195,11 +195,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Right, positioned below outputs with gap  
+    // Claude Code - Right, positioned lower in preview mode  
     nodes.push({
       id: 'claude-center',
       type: 'claude',
-      position: { x: 400, y: isPreview ? 100 : 200 },
+      position: { x: 400, y: isPreview ? 180 : 200 },
       data: {
         tasks: allClaudeTasks.map(task => ({
           name: task,
@@ -281,12 +281,12 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   if (isPreview) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-surface">
+      <div className="w-full h-full flex items-end justify-center bg-gradient-surface pb-8">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypes}
-          fitView
+          fitView={false}
           attributionPosition="bottom-right"
           proOptions={{ hideAttribution: true }}
           nodesDraggable={false}
@@ -296,6 +296,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
           panOnScroll={false}
           zoomOnPinch={false}
           panOnDrag={false}
+          defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
         >
           <Background color="hsl(220 13% 91%)" size={1} />
         </ReactFlow>
