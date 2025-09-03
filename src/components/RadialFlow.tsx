@@ -191,10 +191,10 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Position to show only top half for mobile collapsed preview
+    // Obsidian Vault - Overlapped positioning for mobile collapsed preview
     const isMobileCollapsed = isPreview && window.innerWidth < 768;
-    const obsidianX = isPreview ? (isMobileCollapsed ? 20 : 50) : (window.innerWidth < 768 ? 10 : 50);
-    const obsidianY = isPreview ? (isMobileCollapsed ? 120 : 120) : 200;
+    const obsidianX = isPreview ? (isMobileCollapsed ? 10 : 50) : (window.innerWidth < 768 ? 10 : 50);
+    const obsidianY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
@@ -209,9 +209,9 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Position to show only top half for mobile collapsed preview
-    const claudeX = isPreview ? (isMobileCollapsed ? 160 : 280) : (window.innerWidth < 768 ? 250 : 400);
-    const claudeY = isPreview ? (isMobileCollapsed ? 120 : 120) : 200;
+    // Claude Code - Overlapped positioning for mobile collapsed preview
+    const claudeX = isPreview ? (isMobileCollapsed ? 130 : 280) : (window.innerWidth < 768 ? 250 : 400);
+    const claudeY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
     nodes.push({
       id: 'claude-center',
       type: 'claude',
@@ -298,12 +298,12 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   if (isPreview) {
     return (
-      <div className="w-full h-[180px] bg-gradient-surface overflow-hidden relative">
+      <div className="w-full h-[180px] flex items-end justify-center bg-gradient-surface overflow-hidden">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypes}
-          fitView={false}
+          fitView
           attributionPosition="bottom-right"
           proOptions={{ hideAttribution: true }}
           nodesDraggable={false}
@@ -313,7 +313,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
           panOnScroll={false}
           zoomOnPinch={false}
           panOnDrag={false}
-          defaultViewport={{ x: 0, y: 0, zoom: 1 }}
+          fitViewOptions={{ padding: 0.1 }}
         >
           <Background color="hsl(220 13% 91%)" size={1} />
         </ReactFlow>
