@@ -178,28 +178,6 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       }
     ];
 
-    // Add output nodes if not preview - moved to top
-    if (!isPreview) {
-      const outputs = [
-        { outputType: 'answers', label: 'Product Answers', time: '~1 min' },
-        { outputType: 'artifacts', label: 'Artifacts', time: '~30 mins' },
-        { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
-      ];
-
-      outputs.forEach((output, idx) => {
-        nodes.push({
-          id: `output-${idx}`,
-          type: 'output',
-          position: { x: 150 + idx * 220, y: 20 },
-          data: { 
-            ...output,
-            isActive: activeWorkflow === output.outputType,
-            onClick: handleOutputClick
-          },
-          draggable: true,
-        });
-      });
-    }
 
     return nodes;
   }, [isPreview, activeWorkflow]);
@@ -238,24 +216,6 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       },
     });
 
-    // Claude -> Outputs
-    for (let i = 0; i < 3; i++) {
-      const outputTypes = ['answers', 'artifacts', 'reports'];
-      const isActiveOutput = activeWorkflow === outputTypes[i];
-      
-      edges.push({
-        id: `claude-to-output-${i}`,
-        source: 'claude-center',
-        target: `output-${i}`,
-        type: 'smoothstep',
-        animated: isActiveOutput,
-        style: { 
-          stroke: isActiveOutput ? workflow?.color : 'hsl(215 25% 27%)',
-          strokeWidth: isActiveOutput ? 3 : 1,
-          opacity: isActiveOutput ? 0.8 : 0.3
-        },
-      });
-    }
 
     return edges;
   }, [isPreview, activeWorkflow]);
