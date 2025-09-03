@@ -221,9 +221,10 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Different spacing for mobile vs desktop in expanded view
-    const obsidianX = isPreview ? 50 : (window.innerWidth < 768 ? 10 : 50);
-    const obsidianY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
+    // Obsidian Vault - Better positioning for mobile collapsed preview
+    const isMobileCollapsed = isPreview && window.innerWidth < 768;
+    const obsidianX = isPreview ? (isMobileCollapsed ? 20 : 50) : (window.innerWidth < 768 ? 10 : 50);
+    const obsidianY = isPreview ? (isMobileCollapsed ? 60 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
@@ -238,9 +239,9 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Different spacing for mobile vs desktop in expanded view
-    const claudeX = isPreview ? (window.innerWidth < 768 ? 220 : 280) : (window.innerWidth < 768 ? 250 : 400);
-    const claudeY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
+    // Claude Code - Better positioning for mobile collapsed preview
+    const claudeX = isPreview ? (isMobileCollapsed ? 200 : 280) : (window.innerWidth < 768 ? 250 : 400);
+    const claudeY = isPreview ? (isMobileCollapsed ? 60 : 120) : 200;
     nodes.push({
       id: 'claude-center',
       type: 'claude',
