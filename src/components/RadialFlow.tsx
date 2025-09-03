@@ -10,28 +10,27 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
-// Workflow scenarios for output interactions
+// Workflow scenarios triggered by output clicks
 const WORKFLOWS = {
-  analysis: {
-    name: 'Data Analysis',
-    vaultSections: ['Strategy & KPIs', 'User Research'],
-    claudeTasks: ['Cross-link', 'Review KPIs'],
-    color: 'hsl(220 50% 55%)'
+  answers: {
+    name: 'Quick Product Answers',
+    vaultSections: ['Strategy & KPIs', 'Feature Context', 'Competitor Knowledge'],
+    claudeTasks: ['Cross-link', 'Scan & correct'],
+    color: 'hsl(150 40% 50%)'
   },
-  generation: {
-    name: 'Content Generation', 
-    vaultSections: ['Feature Context', 'Templates & Workflows'],
-    claudeTasks: ['Generate', 'Workflows'],
-    color: 'hsl(280 45% 60%)'
+  artifacts: {
+    name: 'Generate Artifacts', 
+    vaultSections: ['Feature Context', 'Templates & Workflows', 'User Research'],
+    claudeTasks: ['Generate', 'Workflows', 'Brainstorm'],
+    color: 'hsl(250 30% 60%)'
   },
-  optimization: {
-    name: 'Process Optimization',
-    vaultSections: ['Competitor Knowledge', 'Claude Config'],
-    claudeTasks: ['Scan & correct', 'Brainstorm'],
-    color: 'hsl(160 50% 50%)'
+  reports: {
+    name: 'Performance Reports',
+    vaultSections: ['Strategy & KPIs', 'Templates & Workflows'],
+    claudeTasks: ['Review KPIs', 'Scan & correct'],
+    color: 'hsl(30 70% 55%)'
   }
 };
-
 
 // Custom Node Components
 const ObsidianNode = ({ data }: { data: any }) => {
@@ -82,22 +81,29 @@ const ClaudeNode = ({ data }: { data: any }) => {
   );
 };
 
-const OutputContainer = ({ data }: { data: any }) => {
+const OutputNode = ({ data }: { data: any }) => {
+  const isActive = data.isActive;
+  
   return (
     <div 
-      onClick={() => data.onClick(data.workflowType)}
-      className={`bg-card/80 backdrop-blur-sm border border-secondary/30 rounded-xl p-5 shadow-elegant min-w-[240px] cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
-        data.isActive ? 'border-accent/50 shadow-glow bg-gradient-subtle' : 'hover:border-secondary/50'
+      onClick={() => data.onClick(data.outputType)}
+      className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant min-w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
+        isActive ? 'border-highlight/60 shadow-glow scale-105' : 'border-highlight/30 hover:border-highlight/50'
       }`}
     >
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
-          data.isActive ? 'bg-accent animate-pulse' : 'bg-secondary'
+          isActive ? 'bg-highlight animate-pulse' : 'bg-highlight/70'
         }`}></div>
-        <h3 className="font-semibold text-foreground text-base">{data.name}</h3>
+        <h3 className="font-semibold text-foreground text-sm">Output</h3>
       </div>
-      <div className="text-xs text-muted-foreground opacity-75">
-        Click to activate workflow
+      <div className={`rounded-lg p-3 transition-all duration-300 ${
+        isActive ? 'bg-highlight/20' : 'bg-highlight/10'
+      }`}>
+        <div className="text-sm font-medium text-foreground">{data.label}</div>
+        <div className={`text-xs font-semibold transition-all duration-300 ${
+          isActive ? 'text-highlight' : 'text-highlight/80'
+        }`}>{data.time}</div>
       </div>
     </div>
   );
@@ -106,7 +112,7 @@ const OutputContainer = ({ data }: { data: any }) => {
 const nodeTypes = {
   obsidian: ObsidianNode,
   claude: ClaudeNode,
-  output: OutputContainer,
+  output: OutputNode,
 };
 
 interface RadialFlowProps {
@@ -114,14 +120,14 @@ interface RadialFlowProps {
 }
 
 export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
-  const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>(null);
+  const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>(isPreview ? null : 'answers');
 
-  const handleWorkflowClick = (workflowType: string) => {
-    const workflowKey = workflowType as keyof typeof WORKFLOWS;
+  const handleOutputClick = (outputType: string) => {
+    const workflowKey = outputType as keyof typeof WORKFLOWS;
     setActiveWorkflow(activeWorkflow === workflowKey ? null : workflowKey);
   };
 
-  // Create nodes with dynamic animations based on active workflow
+  // Create nodes in linear horizontal layout: Vault <-> Claude -> Outputs
   const initialNodes: Node[] = useMemo(() => {
     const workflow = activeWorkflow ? WORKFLOWS[activeWorkflow] : null;
     
@@ -172,23 +178,23 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       }
     ];
 
-    // Add output containers if not preview
+    // Add output nodes if not preview - moved to top
     if (!isPreview) {
       const outputs = [
-        { workflowType: 'analysis', name: 'Data Analysis' },
-        { workflowType: 'generation', name: 'Content Generation' },
-        { workflowType: 'optimization', name: 'Process Optimization' }
+        { outputType: 'answers', label: 'Product Answers', time: '~1 min' },
+        { outputType: 'artifacts', label: 'Artifacts', time: '~30 mins' },
+        { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
       ];
 
       outputs.forEach((output, idx) => {
         nodes.push({
           id: `output-${idx}`,
           type: 'output',
-          position: { x: 120 + idx * 260, y: 20 },
+          position: { x: 150 + idx * 220, y: 20 },
           data: { 
             ...output,
-            isActive: activeWorkflow === output.workflowType,
-            onClick: handleWorkflowClick
+            isActive: activeWorkflow === output.outputType,
+            onClick: handleOutputClick
           },
           draggable: true,
         });
@@ -232,36 +238,21 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       },
     });
 
-    // Connect output containers to both Obsidian and Claude
+    // Claude -> Outputs
     for (let i = 0; i < 3; i++) {
-      const workflowTypes = ['analysis', 'generation', 'optimization'];
-      const isActiveOutput = activeWorkflow === workflowTypes[i];
+      const outputTypes = ['answers', 'artifacts', 'reports'];
+      const isActiveOutput = activeWorkflow === outputTypes[i];
       
-      // Output -> Obsidian
       edges.push({
-        id: `output-${i}-to-vault`,
-        source: `output-${i}`,
-        target: 'obsidian-vault',
+        id: `claude-to-output-${i}`,
+        source: 'claude-center',
+        target: `output-${i}`,
         type: 'smoothstep',
         animated: isActiveOutput,
         style: { 
           stroke: isActiveOutput ? workflow?.color : 'hsl(215 25% 27%)',
-          strokeWidth: isActiveOutput ? 2 : 1,
-          opacity: isActiveOutput ? 0.7 : 0.2
-        },
-      });
-
-      // Output -> Claude
-      edges.push({
-        id: `output-${i}-to-claude`,
-        source: `output-${i}`,
-        target: 'claude-center',
-        type: 'smoothstep',
-        animated: isActiveOutput,
-        style: { 
-          stroke: isActiveOutput ? workflow?.color : 'hsl(215 25% 27%)',
-          strokeWidth: isActiveOutput ? 2 : 1,
-          opacity: isActiveOutput ? 0.7 : 0.2
+          strokeWidth: isActiveOutput ? 3 : 1,
+          opacity: isActiveOutput ? 0.8 : 0.3
         },
       });
     }
@@ -272,7 +263,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  // Update nodes and edges when component re-renders
+  // Update nodes when activeWorkflow changes
   React.useEffect(() => {
     setNodes(initialNodes);
     setEdges(initialEdges);
