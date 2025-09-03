@@ -11,11 +11,11 @@ export const RadialFlowPreview = () => {
   const nodes: Node[] = useMemo(() => {
     const nodes: Node[] = [];
 
-    // Responsive positioning for preview
-    const obsidianX = isMobile ? 20 : 50;
-    const obsidianY = isMobile ? 20 : 120;
-    const claudeX = isMobile ? 180 : 280;
-    const claudeY = isMobile ? 20 : 120;
+    // Responsive positioning for preview - show top halves properly
+    const obsidianX = isMobile ? 30 : 50;
+    const obsidianY = isMobile ? 60 : 80;  // Lower positioning to show more content
+    const claudeX = isMobile ? 200 : 300;
+    const claudeY = isMobile ? 60 : 80;
 
     // Obsidian Vault
     nodes.push({
@@ -52,14 +52,14 @@ export const RadialFlowPreview = () => {
 
   return (
     <div className={`w-full bg-gradient-surface overflow-hidden ${
-      isMobile ? 'h-[120px]' : 'h-[180px]'
+      isMobile ? 'h-[160px]' : 'h-[200px]'  // Increased height for better visibility
     }`}>
       <ReactFlow
         nodes={nodes}
         edges={[]}
         nodeTypes={nodeTypes}
         fitView={false}
-        defaultViewport={isMobile ? { x: -20, y: 0, zoom: 0.6 } : { x: 0, y: 0, zoom: 1 }}
+        defaultViewport={isMobile ? { x: -30, y: -20, zoom: 0.7 } : { x: -20, y: -40, zoom: 0.8 }}
         attributionPosition="bottom-right"
         proOptions={{ hideAttribution: true }}
         nodesDraggable={false}
