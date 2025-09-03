@@ -35,14 +35,14 @@ const WORKFLOWS = {
 // Custom Node Components
 const ObsidianNode = ({ data }: { data: any }) => {
   return (
-    <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-4 shadow-elegant min-w-[220px] md:min-w-[280px]">
-      <div className="flex items-center gap-3 mb-3">
+    <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-6 shadow-elegant min-w-[220px] md:min-w-[280px]">
+      <div className="flex items-center gap-3 mb-4">
         <div className="w-4 h-4 rounded-full bg-primary/60"></div>
-        <h3 className="font-bold text-foreground text-base md:text-lg">Obsidian Vault</h3>
+        <h3 className="font-bold text-foreground text-lg">Obsidian Vault</h3>
       </div>
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         {data.sections?.map((section: { name: string; active: boolean }, idx: number) => (
-          <div key={idx} className={`flex items-center gap-2 text-xs md:text-sm rounded-lg px-2 md:px-3 py-1.5 md:py-2 transition-all duration-300 ${
+          <div key={idx} className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
             section.active 
               ? 'text-foreground bg-primary/20 border border-primary/40 scale-105' 
               : 'text-muted-foreground bg-secondary/50'
@@ -60,15 +60,15 @@ const ObsidianNode = ({ data }: { data: any }) => {
 
 const ClaudeNode = ({ data }: { data: any }) => {
   return (
-    <div className="bg-gradient-accent backdrop-blur-sm rounded-2xl p-4 shadow-glow min-w-[220px] md:min-w-[280px] text-center relative">
-      <div className="flex items-center justify-center gap-3 mb-3">
+    <div className="bg-gradient-accent backdrop-blur-sm rounded-2xl p-6 shadow-glow min-w-[220px] md:min-w-[280px] text-center relative">
+      <div className="flex items-center justify-center gap-3 mb-4">
         <div className="w-4 h-4 rounded-full bg-accent-foreground/80"></div>
-        <h3 className="font-bold text-accent-foreground text-base md:text-lg">Claude Code</h3>
+        <h3 className="font-bold text-accent-foreground text-lg">Claude Code</h3>
       </div>
       
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         {data.tasks?.map((task: { name: string; active: boolean }, idx: number) => (
-          <div key={idx} className={`flex items-center gap-2 text-xs md:text-sm rounded-lg px-2 md:px-3 py-1.5 md:py-2 transition-all duration-300 ${
+          <div key={idx} className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
             task.active 
               ? 'text-accent-foreground bg-accent-foreground/30 scale-105 shadow-md' 
               : 'text-accent-foreground/80 bg-accent-foreground/10'
@@ -90,9 +90,13 @@ const OutputNode = ({ data }: { data: any }) => {
   return (
     <div 
       onClick={() => data.onClick(data.outputType)}
-      className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant min-w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
-        isActive ? 'border-highlight/60 shadow-glow scale-105' : 'border-highlight/30 hover:border-highlight/50'
+      className={`bg-card/80 backdrop-blur-sm border rounded-xl p-4 shadow-elegant w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 ${
+        isActive ? 'border-highlight/60 shadow-glow scale-105 relative z-50' : 'border-highlight/30 hover:border-highlight/50'
       }`}
+      style={{
+        transform: isActive ? 'scale(1.05) translateY(-5px)' : undefined,
+        boxShadow: isActive ? '0 20px 40px rgba(0,0,0,0.15)' : undefined
+      }}
     >
       <div className="flex items-center gap-2 mb-3">
         <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
@@ -162,21 +166,25 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
       ];
 
-      // Center outputs horizontally above the main nodes
-      const totalOutputWidth = outputs.length * 220 - 20; // 220px per output minus gap
-      const startX = (760 - totalOutputWidth) / 2; // Center in 760px container
+      // Center outputs horizontally above the main nodes - stack side by side
+      const totalOutputWidth = outputs.length * 200 + (outputs.length - 1) * 10; // 200px per output plus 10px gaps
+      const startX = (760 - totalOutputWidth) / 2; // Center in container
 
       outputs.forEach((output, idx) => {
         nodes.push({
           id: `output-${idx}`,
           type: 'output',
-          position: { x: startX + idx * 220, y: 30 },
+          position: { x: startX + idx * 210, y: 30 }, // 210px includes gap
           data: { 
             ...output,
             isActive: activeWorkflow === output.outputType,
             onClick: handleOutputClick
           },
           draggable: true,
+          style: {
+            zIndex: activeWorkflow === output.outputType ? 1000 : 1,
+            position: 'relative'
+          }
         });
       });
     }
