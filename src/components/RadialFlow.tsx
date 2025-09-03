@@ -40,7 +40,7 @@ const ObsidianNode = ({ data }: { data: any }) => {
         <div className="w-4 h-4 rounded-full bg-primary/60"></div>
         <h3 className="font-bold text-foreground text-lg">Obsidian Vault</h3>
       </div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="space-y-2">
         {data.sections?.map((section: { name: string; active: boolean }, idx: number) => (
           <div key={idx} className={`text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
             section.active 
@@ -63,7 +63,7 @@ const ClaudeNode = ({ data }: { data: any }) => {
         <h3 className="font-bold text-accent-foreground text-lg">Claude Code</h3>
       </div>
       
-      <div className="grid grid-cols-2 gap-3">
+      <div className="space-y-2">
         {data.tasks?.map((task: { name: string; active: boolean }, idx: number) => (
           <div key={idx} className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
             task.active 
