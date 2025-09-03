@@ -9,12 +9,14 @@ import {
 
 interface RadialFlowProps {
   isPreview?: boolean;
+  useStatic?: boolean;
 }
 
-export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
+export const RadialFlow = ({ isPreview = false, useStatic = false }: RadialFlowProps) => {
   return (
     <FlowContainer
       isPreview={isPreview}
+      useStatic={useStatic}
       workflowData={PRODUCT_BRAIN_WORKFLOWS}
       allLeftSections={PRODUCT_BRAIN_LEFT_SECTIONS}
       allCenterTasks={PRODUCT_BRAIN_CENTER_TASKS}
