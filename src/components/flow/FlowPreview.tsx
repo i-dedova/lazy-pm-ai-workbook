@@ -22,7 +22,7 @@ export const FlowPreview = ({
     {
       id: 'left-node',
       type: 'list',
-      position: { x: isMobile ? 5 : 20, y: isMobile ? 10 : 30 },
+      position: { x: isMobile ? 10 : 30, y: isMobile ? 20 : 40 },
       data: {
         title: 'Obsidian Vault',
         sections: allLeftSections.slice(0, 2).map(section => ({
@@ -37,7 +37,7 @@ export const FlowPreview = ({
     {
       id: 'center-node',
       type: 'center',
-      position: { x: isMobile ? 120 : 200, y: isMobile ? 10 : 30 },
+      position: { x: isMobile ? 140 : 220, y: isMobile ? 20 : 40 },
       data: {
         title: 'Claude Code',
         tasks: allCenterTasks.slice(0, 2).map(task => ({
@@ -51,7 +51,7 @@ export const FlowPreview = ({
     {
       id: 'output-node',
       type: 'output',
-      position: { x: isMobile ? 240 : 380, y: isMobile ? 40 : 60 },
+      position: { x: isMobile ? 270 : 420, y: isMobile ? 50 : 70 },
       data: {
         ...outputs[0],
         isActive: false,
@@ -81,7 +81,7 @@ export const FlowPreview = ({
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-surface rounded-lg overflow-hidden">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg overflow-hidden">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -93,9 +93,9 @@ export const FlowPreview = ({
         nodesConnectable={false}
         elementsSelectable={false}
         fitViewOptions={{ 
-          padding: isMobile ? 0.2 : 0.3,
-          maxZoom: isMobile ? 0.7 : 0.8,
-          minZoom: 0.4
+          padding: isMobile ? 0.15 : 0.2,
+          maxZoom: isMobile ? 0.8 : 1.0,
+          minZoom: 0.5
         }}
       >
         <Background 
