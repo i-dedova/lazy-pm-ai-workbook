@@ -191,11 +191,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Left, closer spacing on mobile
+    // Obsidian Vault - Left, closer spacing on mobile, proper spacing on desktop
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
-      position: { x: isPreview ? 50 : 10, y: isPreview ? 120 : 200 },
+      position: { x: isPreview ? 50 : 50, y: isPreview ? 120 : 200 },
       data: {
         sections: allVaultSections.map(section => ({
           name: section,
@@ -205,11 +205,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Right, closer to Obsidian on mobile  
+    // Claude Code - Right, closer to Obsidian on mobile, proper spacing on desktop  
     nodes.push({
       id: 'claude-center',
       type: 'claude',
-      position: { x: isPreview ? 280 : 250, y: isPreview ? 120 : 200 },
+      position: { x: isPreview ? 280 : 400, y: isPreview ? 120 : 200 },
       data: {
         tasks: allClaudeTasks.map(task => ({
           name: task,
