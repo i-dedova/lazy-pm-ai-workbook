@@ -193,8 +193,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
     // Obsidian Vault - Overlapped positioning for mobile collapsed preview
     const isMobileCollapsed = isPreview && window.innerWidth < 768;
-    const obsidianX = isPreview ? (isMobileCollapsed ? 10 : 50) : (window.innerWidth < 768 ? 10 : 50);
-    const obsidianY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
+    const obsidianX = isPreview ? (isMobileCollapsed ? 50 : 50) : (window.innerWidth < 768 ? 10 : 50);
+    const obsidianY = isPreview ? (isMobileCollapsed ? 120 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
@@ -210,8 +210,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
     });
 
     // Claude Code - Overlapped positioning for mobile collapsed preview
-    const claudeX = isPreview ? (isMobileCollapsed ? 130 : 280) : (window.innerWidth < 768 ? 250 : 400);
-    const claudeY = isPreview ? (isMobileCollapsed ? 80 : 120) : 200;
+    const claudeX = isPreview ? (isMobileCollapsed ? 170 : 280) : (window.innerWidth < 768 ? 250 : 400);
+    const claudeY = isPreview ? (isMobileCollapsed ? 120 : 120) : 200;
     nodes.push({
       id: 'claude-center',
       type: 'claude',

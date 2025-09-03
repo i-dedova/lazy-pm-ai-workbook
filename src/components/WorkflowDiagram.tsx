@@ -31,7 +31,11 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
       
       {/* Expansion hint - subtle text only */}
       {isPreview && (
-        <div className="absolute bottom-1 right-2 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+        <div className={`absolute pointer-events-none ${
+          window.innerWidth < 768 
+            ? 'top-1 right-2' 
+            : 'bottom-1 right-2 lg:opacity-0 lg:group-hover:opacity-100'
+        } transition-opacity duration-200`}>
           <div className="flex items-center space-x-1 text-xs text-gray-500">
             <span>Detailed View</span>
             <Expand className="w-3 h-3" />
