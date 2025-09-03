@@ -168,10 +168,10 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
       ];
 
-      // Align outputs side by side with proper overlay stacking
+      // Align outputs side by side with closer spacing on mobile
       const baseY = 30;
-      const spacing = 220;
-      const startX = 50;
+      const spacing = 180; // Closer spacing for mobile
+      const startX = 20; // Start closer to edge on mobile
 
       outputs.forEach((output, idx) => {
         const isActiveOutput = activeWorkflow === output.outputType;
@@ -191,11 +191,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Left, adjusted for mobile spacing
+    // Obsidian Vault - Left, closer spacing on mobile
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
-      position: { x: isPreview ? 50 : 30, y: isPreview ? 120 : 200 },
+      position: { x: isPreview ? 50 : 10, y: isPreview ? 120 : 200 },
       data: {
         sections: allVaultSections.map(section => ({
           name: section,
@@ -205,11 +205,11 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Right, adjusted for mobile spacing  
+    // Claude Code - Right, closer to Obsidian on mobile  
     nodes.push({
       id: 'claude-center',
       type: 'claude',
-      position: { x: isPreview ? 280 : 370, y: isPreview ? 120 : 200 },
+      position: { x: isPreview ? 280 : 250, y: isPreview ? 120 : 200 },
       data: {
         tasks: allClaudeTasks.map(task => ({
           name: task,
