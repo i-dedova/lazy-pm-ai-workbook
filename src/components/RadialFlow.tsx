@@ -170,8 +170,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
       // Different spacing for mobile vs desktop/tablet in expanded view
       const baseY = 30;
-      const spacing = window.innerWidth < 768 ? 130 : 220; // Tighter on mobile to fit in padded dialog
-      const startX = window.innerWidth < 768 ? 10 : 20;
+      const spacing = window.innerWidth < 768 ? 150 : 220; // Tight on mobile, proper spacing on desktop/tablet
+      const startX = 20;
 
       outputs.forEach((output, idx) => {
         const isActiveOutput = activeWorkflow === output.outputType;
@@ -191,8 +191,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Adjusted for mobile dialog padding
-    const obsidianX = isPreview ? 50 : (window.innerWidth < 768 ? 5 : 50);
+    // Obsidian Vault - Different spacing for mobile vs desktop in expanded view
+    const obsidianX = isPreview ? 50 : (window.innerWidth < 768 ? 10 : 50);
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
@@ -206,8 +206,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       draggable: !isPreview,
     });
 
-    // Claude Code - Adjusted for mobile dialog padding
-    const claudeX = isPreview ? 280 : (window.innerWidth < 768 ? 230 : 400);
+    // Claude Code - Different spacing for mobile vs desktop in expanded view
+    const claudeX = isPreview ? 280 : (window.innerWidth < 768 ? 250 : 400);
     nodes.push({
       id: 'claude-center',
       type: 'claude',
