@@ -29,10 +29,10 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
     <div className="w-full h-full flex items-center justify-center bg-gray-50 relative group">
       {renderDiagram()}
       
-      {/* Expansion hint - positioned in top right corner */}
+      {/* Expansion hint - positioned in top right corner with more margin */}
       {isPreview && (
-        <div className="absolute top-2 right-2 pointer-events-none">
-          <div className="flex items-center space-x-1 text-xs text-gray-500 bg-white/80 backdrop-blur-sm px-2 py-1 rounded-md shadow-sm">
+        <div className="absolute top-3 right-3 pointer-events-none z-10">
+          <div className="flex items-center space-x-1 text-xs text-gray-500 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm border border-gray-200/50">
             <span>Detailed View</span>
             <Expand className="w-3 h-3" />
           </div>
