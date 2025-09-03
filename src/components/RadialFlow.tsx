@@ -34,15 +34,28 @@ const WORKFLOWS = {
 
 // Custom Node Components
 const ObsidianNode = ({ data }: { data: any }) => {
+  const isMobile = window.innerWidth < 768;
+  const isCollapsed = data.isPreview;
+  
   return (
-    <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-6 shadow-elegant min-w-[220px] md:min-w-[280px]">
+    <div className={`bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl shadow-elegant ${
+      isCollapsed && isMobile 
+        ? 'p-3 min-w-[180px]' // Smaller mobile collapsed
+        : isCollapsed 
+        ? 'p-4 min-w-[220px]' // Desktop collapsed
+        : 'p-6 min-w-[220px] md:min-w-[280px]' // Full expanded
+    }`}>
       <div className="flex items-center gap-3 mb-4">
         <div className="w-4 h-4 rounded-full bg-primary/60"></div>
-        <h3 className="font-bold text-foreground text-lg">Obsidian Vault</h3>
+        <h3 className={`font-bold text-foreground ${isCollapsed && isMobile ? 'text-sm' : 'text-lg'}`}>
+          Obsidian Vault
+        </h3>
       </div>
       <div className="space-y-2">
-        {data.sections?.map((section: { name: string; active: boolean }, idx: number) => (
-          <div key={idx} className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
+        {data.sections?.slice(0, isCollapsed && isMobile ? 3 : data.sections.length).map((section: { name: string; active: boolean }, idx: number) => (
+          <div key={idx} className={`flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 ${
+            isCollapsed && isMobile ? 'text-xs' : 'text-sm'
+          } ${
             section.active 
               ? 'text-foreground bg-primary/20 border border-primary/40 scale-105' 
               : 'text-muted-foreground bg-secondary/50'
@@ -50,25 +63,41 @@ const ObsidianNode = ({ data }: { data: any }) => {
             <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
               section.active ? 'bg-primary animate-pulse' : 'bg-primary/60'
             }`}></div>
-            <span className="truncate">{section.name}</span>
+            <span className="truncate">{isCollapsed && isMobile ? section.name.split(' ')[0] : section.name}</span>
           </div>
         ))}
+        {isCollapsed && isMobile && data.sections?.length > 3 && (
+          <div className="text-xs text-muted-foreground px-3">+{data.sections.length - 3} more</div>
+        )}
       </div>
     </div>
   );
 };
 
 const ClaudeNode = ({ data }: { data: any }) => {
+  const isMobile = window.innerWidth < 768;
+  const isCollapsed = data.isPreview;
+  
   return (
-    <div className="bg-gradient-accent backdrop-blur-sm rounded-2xl p-6 shadow-glow min-w-[220px] md:min-w-[280px] text-center relative">
+    <div className={`bg-gradient-accent backdrop-blur-sm rounded-2xl shadow-glow text-center relative ${
+      isCollapsed && isMobile 
+        ? 'p-3 min-w-[180px]' // Smaller mobile collapsed
+        : isCollapsed 
+        ? 'p-4 min-w-[220px]' // Desktop collapsed  
+        : 'p-6 min-w-[220px] md:min-w-[280px]' // Full expanded
+    }`}>
       <div className="flex items-center justify-center gap-3 mb-4">
         <div className="w-4 h-4 rounded-full bg-accent-foreground/80"></div>
-        <h3 className="font-bold text-accent-foreground text-lg">Claude Code</h3>
+        <h3 className={`font-bold text-accent-foreground ${isCollapsed && isMobile ? 'text-sm' : 'text-lg'}`}>
+          Claude Code
+        </h3>
       </div>
       
       <div className="space-y-2">
-        {data.tasks?.map((task: { name: string; active: boolean }, idx: number) => (
-          <div key={idx} className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
+        {data.tasks?.slice(0, isCollapsed && isMobile ? 3 : data.tasks.length).map((task: { name: string; active: boolean }, idx: number) => (
+          <div key={idx} className={`flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 ${
+            isCollapsed && isMobile ? 'text-xs' : 'text-sm'
+          } ${
             task.active 
               ? 'text-accent-foreground bg-accent-foreground/30 scale-105 shadow-md' 
               : 'text-accent-foreground/80 bg-accent-foreground/10'
@@ -76,9 +105,12 @@ const ClaudeNode = ({ data }: { data: any }) => {
             <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
               task.active ? 'bg-accent-foreground animate-pulse' : 'bg-accent-foreground/60'
             }`}></div>
-            <span className="truncate">{task.name}</span>
+            <span className="truncate">{isCollapsed && isMobile ? task.name.split(' ')[0] : task.name}</span>
           </div>
         ))}
+        {isCollapsed && isMobile && data.tasks?.length > 3 && (
+          <div className="text-xs text-accent-foreground/60 px-3">+{data.tasks.length - 3} more</div>
+        )}
       </div>
     </div>
   );
@@ -191,32 +223,36 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       });
     }
 
-    // Obsidian Vault - Adjusted for mobile dialog padding
+    // Obsidian Vault - Mobile gets taller collapsed preview, desktop stays same
+    const obsidianY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
     const obsidianX = isPreview ? 50 : (window.innerWidth < 768 ? 5 : 50);
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
-      position: { x: obsidianX, y: isPreview ? 120 : 200 },
+      position: { x: obsidianX, y: obsidianY },
       data: {
         sections: allVaultSections.map(section => ({
           name: section,
           active: workflow?.vaultSections.includes(section) || false
-        }))
+        })),
+        isPreview
       },
       draggable: !isPreview,
     });
 
-    // Claude Code - Adjusted for mobile dialog padding
+    // Claude Code - Mobile gets taller collapsed preview, desktop stays same
+    const claudeY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
     const claudeX = isPreview ? 280 : (window.innerWidth < 768 ? 230 : 400);
     nodes.push({
       id: 'claude-center',
       type: 'claude',
-      position: { x: claudeX, y: isPreview ? 120 : 200 },
+      position: { x: claudeX, y: claudeY },
       data: {
         tasks: allClaudeTasks.map(task => ({
           name: task,
           active: workflow?.claudeTasks.includes(task) || false
-        }))
+        })),
+        isPreview
       },
       draggable: !isPreview,
     });
