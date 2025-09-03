@@ -28,12 +28,15 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gray-50 relative group">
-      {renderDiagram()}
+    <div className="w-full h-full bg-gray-50 relative">
+      {/* Main diagram area - leaves space for text */}
+      <div className={`w-full ${isPreview ? 'h-[calc(100%-40px)]' : 'h-full'} flex items-center justify-center group`}>
+        {renderDiagram()}
+      </div>
       
-      {/* Expansion hint - positioned in bottom right corner to avoid overlapping */}
+      {/* Expansion hint - in dedicated space below diagram */}
       {isPreview && (
-        <div className={`absolute bottom-4 right-4 z-10 pointer-events-none ${
+        <div className={`absolute bottom-2 right-4 z-10 pointer-events-none ${
           isMobile 
             ? 'opacity-100' 
             : 'opacity-100 md:opacity-0 md:group-hover:opacity-100'
