@@ -42,11 +42,14 @@ const ObsidianNode = ({ data }: { data: any }) => {
       </div>
       <div className="space-y-2">
         {data.sections?.map((section: { name: string; active: boolean }, idx: number) => (
-          <div key={idx} className={`text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
+          <div key={idx} className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 transition-all duration-300 ${
             section.active 
               ? 'text-foreground bg-primary/20 border border-primary/40 scale-105' 
               : 'text-muted-foreground bg-secondary/50'
           }`}>
+            <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              section.active ? 'bg-primary animate-pulse' : 'bg-primary/60'
+            }`}></div>
             {section.name}
           </div>
         ))}
