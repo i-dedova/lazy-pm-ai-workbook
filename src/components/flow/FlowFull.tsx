@@ -10,29 +10,27 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { nodeTypes } from './RadialFlowNodes';
-import { WORKFLOWS, ALL_VAULT_SECTIONS, ALL_CLAUDE_TASKS } from './RadialFlowTypes';
+import { nodeTypes } from './nodes';
+import { FlowProps } from './types';
 
-export const RadialFlowFull = () => {
-  const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>('answers');
+export const FlowFull = ({ 
+  workflowData, 
+  allLeftSections, 
+  allCenterTasks, 
+  outputs 
+}: FlowProps) => {
+  const [activeWorkflow, setActiveWorkflow] = useState<string | null>('answers');
   const isMobile = useIsMobile();
 
   const handleOutputClick = (outputType: string) => {
-    const workflowKey = outputType as keyof typeof WORKFLOWS;
-    setActiveWorkflow(activeWorkflow === workflowKey ? null : workflowKey);
+    setActiveWorkflow(activeWorkflow === outputType ? null : outputType);
   };
 
   const initialNodes: Node[] = useMemo(() => {
-    const workflow = activeWorkflow ? WORKFLOWS[activeWorkflow] : null;
+    const workflow = activeWorkflow ? workflowData[activeWorkflow] : null;
     const nodes: Node[] = [];
 
     // Output nodes - responsive positioning
-    const outputs = [
-      { outputType: 'answers', label: 'Product Answers', time: '~1 min' },
-      { outputType: 'artifacts', label: 'Artifacts', time: '~30 mins' },
-      { outputType: 'reports', label: 'Performance Reports', time: '~60 mins' }
-    ];
-
     const baseY = 30;
     const spacing = isMobile ? 150 : 220;
     const startX = 20;
@@ -54,34 +52,36 @@ export const RadialFlowFull = () => {
       });
     });
 
-    // Obsidian Vault - responsive positioning
-    const obsidianX = isMobile ? 10 : 50;
-    const obsidianY = 200;
+    // Left node - responsive positioning
+    const leftX = isMobile ? 10 : 50;
+    const leftY = 200;
     nodes.push({
-      id: 'obsidian-vault',
-      type: 'obsidian',
-      position: { x: obsidianX, y: obsidianY },
+      id: 'left-node',
+      type: 'list',
+      position: { x: leftX, y: leftY },
       data: {
-        sections: ALL_VAULT_SECTIONS.map(section => ({
+        title: 'Knowledge Base',
+        sections: allLeftSections.map(section => ({
           name: section,
-          active: workflow?.vaultSections.includes(section) || false
+          active: workflow?.leftSections.includes(section) || false
         })),
         isPreview: false
       },
       draggable: true,
     });
 
-    // Claude Code - responsive positioning
-    const claudeX = isMobile ? 250 : 400;
-    const claudeY = 200;
+    // Center node - responsive positioning
+    const centerX = isMobile ? 250 : 400;
+    const centerY = 200;
     nodes.push({
-      id: 'claude-center',
-      type: 'claude',
-      position: { x: claudeX, y: claudeY },
+      id: 'center-node',
+      type: 'center',
+      position: { x: centerX, y: centerY },
       data: {
-        tasks: ALL_CLAUDE_TASKS.map(task => ({
+        title: 'AI Engine',
+        tasks: allCenterTasks.map(task => ({
           name: task,
-          active: workflow?.claudeTasks.includes(task) || false
+          active: workflow?.centerTasks.includes(task) || false
         })),
         isPreview: false
       },
@@ -89,17 +89,17 @@ export const RadialFlowFull = () => {
     });
 
     return nodes;
-  }, [activeWorkflow, isMobile]);
+  }, [activeWorkflow, isMobile, workflowData, allLeftSections, allCenterTasks, outputs]);
 
   const initialEdges: Edge[] = useMemo(() => {
-    const workflow = activeWorkflow ? WORKFLOWS[activeWorkflow] : null;
+    const workflow = activeWorkflow ? workflowData[activeWorkflow] : null;
     const edges: Edge[] = [];
 
-    // Vault <-> Claude (bidirectional collaboration)
+    // Left <-> Center (bidirectional collaboration)
     edges.push({
-      id: 'vault-to-claude',
-      source: 'obsidian-vault',
-      target: 'claude-center',
+      id: 'left-to-center',
+      source: 'left-node',
+      target: 'center-node',
       type: 'smoothstep',
       animated: !!workflow,
       style: { 
@@ -110,9 +110,9 @@ export const RadialFlowFull = () => {
     });
 
     edges.push({
-      id: 'claude-to-vault',
-      source: 'claude-center', 
-      target: 'obsidian-vault',
+      id: 'center-to-left',
+      source: 'center-node', 
+      target: 'left-node',
       type: 'smoothstep',
       animated: !!workflow,
       style: { 
@@ -122,14 +122,13 @@ export const RadialFlowFull = () => {
       },
     });
 
-    // Claude -> Outputs
-    for (let i = 0; i < 3; i++) {
-      const outputTypes = ['answers', 'artifacts', 'reports'];
-      const isActiveOutput = activeWorkflow === outputTypes[i];
+    // Center -> Outputs
+    outputs.forEach((output, i) => {
+      const isActiveOutput = activeWorkflow === output.outputType;
       
       edges.push({
-        id: `claude-to-output-${i}`,
-        source: 'claude-center',
+        id: `center-to-output-${i}`,
+        source: 'center-node',
         target: `output-${i}`,
         type: 'smoothstep',
         animated: isActiveOutput,
@@ -139,10 +138,10 @@ export const RadialFlowFull = () => {
           opacity: isActiveOutput ? 0.8 : 0.3
         },
       });
-    }
+    });
 
     return edges;
-  }, [activeWorkflow]);
+  }, [activeWorkflow, workflowData, outputs]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
