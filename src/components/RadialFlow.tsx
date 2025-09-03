@@ -120,7 +120,7 @@ interface RadialFlowProps {
 }
 
 export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
-  const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>(null);
+  const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>(isPreview ? null : 'answers');
 
   const handleOutputClick = (outputType: string) => {
     const workflowKey = outputType as keyof typeof WORKFLOWS;
@@ -178,7 +178,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
       }
     ];
 
-    // Add output nodes if not preview
+    // Add output nodes if not preview - moved to top
     if (!isPreview) {
       const outputs = [
         { outputType: 'answers', label: 'Product Answers', time: '~1 min' },
@@ -190,7 +190,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
         nodes.push({
           id: `output-${idx}`,
           type: 'output',
-          position: { x: 750, y: 50 + idx * 120 },
+          position: { x: 150 + idx * 220, y: 20 },
           data: { 
             ...output,
             isActive: activeWorkflow === output.outputType,
@@ -297,12 +297,6 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
   return (
     <div className="w-full h-[500px] bg-gradient-surface rounded-lg overflow-hidden relative">
-      {!activeWorkflow && (
-        <div className="absolute top-4 left-4 z-10 bg-card/80 backdrop-blur-sm rounded-lg p-3 border border-border/50">
-          <p className="text-sm text-muted-foreground">Click on any output to see the workflow</p>
-        </div>
-      )}
-      
       <ReactFlow
         nodes={nodes}
         edges={edges}
