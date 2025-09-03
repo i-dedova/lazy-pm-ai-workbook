@@ -34,6 +34,21 @@ const WORKFLOWS = {
 
 // Custom Node Components
 const ObsidianNode = ({ data }: { data: any }) => {
+  const isMobile = window.innerWidth < 768;
+  const isPreview = data.isPreview;
+  
+  // Mobile collapsed preview - just show header
+  if (isPreview && isMobile) {
+    return (
+      <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-3 shadow-elegant min-w-[160px]">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-primary/60"></div>
+          <h3 className="font-semibold text-foreground text-sm">Obsidian Vault</h3>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="bg-card/80 backdrop-blur-sm border border-primary/20 rounded-xl p-6 shadow-elegant min-w-[220px] md:min-w-[280px]">
       <div className="flex items-center gap-3 mb-4">
@@ -59,6 +74,21 @@ const ObsidianNode = ({ data }: { data: any }) => {
 };
 
 const ClaudeNode = ({ data }: { data: any }) => {
+  const isMobile = window.innerWidth < 768;
+  const isPreview = data.isPreview;
+  
+  // Mobile collapsed preview - just show header
+  if (isPreview && isMobile) {
+    return (
+      <div className="bg-gradient-accent backdrop-blur-sm rounded-2xl p-3 shadow-glow min-w-[140px] text-center">
+        <div className="flex items-center justify-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-accent-foreground/80"></div>
+          <h3 className="font-semibold text-accent-foreground text-sm">Claude Code</h3>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="bg-gradient-accent backdrop-blur-sm rounded-2xl p-6 shadow-glow min-w-[220px] md:min-w-[280px] text-center relative">
       <div className="flex items-center justify-center gap-3 mb-4">
@@ -193,30 +223,34 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
     // Obsidian Vault - Different spacing for mobile vs desktop in expanded view
     const obsidianX = isPreview ? 50 : (window.innerWidth < 768 ? 10 : 50);
+    const obsidianY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
       type: 'obsidian',
-      position: { x: obsidianX, y: isPreview ? 120 : 200 },
+      position: { x: obsidianX, y: obsidianY },
       data: {
         sections: allVaultSections.map(section => ({
           name: section,
           active: workflow?.vaultSections.includes(section) || false
-        }))
+        })),
+        isPreview
       },
       draggable: !isPreview,
     });
 
     // Claude Code - Different spacing for mobile vs desktop in expanded view
-    const claudeX = isPreview ? 280 : (window.innerWidth < 768 ? 250 : 400);
+    const claudeX = isPreview ? (window.innerWidth < 768 ? 220 : 280) : (window.innerWidth < 768 ? 250 : 400);
+    const claudeY = isPreview ? (window.innerWidth < 768 ? 80 : 120) : 200;
     nodes.push({
       id: 'claude-center',
       type: 'claude',
-      position: { x: claudeX, y: isPreview ? 120 : 200 },
+      position: { x: claudeX, y: claudeY },
       data: {
         tasks: allClaudeTasks.map(task => ({
           name: task,
           active: workflow?.claudeTasks.includes(task) || false
-        }))
+        })),
+        isPreview
       },
       draggable: !isPreview,
     });
