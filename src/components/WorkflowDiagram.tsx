@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Expand } from "lucide-react";
 import { RadialFlow } from "./RadialFlow";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface WorkflowDiagramProps {
   type: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
@@ -8,6 +9,7 @@ interface WorkflowDiagramProps {
 }
 
 export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProps) => {
+  const isMobile = useIsMobile();
   const renderDiagram = () => {
     switch (type) {
       case "product-brain":
@@ -32,7 +34,7 @@ export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProp
       {/* Expansion hint - subtle text only */}
       {isPreview && (
         <div className={`absolute pointer-events-none ${
-          window.innerWidth < 768 
+          isMobile 
             ? 'top-1 right-2' 
             : 'bottom-1 right-2 lg:opacity-0 lg:group-hover:opacity-100'
         } transition-opacity duration-200`}>

@@ -9,6 +9,7 @@ import {
   Edge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Workflow scenarios triggered by output clicks
 const WORKFLOWS = {
@@ -130,6 +131,7 @@ interface RadialFlowProps {
 
 export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
   const [activeWorkflow, setActiveWorkflow] = useState<keyof typeof WORKFLOWS | null>(isPreview ? null : 'answers');
+  const isMobile = useIsMobile();
 
   const handleOutputClick = (outputType: string) => {
     const workflowKey = outputType as keyof typeof WORKFLOWS;
@@ -170,7 +172,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
 
       // Different spacing for mobile vs desktop/tablet in expanded view
       const baseY = 30;
-      const spacing = window.innerWidth < 768 ? 150 : 220; // Tight on mobile, proper spacing on desktop/tablet
+      const spacing = isMobile ? 150 : 220; // Tight on mobile, proper spacing on desktop/tablet
       const startX = 20;
 
       outputs.forEach((output, idx) => {
@@ -192,8 +194,8 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
     }
 
     // Obsidian Vault - Overlapped positioning for mobile collapsed preview
-    const isMobileCollapsed = isPreview && window.innerWidth < 768;
-    const obsidianX = isPreview ? (isMobileCollapsed ? 50 : 50) : (window.innerWidth < 768 ? 10 : 50);
+    const isMobileCollapsed = isPreview && isMobile;
+    const obsidianX = isPreview ? (isMobileCollapsed ? 50 : 50) : (isMobile ? 10 : 50);
     const obsidianY = isPreview ? (isMobileCollapsed ? 120 : 120) : 200;
     nodes.push({
       id: 'obsidian-vault',
@@ -210,7 +212,7 @@ export const RadialFlow = ({ isPreview = false }: RadialFlowProps) => {
     });
 
     // Claude Code - Overlapped positioning for mobile collapsed preview
-    const claudeX = isPreview ? (isMobileCollapsed ? 170 : 280) : (window.innerWidth < 768 ? 250 : 400);
+    const claudeX = isPreview ? (isMobileCollapsed ? 170 : 280) : (isMobile ? 250 : 400);
     const claudeY = isPreview ? (isMobileCollapsed ? 120 : 120) : 200;
     nodes.push({
       id: 'claude-center',
