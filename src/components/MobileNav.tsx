@@ -57,8 +57,8 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
             <ThemeToggle />
           </div>
 
-          {/* Tablet/Mobile Landscape - Inline Navigation */}
-          <div className="hidden lg:flex xl:hidden landscape:flex portrait:hidden items-center gap-3">
+          {/* Tablet - Inline Navigation */}
+          <div className="hidden lg:flex xl:hidden items-center gap-3">
             <nav className="flex gap-4">
               <button 
                 onClick={() => scrollToSection("arsenal")}
@@ -87,8 +87,8 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Portrait - Hamburger Menu */}
-          <div className="flex items-center gap-2 portrait:flex landscape:hidden xl:hidden">
+          {/* Mobile - Hamburger Menu */}
+          <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -101,9 +101,9 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay - Portrait Only */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 portrait:block landscape:hidden xl:hidden">
+        <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="absolute top-20 left-4 right-4 bg-card border border-border rounded-lg shadow-lg p-6">
             <nav className="space-y-4">
