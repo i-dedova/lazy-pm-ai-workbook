@@ -30,7 +30,7 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
           <h1 className="text-lg lg:text-xl font-bold text-primary">My Lazy PM's AI Workbook</h1>
           
           {/* Desktop Navigation - Single Line */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden xl:flex items-center gap-8">
             <nav className="flex gap-8">
               <button 
                 onClick={() => scrollToSection("arsenal")}
@@ -57,8 +57,8 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Landscape - Inline Navigation */}
-          <div className="hidden landscape:flex portrait:hidden lg:hidden items-center gap-3">
+          {/* Tablet/Mobile Landscape - Inline Navigation */}
+          <div className="hidden lg:flex xl:hidden landscape:flex portrait:hidden items-center gap-3">
             <nav className="flex gap-4">
               <button 
                 onClick={() => scrollToSection("arsenal")}
@@ -88,7 +88,7 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
           </div>
 
           {/* Mobile Portrait - Hamburger Menu */}
-          <div className="flex items-center gap-2 portrait:flex landscape:hidden lg:hidden">
+          <div className="flex items-center gap-2 portrait:flex landscape:hidden xl:hidden">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -103,7 +103,7 @@ export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
 
       {/* Mobile Menu Overlay - Portrait Only */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 portrait:block landscape:hidden lg:hidden">
+        <div className="fixed inset-0 z-40 portrait:block landscape:hidden xl:hidden">
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="absolute top-20 left-4 right-4 bg-card border border-border rounded-lg shadow-lg p-6">
             <nav className="space-y-4">
