@@ -616,7 +616,7 @@ const FlowFullInner = ({
               ? 'bottom-4 left-1/2 -translate-x-1/2 px-3 py-2' // Bottom center for mobile landscape
               : isMobile 
                 ? 'top-20 left-1/2 -translate-x-1/2 px-3 py-2' // Top center for mobile portrait, pushed down 20px
-                : 'top-20 left-1/2 -translate-x-1/2 px-3 py-2 xl:top-4 xl:left-auto xl:right-4 xl:translate-x-0 xl:p-3 xl:max-w-xs' // Center for tablet, right for desktop
+                : 'top-20 left-1/2 -translate-x-1/2 px-3 py-2' // Top center for all tablet and desktop
           }`}
         >
           <div className={`flex items-center gap-2 text-foreground ${
@@ -624,26 +624,11 @@ const FlowFullInner = ({
               ? 'text-sm justify-center whitespace-nowrap' // Mobile landscape: text-sm
               : isMobile 
                 ? 'text-sm justify-center whitespace-nowrap' // Mobile portrait: text-sm
-                : 'text-base justify-center whitespace-nowrap xl:text-lg xl:justify-start' // Tablet centered, desktop left
+                : 'text-base justify-center whitespace-nowrap lg:text-lg' // Tablet text-base, desktop text-lg (matches list nodes)
           }`}>
-            <MousePointerClick className={`${isMobile ? 'w-4 h-4' : 'w-4 h-4 xl:w-5 xl:h-5'} text-primary flex-shrink-0`} />
+            <MousePointerClick className={`${isMobile ? 'w-4 h-4' : 'w-4 h-4 lg:w-5 lg:h-5'} text-primary flex-shrink-0`} />
             <span>Click any output to explore the workflow</span>
           </div>
-          {!isMobile && (
-            <div className="hidden xl:block absolute -bottom-2 right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-border/50"
-              style={{ 
-                filter: 'drop-shadow(0 1px 0 hsl(var(--card) / 0.95))'
-              }}
-            />
-          )}
-          {false && (
-            <div 
-              className="absolute -bottom-2 right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-border/50"
-              style={{ 
-                filter: 'drop-shadow(0 1px 0 hsl(var(--card) / 0.95))'
-              }}
-            />
-          )}
         </div>
       )}
       
