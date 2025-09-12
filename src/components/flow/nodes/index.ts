@@ -1,11 +1,15 @@
 import { ListNode } from './ListNode';
 import { CenterNode } from './CenterNode';
-import { OutputNode } from './OutputNode';
+import { RightNode } from './RightNode';
+import { ConvergenceNode } from './ConvergenceNode';
+import { PreviewNode } from './PreviewNode';
 
 export const nodeTypes = {
   list: ListNode,
   center: CenterNode,
-  output: OutputNode,
+  right: RightNode,
+  convergence: ConvergenceNode,
+  preview: PreviewNode,
 };
 
-export { ListNode, CenterNode, OutputNode };
+export { ListNode, CenterNode, RightNode, ConvergenceNode, PreviewNode };

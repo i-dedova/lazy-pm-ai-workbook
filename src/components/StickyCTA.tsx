@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 import { FileText, Github, ExternalLink } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 
-export const StickyCTA = () => {
+interface StickyCTAProps {
+  isMobileNavOpen?: boolean;
+}
+
+export const StickyCTA = ({ isMobileNavOpen = false }: StickyCTAProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isConnectVisible, setIsConnectVisible] = useState(false);
 
@@ -40,11 +44,11 @@ export const StickyCTA = () => {
     };
   }, []);
 
-  // Hide sticky CTA if connect section is visible or if not visible at all
-  if (!isVisible || isConnectVisible) return null;
+  // Hide sticky CTA if connect section is visible, if not visible at all, or if mobile nav is open
+  if (!isVisible || isConnectVisible || isMobileNavOpen) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 lg:hidden">
+    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 lg:hidden portrait:block landscape:hidden">
       <Button 
         size="lg"
         className="bg-gradient-accent text-accent-foreground hover:opacity-90 transition-opacity shadow-lg px-6 py-3 rounded-full font-semibold"

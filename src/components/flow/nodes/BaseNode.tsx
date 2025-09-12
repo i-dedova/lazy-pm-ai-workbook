@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 interface BaseNodeProps {
   children: ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary' | 'accent';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 const variantStyles = {
@@ -14,25 +14,31 @@ const variantStyles = {
 };
 
 const sizeStyles = {
-  sm: 'min-w-[120px] p-2 text-xs',
-  md: 'min-w-[160px] md:min-w-[200px] p-3 text-sm',
-  lg: 'min-w-[200px] md:min-w-[260px] p-4 text-base'
+  xs: 'w-[160px] min-w-[160px] h-[50px] p-2 text-sm',
+  sm: 'w-[200px] min-w-[200px] p-2.5 text-sm',
+  md: 'w-[220px] min-w-[220px] p-3.5 text-base', 
+  lg: 'w-[240px] min-w-[240px] p-4 text-lg'
 };
 
-export const BaseNode = ({ 
+export const BaseNode = forwardRef<HTMLDivElement, BaseNodeProps>(({ 
   children, 
   className = '', 
   variant = 'primary',
   size = 'md'
-}: BaseNodeProps) => {
+}, ref) => {
   return (
-    <div className={`
-      rounded-xl transition-all duration-300
-      ${variantStyles[variant]}
-      ${sizeStyles[size]}
-      ${className}
-    `}>
+    <div 
+      ref={ref}
+      className={`
+        rounded-xl transition-all duration-300
+        ${variantStyles[variant]}
+        ${sizeStyles[size]}
+        ${className}
+      `}
+    >
       {children}
     </div>
   );
-};
+});
+
+BaseNode.displayName = 'BaseNode';

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { WorkflowSnippet } from "@/components/WorkflowSnippet";
 import { MobileNav } from "@/components/MobileNav";
 import { StickyCTA } from "@/components/StickyCTA";
@@ -5,46 +6,48 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Github, Linkedin, FileText, Beaker, Target, Zap, TestTube, Eye, Palette, HeartHandshake, Rocket, UserCog } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
+
 const Index = () => {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const workflows = [{
     title: "Product Brain",
     tools: "Obsidian + Claude Code",
-    keyBenefits: ["No more copy-paste context feeding to AI", "Self-updating knowledge vault grows daily", "Instant access to cross-team dependencies"],
+    keyBenefits: ["No more copy-paste context feeding to AI", "Claude tags, cross-links and organizes notes", "Self-updating knowledge vault grows daily", "Instant access to cross-team dependencies"],
     metric: "95% less context setup time",
     icon: "brain" as const,
     diagramType: "product-brain" as const
   }, {
     title: "Meeting Memory",
-    tools: "Granola + Claude Code",
-    keyBenefits: ["Auto-tracks promises and commitments", "Never lose decisions or action items", "Supernatural memory powers unlocked"],
+    tools: "Granola + Obsidian + Claude Code",
+    keyBenefits: ["Auto-track promises and commitments", "Never lose decisions or action items", "Unlock supernatural memory powers", "Auto-update feature initiative docs daily"],
     metric: "400% better follow-through",
     icon: "message" as const,
     diagramType: "meeting-memory" as const
   }, {
     title: "Tech Bridge",
-    tools: "GitHub Copilot + Repository Map",
-    keyBenefits: ["Answer API questions in real-time", "Speak dev without learning to code", "Proactive technical research"],
+    tools: "GitHub Copilot + Obsidian + Perplexity Pro",
+    keyBenefits: ["Answer API questions in real-time", "Speak dev without learning to code", "Address tech feasibility proactively", "Boost it with Perplexity explanations"],
     metric: "90% faster technical answers",
     icon: "code" as const,
     diagramType: "tech-bridge" as const
   }, {
     title: "Data Wizard",
-    tools: "Comet Browser + Perplexity Pro",
-    keyBenefits: ["Automated dashboard filtering", "Instant metric extraction", "Defend decisions with data"],
+    tools: "Comet Browser + Google Sheets + Perplexity Pro",
+    keyBenefits: ["Comet filters data on a dashboard", "Comet downloads CSVs and extracts data", "Perplexity analyzes and calculates KPIs", "Get data faster to defend decisions"],
     metric: "85% less data grunt work",
     icon: "chart" as const,
     diagramType: "data-wizard" as const
   }, {
     title: "Voice Magic",
-    tools: "Wispr Flow + Obsidian",
-    keyBenefits: ["Clean voice-to-text capture", "Beach walks become PRD sessions", "Rapid documentation workflow"],
+    tools: "Wispr Flow + Obsidian + Claude Code",
+    keyBenefits: ["Most perfect voice-to-text capture", "Create notes on phone, polish on laptop", "Brainstorm ideas sitting on the beach", "Generate documentation in minutes"],
     metric: "80% faster PRD creation",
     icon: "mic" as const,
     diagramType: "voice-magic" as const
   }];
   return <div className="min-h-screen bg-gradient-surface">
-      <MobileNav />
-      <StickyCTA />
+      <MobileNav isOpen={isMobileNavOpen} setIsOpen={setIsMobileNavOpen} />
+      <StickyCTA isMobileNavOpen={isMobileNavOpen} />
 
       {/* Hero Section - Clean & Simple */}
       <section className="py-12 lg:py-20 relative overflow-hidden">

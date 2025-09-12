@@ -138,7 +138,7 @@ All colors MUST be HSL.
   }
 }
 
-/* ReactFlow overrides - remove default node borders */
+/* ReactFlow overrides - remove default node borders and ensure full coverage */
 .react-flow__node {
   border: none !important;
 }
@@ -150,3 +150,197 @@ All colors MUST be HSL.
 .react-flow__node:hover {
   border: none !important;
 }
+
+/* Ensure ReactFlow fills container completely */
+.react-flow {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-flow__renderer {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-flow__background {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-flow__viewport {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Force ReactFlow pane to fill completely */
+.react-flow__pane {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Position controls relative to viewport like Miro/Figma */
+.react-flow__controls {
+  position: fixed !important;
+  bottom: 1rem !important;
+  left: 1rem !important;
+  z-index: 1000 !important;
+}
+
+/* Mobile landscape positioning override - temporarily disabled */
+/* .mobile-landscape .react-flow {
+  transform: translateY(150px) !important;
+}
+
+.mobile-landscape .react-flow__viewport {
+  transform: translateY(0px) !important;
+} */
+
+/* Pulsating ring animation for user guidance */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--highlight) / 0.3);
+    background-color: hsl(var(--highlight) / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px hsl(var(--highlight) / 0.1);
+    background-color: hsl(var(--highlight) / 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--highlight) / 0);
+    background-color: hsl(var(--highlight) / 0.1);
+  }
+}
+
+/* Animation delay utility for staggered animations */
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Flowing dash animation for dotted lines */
+@keyframes flow-dash {
+  0% {
+    stroke-dasharray: 3 6;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 3 6;
+    stroke-dashoffset: -9;
+  }
+}
+
+/* Cursor demonstration animations - starting from tooltip icon position */
+/* Temporarily disabled to fix white screen issue
+@keyframes cursor-demo-desktop {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-250px) translateY(80px);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-250px) translateY(80px) scale(0.8);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-250px) translateY(80px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-250px) translateY(80px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-demo-mobile {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-160px) translateY(140px);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-160px) translateY(140px) scale(0.8);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-160px) translateY(140px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-160px) translateY(140px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-demo-mobile-landscape {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-180px) translateY(60px);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-180px) translateY(60px) scale(0.8);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-180px) translateY(60px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-180px) translateY(60px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes target-highlight-desktop {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes target-highlight-mobile {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes target-highlight-mobile-landscape {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+*/

@@ -1,6 +1,33 @@
 import { useState } from "react";
 import { Expand } from "lucide-react";
-import { RadialFlow } from "./RadialFlow";
+import { FlowFull } from "./flow/FlowFull";
+import { 
+  PRODUCT_BRAIN_WORKFLOWS,
+  PRODUCT_BRAIN_LEFT_SECTIONS,
+  PRODUCT_BRAIN_CENTER_TASKS,
+  PRODUCT_BRAIN_RIGHT_OUTPUTS,
+  OUTPUT_MAPPINGS,
+  MEETING_MEMORY_WORKFLOWS,
+  MEETING_MEMORY_LEFT_SECTIONS,
+  MEETING_MEMORY_CENTER_TASKS,
+  MEETING_MEMORY_RIGHT_OUTPUTS,
+  MEETING_MEMORY_OUTPUT_MAPPINGS,
+  TECH_BRIDGE_WORKFLOWS,
+  TECH_BRIDGE_LEFT_SECTIONS,
+  TECH_BRIDGE_CENTER_TASKS,
+  TECH_BRIDGE_RIGHT_OUTPUTS,
+  TECH_BRIDGE_OUTPUT_MAPPINGS,
+  DATA_WIZARD_WORKFLOWS,
+  DATA_WIZARD_LEFT_SECTIONS,
+  DATA_WIZARD_CENTER_TASKS,
+  DATA_WIZARD_RIGHT_OUTPUTS,
+  DATA_WIZARD_OUTPUT_MAPPINGS,
+  VOICE_MAGIC_WORKFLOWS,
+  VOICE_MAGIC_LEFT_SECTIONS,
+  VOICE_MAGIC_CENTER_TASKS,
+  VOICE_MAGIC_RIGHT_OUTPUTS,
+  VOICE_MAGIC_OUTPUT_MAPPINGS
+} from '@/data/workflows';
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface WorkflowDiagramProps {
@@ -10,40 +37,76 @@ interface WorkflowDiagramProps {
 
 export const WorkflowDiagram = ({ type, isPreview = false }: WorkflowDiagramProps) => {
   const isMobile = useIsMobile();
+  
+  // Check if device is touch-based (mobile or tablet) - no hover capability
+  const isTouchDevice = isMobile || (typeof window !== 'undefined' && 'ontouchstart' in window);
 
   const renderDiagram = () => {
     switch (type) {
       case "product-brain":
-        return <RadialFlow isPreview={isPreview} />;
+        // WorkflowDiagram now only handles full view
+        const productBrainProps = {
+          workflowData: PRODUCT_BRAIN_WORKFLOWS,
+          allLeftSections: PRODUCT_BRAIN_LEFT_SECTIONS,
+          allCenterTasks: PRODUCT_BRAIN_CENTER_TASKS,
+          allRightOutputs: PRODUCT_BRAIN_RIGHT_OUTPUTS,
+          outputMappings: OUTPUT_MAPPINGS,
+          workflowType: "product-brain" as const
+        };
+        return <FlowFull {...productBrainProps} />;
       case "meeting-memory":
-        return <MeetingMemorySVG isPreview={isPreview} />;
+        const meetingMemoryProps = {
+          workflowData: MEETING_MEMORY_WORKFLOWS,
+          allLeftSections: MEETING_MEMORY_LEFT_SECTIONS,
+          allCenterTasks: MEETING_MEMORY_CENTER_TASKS,
+          allRightOutputs: MEETING_MEMORY_RIGHT_OUTPUTS,
+          outputMappings: MEETING_MEMORY_OUTPUT_MAPPINGS,
+          workflowType: "meeting-memory" as const
+        };
+        return <FlowFull {...meetingMemoryProps} />;
       case "tech-bridge":
-        return <TechBridgeSVG isPreview={isPreview} />;
+        const techBridgeProps = {
+          workflowData: TECH_BRIDGE_WORKFLOWS,
+          allLeftSections: TECH_BRIDGE_LEFT_SECTIONS,
+          allCenterTasks: TECH_BRIDGE_CENTER_TASKS,
+          allRightOutputs: TECH_BRIDGE_RIGHT_OUTPUTS,
+          outputMappings: TECH_BRIDGE_OUTPUT_MAPPINGS,
+          workflowType: "tech-bridge" as const
+        };
+        return <FlowFull {...techBridgeProps} />;
       case "data-wizard":
-        return <DataWizardSVG isPreview={isPreview} />;
+        const dataWizardProps = {
+          workflowData: DATA_WIZARD_WORKFLOWS,
+          allLeftSections: DATA_WIZARD_LEFT_SECTIONS,
+          allCenterTasks: DATA_WIZARD_CENTER_TASKS,
+          allRightOutputs: DATA_WIZARD_RIGHT_OUTPUTS,
+          outputMappings: DATA_WIZARD_OUTPUT_MAPPINGS,
+          workflowType: "data-wizard" as const
+        };
+        return <FlowFull {...dataWizardProps} />;
       case "voice-magic":
-        return <VoiceMagicSVG isPreview={isPreview} />;
+        const voiceMagicProps = {
+          workflowData: VOICE_MAGIC_WORKFLOWS,
+          allLeftSections: VOICE_MAGIC_LEFT_SECTIONS,
+          allCenterTasks: VOICE_MAGIC_CENTER_TASKS,
+          allRightOutputs: VOICE_MAGIC_RIGHT_OUTPUTS,
+          outputMappings: VOICE_MAGIC_OUTPUT_MAPPINGS,
+          workflowType: "voice-magic" as const
+        };
+        return <FlowFull {...voiceMagicProps} />;
       default:
         return <div className="flex items-center justify-center h-full text-muted-foreground">Diagram not available</div>;
     }
   };
 
+  // WorkflowDiagram is now only for full view
+  const containerClass = (type === "product-brain" || type === "meeting-memory" || type === "tech-bridge" || type === "data-wizard" || type === "voice-magic")
+    ? `relative w-full h-full bg-background rounded-lg overflow-hidden`
+    : `relative w-full h-full bg-background rounded-lg overflow-hidden flex items-center justify-center`;
+
   return (
-    <div className={`relative w-full ${isPreview ? 'h-48 md:h-64' : 'h-full'} bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg overflow-hidden`}>
-      {/* Main diagram container */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        {renderDiagram()}
-      </div>
-      
-      {/* Expansion hint - only show in preview mode */}
-      {isPreview && (
-        <div className="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-          <div className="flex items-center space-x-2 text-xs text-gray-600 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 shadow-sm">
-            <span>Click to expand</span>
-            <Expand className="w-3 h-3" />
-          </div>
-        </div>
-      )}
+    <div className={containerClass}>
+      {renderDiagram()}
     </div>
   );
 };

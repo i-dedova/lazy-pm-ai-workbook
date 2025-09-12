@@ -1,11 +1,14 @@
-import { useState } from "react";
 import { Menu, X, Github, FileText } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-export const MobileNav = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface MobileNavProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -41,17 +44,51 @@ export const MobileNav = () => {
               >
                 Lab
               </button>
-              <button 
-                onClick={() => scrollToSection("connect")}
-                className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-all duration-200"
+              <a
+                href="https://www.linkedin.com/in/innadedova/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 px-3 py-2 rounded-md transition-all duration-200 flex items-center gap-2"
               >
-                Connect
-              </button>
+                <FaLinkedin className="w-4 h-4" />
+                Connect on LinkedIn
+              </a>
             </nav>
             <ThemeToggle />
           </div>
 
-          <div className="flex items-center gap-2 lg:hidden">
+          {/* Mobile Landscape - Inline Navigation */}
+          <div className="hidden landscape:flex portrait:hidden lg:hidden items-center gap-3">
+            <nav className="flex gap-4">
+              <button 
+                onClick={() => scrollToSection("arsenal")}
+                className="text-xs text-muted-foreground hover:text-primary hover:bg-primary/10 px-2 py-1 rounded-md transition-all duration-200"
+              >
+                Arsenal
+              </button>
+              <button 
+                onClick={() => scrollToSection("lab")}
+                className="text-xs text-muted-foreground hover:text-primary hover:bg-primary/10 px-2 py-1 rounded-md transition-all duration-200"
+              >
+                Lab
+              </button>
+            </nav>
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-gradient-accent text-accent-foreground hover:opacity-90 border-accent"
+              asChild
+            >
+              <a href="https://www.linkedin.com/in/innadedova/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                <FaLinkedin className="w-3 h-3" />
+                <span className="text-xs">Connect</span>
+              </a>
+            </Button>
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile Portrait - Hamburger Menu */}
+          <div className="flex items-center gap-2 portrait:flex landscape:hidden lg:hidden">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -64,9 +101,9 @@ export const MobileNav = () => {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Portrait Only */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-40 portrait:block landscape:hidden lg:hidden">
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
           <div className="absolute top-20 left-4 right-4 bg-card border border-border rounded-lg shadow-lg p-6">
             <nav className="space-y-4">
@@ -74,13 +111,13 @@ export const MobileNav = () => {
                 onClick={() => scrollToSection("arsenal")}
                 className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
               >
-                AI Arsenal
+                Arsenal
               </button>
               <button 
                 onClick={() => scrollToSection("lab")}
                 className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
               >
-                What's Cooking
+                Lab
               </button>
               <hr className="border-border" />
               <div className="pt-2">

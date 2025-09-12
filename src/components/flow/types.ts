@@ -16,13 +16,16 @@ export interface FlowTask {
 }
 
 export interface FlowOutput {
-  outputType: string;
-  label: string;
-  time: string;
+  name: string;
+  active: boolean;
 }
 
 export interface BaseNodeData {
   isPreview?: boolean;
+  isMobile?: boolean;
+  isTablet?: boolean;
+  isMobileLandscape?: boolean;
+  isTabletLandscape?: boolean;
 }
 
 export interface ListNodeData extends BaseNodeData {
@@ -30,19 +33,20 @@ export interface ListNodeData extends BaseNodeData {
   icon?: string;
   sections: FlowSection[];
   variant?: 'primary' | 'secondary';
+  nodeRef?: React.RefObject<HTMLDivElement>;
 }
 
 export interface CenterNodeData extends BaseNodeData {
   title: string;
   tasks: FlowTask[];
+  nodeRef?: React.RefObject<HTMLDivElement>;
 }
 
-export interface OutputNodeData extends BaseNodeData {
-  outputType: string;
-  label: string;
-  time: string;
-  isActive?: boolean;
-  onClick: (outputType: string) => void;
+export interface RightNodeData extends BaseNodeData {
+  title: string;
+  outputs: FlowOutput[];
+  onOutputClick?: (outputName: string) => void;
+  hasActiveWorkflow?: boolean;
 }
 
 export interface FlowProps {
@@ -50,5 +54,7 @@ export interface FlowProps {
   workflowData: Record<string, FlowWorkflow>;
   allLeftSections: string[];
   allCenterTasks: string[];
-  outputs: FlowOutput[];
+  allRightOutputs: string[];
+  outputMappings?: Record<string, { leftSections: string[], centerTasks: string[] }>;
+  workflowType?: "product-brain" | "meeting-memory" | "tech-bridge" | "data-wizard" | "voice-magic";
 }
