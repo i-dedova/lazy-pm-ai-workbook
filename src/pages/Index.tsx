@@ -222,10 +222,21 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="py-6 border-t border-border/50 bg-background/50">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center space-y-4">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
             Built with curiosity, powered by laziness <Rocket className="h-4 w-4 text-primary" />
           </p>
+          <div className="flex items-center justify-center">
+            <a
+              href="https://github.com/i-dedova/lazy-pm-ai-workbook"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-2 text-sm"
+            >
+              <Github className="h-4 w-4" />
+              View Source Code
+            </a>
+          </div>
         </div>
       </footer>
     </div>;
